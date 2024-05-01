@@ -14,7 +14,8 @@
 				"shopify.ruby-extensions-pack",
 				"shopify.ruby-lsp",
 				"formulahendry.code-runner",
-				"formulahendry.auto-close-tag"
+				"formulahendry.auto-close-tag",
+				"ms-azuretools.vscode-docker"
 		  	]
 		}
     }
