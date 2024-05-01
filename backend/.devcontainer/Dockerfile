@@ -7,3 +7,5 @@ WORKDIR /usr/src/app/backend
 COPY Gemfile Gemfile.lock ./
 RUN bundle lock --add-platform x86_64-linux
 RUN bundle install
+
+RUN echo "source /usr/share/bash-completion/completions/git" >> ~/.bashrc
