@@ -1,0 +1,21 @@
+{
+    "name": "Kuchikomi Navi",
+    "dockerComposeFile": "./docker-compose.yml",
+    "service": "web",
+    "workspaceFolder": "/usr/src/app/backend",
+    "customizations": {
+		"vscode": {
+			"settings": {
+				"extensions.verifySignature": false
+			},
+			"extensions": [
+				"mhutchie.git-graph",
+				"donjayamanne.githistory",
+				"shopify.ruby-extensions-pack",
+				"shopify.ruby-lsp",
+				"formulahendry.code-runner",
+				"formulahendry.auto-close-tag"
+		  	]
+		}
+    }
+}
