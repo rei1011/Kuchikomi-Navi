@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  store_name: MyString
+  prostitute_name: MyString
+  comment: MyString
+  publication_date: 2024-05-01
+
+two:
+  store_name: MyString
+  prostitute_name: MyString
+  comment: MyString
+  publication_date: 2024-05-01
