@@ -1,4 +1,6 @@
-class CommentsController < ApplicationController
+# frozen_string_literal: true
+
+class CommentsController < ApplicationController # rubocop:disable Style/Documentation
   before_action :set_comment, only: %i[show update destroy]
 
   # GET /comments
