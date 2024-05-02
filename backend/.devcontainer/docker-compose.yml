@@ -15,6 +15,8 @@ services:
       DATABASE_PASSWORD: password
     volumes:
       - ../..:/usr/src/app:cached
+    ports:
+      - 3000:3000
     stdin_open: true
     tty: true
 
