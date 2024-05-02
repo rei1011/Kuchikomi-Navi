@@ -12,5 +12,5 @@ RUN echo "source /usr/share/bash-completion/completions/git" >> ~/.bashrc
 
 RUN curl -SL https://deb.nodesource.com/setup_20.x | bash \
     && apt-get update \
-    && apt-get install -y nodejs \
+    && apt-get install -y nodejs sudo \
     && npm install -g yarn
