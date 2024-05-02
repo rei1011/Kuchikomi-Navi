@@ -1,0 +1,8 @@
+services:
+  next-app:
+    build:
+      context: .
+    volumes:
+      - ../../:/usr/src/app:cached
+    stdin_open: true
+    tty: true 
