@@ -13,7 +13,14 @@ rails db:create
 # API定義の出力
 ```
 rails spec
-（↑のコマンドがpassしたら）rails rswag:specs:swaggerize
+（↑のコマンドがpassしたら） rails rswag:specs:swaggerize
 ```
 上記コマンド実行後、[http://localhost:3000/api-docs](http://localhost:3000/api-docs)へアクセス
+
+# rspecのデバッグ方法
+デバッグしたい箇所に`binding.break`を記述し、
+以下のコマンドを実行するとterminalにdebug consoleが表示される
+```
+rspec /path/to/test_spec.rb
+```
 
