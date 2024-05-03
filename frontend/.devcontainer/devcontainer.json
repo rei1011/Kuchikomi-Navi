@@ -19,5 +19,6 @@
                 "ritwickdey.liveserver"
 		  	]
 		}
-    }
+    },
+	"postCreateCommand": "yarn install --immutable"
 }
