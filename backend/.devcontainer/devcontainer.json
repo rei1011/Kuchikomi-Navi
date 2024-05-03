@@ -16,7 +16,8 @@
 				"formulahendry.code-runner",
 				"formulahendry.auto-close-tag",
 				"ms-azuretools.vscode-docker",
-				"esbenp.prettier-vscode"
+				"esbenp.prettier-vscode",
+				"koichisasada.vscode-rdbg"
 		  	]
 		}
     },
