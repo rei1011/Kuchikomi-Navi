@@ -6,7 +6,7 @@ export function Comments() {
   const [data, setData] = useState<any[] | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/comments")
+    fetch(`${process.env.NEXT_PUBLIC_SERVER_HOST}/comments`)
       .then((response) => {
         return response.json();
       })

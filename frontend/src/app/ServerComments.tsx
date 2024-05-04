@@ -1,5 +1,5 @@
 async function getData() {
-  const res = await fetch("http://localhost:3000/comments");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_HOST}/comments`);
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 
