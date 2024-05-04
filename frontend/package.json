@@ -13,7 +13,8 @@
     "next": "14.2.3",
     "openapi-fetch": "^0.9.5",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "@types/node": "^20",
