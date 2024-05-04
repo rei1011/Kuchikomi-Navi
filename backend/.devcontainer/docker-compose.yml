@@ -5,6 +5,8 @@ services:
       MYSQL_ROOT_PASSWORD: password
     volumes:
       - db-data:/var/lib/mysql
+    networks:
+      - kuchikomi-network
   web:
     build:
       context: ..
@@ -19,6 +21,12 @@ services:
       - 3000:3000
     stdin_open: true
     tty: true
+    networks:
+      - kuchikomi-network
 
 volumes:
   db-data:
+
+networks:
+  kuchikomi-network:
+    external: true

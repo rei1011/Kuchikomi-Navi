@@ -1,5 +1,5 @@
 async function getData() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+  const res = await fetch("http://web:3000/comments");
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 

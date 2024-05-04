@@ -8,3 +8,9 @@ services:
       - 3001:3000
     stdin_open: true
     tty: true
+    networks:
+      - kuchikomi-network
+
+networks:
+  kuchikomi-network:
+    external: true
