@@ -1,14 +1,13 @@
+import createClient from "openapi-fetch";
+import { paths } from "../../openapi/schema";
+
 async function getData() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_HOST}/comments`);
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
+  const client = createClient<paths>({
+    baseUrl: process.env.NEXT_PUBLIC_SERVER_HOST,
+  });
+  const res = await client.GET("/comments");
 
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
+  return res.data;
 }
 
 export async function ServerComments() {
