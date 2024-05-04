@@ -1,24 +1,25 @@
 {
-    "name": "Kuchikomi Navi",
-    "dockerComposeFile": "./docker-compose.yml",
-    "service": "next-app",
-    "workspaceFolder": "/usr/src/app/frontend",
-    "customizations": {
-		"vscode": {
-			"settings": {
-				"extensions.verifySignature": false
-			},
-			"extensions": [
-				"mhutchie.git-graph",
-				"donjayamanne.githistory",
-				"formulahendry.auto-close-tag",
-				"ms-azuretools.vscode-docker",
-				"esbenp.prettier-vscode",
-                "rvest.vs-code-prettier-eslint",
-                "dbaeumer.vscode-eslint",
-                "ritwickdey.liveserver"
-		  	]
-		}
-    },
-	"postCreateCommand": "yarn install --immutable"
+  "name": "Kuchikomi Navi",
+  "dockerComposeFile": "./docker-compose.yml",
+  "service": "next-app",
+  "workspaceFolder": "/usr/src/app/frontend",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "extensions.verifySignature": false
+      },
+      "extensions": [
+        "mhutchie.git-graph",
+        "donjayamanne.githistory",
+        "formulahendry.auto-close-tag",
+        "ms-azuretools.vscode-docker",
+        "esbenp.prettier-vscode",
+        "rvest.vs-code-prettier-eslint",
+        "dbaeumer.vscode-eslint",
+        "ritwickdey.liveserver"
+      ]
+    }
+  },
+  // server compoentでhttp://localhost:3000でサーバーへ通信するためにポートフォワーディングを設定
+  "postCreateCommand": "yarn install --immutable && socat TCP-LISTEN:3000,fork TCP:web:3000"
 }

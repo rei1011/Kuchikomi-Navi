@@ -16,7 +16,7 @@ rails db:create
 
 ### 起動
 ```
-(container内で) rails server
+(container内で) rails s -b "0.0.0.0"
 ```
 
 ### API定義の出力

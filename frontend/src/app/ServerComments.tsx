@@ -1,5 +1,5 @@
 async function getData() {
-  const res = await fetch("http://web:3000/comments");
+  const res = await fetch("http://localhost:3000/comments");
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 
