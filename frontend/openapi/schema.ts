@@ -3,6 +3,7 @@
  * Do not make direct changes to the file.
  */
 
+
 export interface paths {
   "/comments": {
     /** Get Comments */
@@ -12,12 +13,12 @@ export interface paths {
         200: {
           content: {
             "application/json": {
-              id: number;
-              store_name: string;
-              prostutite_name: string;
-              comment: string;
-              publication_date: string;
-            }[];
+                id: number;
+                store_name: string;
+                prostutite_name: string;
+                comment: string;
+                publication_date: string;
+              }[];
           };
         };
       };
