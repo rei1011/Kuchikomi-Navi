@@ -55,3 +55,8 @@ yarn generate
 
 ### tfstateファイルをTerraform Cloudに保存するために以下からアカウントを作成
 https://app.terraform.io/public/signup/account
+
+### terraform CLIで利用するtokenを設定
+コンテナの初回起動時に自動でterraformの初期化が実行される<br>
+以下に表示されるtokenをコピーし、terminalに貼り付ける
+![alt text](./docs_image/image4.png)
