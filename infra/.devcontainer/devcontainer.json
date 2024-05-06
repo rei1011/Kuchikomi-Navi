@@ -21,6 +21,6 @@
         ]
       }
     },
-    "postCreateCommand": "gcloud init --no-launch-browser && gcloud auth application-default login"
+    "postCreateCommand": "yarn install --immutable && gcloud init --no-launch-browser && gcloud auth application-default login --no-launch-browser && terraform login && terraform init"
   }
   
