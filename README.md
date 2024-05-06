@@ -41,6 +41,9 @@ yarn generate
 ```
 
 ## infra
+### GCPのアカウントを作成
+最初にGCPのアカウントを作成する
+
 ### gcloudの初期化
 コンテナの初回起動時に自動でgcloudの初期化が実行される<br>
 赤枠内に表示されているURLをブラウザで開き、ログインを行う<br>
@@ -69,3 +72,13 @@ Terraform Cloud経由でデプロイするためには、上記の情報が必�
 | --- | ----- |
 | gcp-creds | application_default_credentials.jsonの中身 |
 ![alt text](./docs_image/image5.png)
+
+### リソースのデプロイ
+```
+./apply.sh
+```
+
+### リソースの削除
+```
+terraform destroy
+```
