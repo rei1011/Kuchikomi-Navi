@@ -43,7 +43,7 @@ yarn generate
 ## infra
 ### gcloudの初期化
 コンテナの初回起動時に自動でgcloudの初期化が実行される<br>
-赤枠内に表示されているURLをブラウザで開き、ログインを行う
+赤枠内に表示されているURLをブラウザで開き、ログインを行う<br>
 最後に表示された確認コードを緑の枠に入力する
 ![alt text](./docs_image/image.png)
 確認コードを入力後に、利用するprojectを選択する
@@ -58,12 +58,12 @@ https://app.terraform.io/public/signup/account
 
 ### terraform CLIで利用するtokenを設定
 コンテナの初回起動時に自動でterraformの初期化が実行される<br>
-以下に表示されるtokenをコピーし、terminalに貼り付ける
+以下に表示されるtokenをコピーし、terminalに貼り付ける<br>
 ![alt text](./docs_image/image4.png)
 
 ### Terraform Cloud経由でデプロイするためにGCPの認証情報を設定
 gcloud初期化後に、`/root/.config/gcloud/application_default_credentials.json`に認証情報が保存されている<br>
-Terraform Cloud経由でデプロイするためには、上記の情報が必要なため、下記のように登録する。<brw>
+Terraform Cloud経由でデプロイするためには、上記の情報が必要なため、下記のように登録する。<br>
 必ず、<b>Sensitiveにはチェックを入れる</b>
 | key | value |
 | --- | ----- |
