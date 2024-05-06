@@ -60,3 +60,12 @@ https://app.terraform.io/public/signup/account
 コンテナの初回起動時に自動でterraformの初期化が実行される<br>
 以下に表示されるtokenをコピーし、terminalに貼り付ける
 ![alt text](./docs_image/image4.png)
+
+### Terraform Cloud経由でデプロイするためにGCPの認証情報を設定
+gcloud初期化後に、`/root/.config/gcloud/application_default_credentials.json`に認証情報が保存されている<br>
+Terraform Cloud経由でデプロイするためには、上記の情報が必要なため、下記のように登録する。<brw>
+必ず、<b>Sensitiveにはチェックを入れる</b>
+| key | value |
+| --- | ----- |
+| gcp-creds | application_default_credentials.jsonの中身 |
+![alt text](./docs_image/image5.png)
