@@ -39,3 +39,12 @@ rspec /path/to/test_spec.rb
 ```
 yarn generate
 ```
+
+## infra
+### gcloudの初期化
+コンテナの初回起動時に自動でgcloudの初期化が実行される<br>
+赤枠内に表示されているURLをブラウザで開き、ログインを行う
+最後に表示された確認コードを緑の枠に入力する
+![alt text](./docs_image/image.png)
+確認コードを入力後に、利用するprojectを選択する
+![alt text](./docs_image/image2.png)
