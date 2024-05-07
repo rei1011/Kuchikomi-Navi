@@ -15,14 +15,31 @@ terraform {
 }
 
 provider "google" {
-  project = "rapid-stage-422403-r2"
+  project     = var.project
+  region      = var.region
+  zone        = var.zone
   credentials = var.gcp-creds
-}
-
-variable "gcp-creds" {
-  default = ""
 }
 
 resource "google_compute_network" "vpc_network" {
   name = "terraform-network"
+}
+
+resource "google_compute_instance" "vm_instance" {
+  name         = "terraform-instance"
+  machine_type = "e2-micro"
+  zone         = var.zone
+  tags         = ["web", "dev"]
+
+  boot_disk {
+    initialize_params {
+      image = "cos-cloud/cos-stable"
+    }
+  }
+
+  network_interface {
+    network = google_compute_network.vpc_network.name
+    access_config {
+    }
+  }
 }
