@@ -2,8 +2,9 @@ services:
   next-app:
     build:
       context: .
+      dockerfile: ./Dockerfile.dev
     volumes:
-      - ../../:/usr/src/app:cached
+      - ../:/usr/src/app:cached
     ports:
       - 3001:3001
     stdin_open: true
