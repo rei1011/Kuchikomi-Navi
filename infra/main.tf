@@ -21,25 +21,22 @@ provider "google" {
   credentials = var.gcp-creds
 }
 
-resource "google_compute_network" "vpc_network" {
-  name = "terraform-network"
+resource "google_cloud_run_v2_service" "default" {
+  name     = "cloudrun-service"
+  location = var.region
+
+  template {
+    containers {
+      image = "us-docker.pkg.dev/cloudrun/container/hello"
+    }
+  }
 }
 
-resource "google_compute_instance" "vm_instance" {
-  name         = "terraform-instance"
-  machine_type = "e2-micro"
-  zone         = var.zone
-  tags         = ["web", "dev"]
-
-  boot_disk {
-    initialize_params {
-      image = "cos-cloud/cos-stable"
-    }
-  }
-
-  network_interface {
-    network = google_compute_network.vpc_network.name
-    access_config {
-    }
-  }
+resource "google_cloud_run_service_iam_binding" "default" {
+  location = google_cloud_run_v2_service.default.location
+  service  = google_cloud_run_v2_service.default.name
+  role     = "roles/run.invoker"
+  members = [
+    "allUsers"
+  ]
 }
