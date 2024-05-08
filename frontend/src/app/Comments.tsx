@@ -13,7 +13,15 @@ export function Comments() {
     }).GET("/comments");
   });
 
-  if (!res) return <div>Loading...</div>;
+  if (!res)
+    return (
+      <div>
+        <button onClick={() => router.push("/sample")}>
+          Sample Pageへ遷移
+        </button>
+        <div>Loading....</div>
+      </div>
+    );
 
   return (
     <div>

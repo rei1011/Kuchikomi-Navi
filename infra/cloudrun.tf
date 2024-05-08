@@ -8,7 +8,10 @@ resource "google_cloud_run_v2_service" "default" {
       max_instance_count = 1
     }
     containers {
-      image = "us-docker.pkg.dev/cloudrun/container/hello"
+      image = "${var.region}-docker.pkg.dev/${var.project}/${var.frontend_app_name}/${var.frontend_image_name}:latest"
+      ports {
+        container_port = 3001
+      }
     }
   }
 }

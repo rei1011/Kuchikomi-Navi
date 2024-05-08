@@ -60,3 +60,13 @@ resource "google_cloudbuild_trigger" "my-app_trigger" {
     _ARTIFACT_REPOSITORY_IMAGE_NAME = "${var.region}-docker.pkg.dev/${var.project}/${var.frontend_app_name}/${var.frontend_image_name}"
   }
 }
+
+resource "google_project_iam_member" "cloudbuild_iam" {
+  for_each = toset([
+    "roles/run.admin",
+    "roles/iam.serviceAccountUser",
+  ])
+  role    = each.key
+  member  = "serviceAccount:${var.project_num}@cloudbuild.gserviceaccount.com"
+  project = var.project
+}
