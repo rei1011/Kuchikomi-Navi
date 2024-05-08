@@ -6,11 +6,13 @@ resource "google_secret_manager_secret" "github_token_secret" {
   replication {
     auto {}
   }
+  depends_on = [google_project_service.service]
 }
 
 resource "google_secret_manager_secret_version" "github_token_secret_version" {
   secret      = google_secret_manager_secret.github_token_secret.id
   secret_data = var.gh-token
+  depends_on  = [google_project_service.service]
 }
 
 data "google_iam_policy" "serviceagent_secretAccessor" {
@@ -23,6 +25,7 @@ data "google_iam_policy" "serviceagent_secretAccessor" {
 resource "google_secret_manager_secret_iam_policy" "policy" {
   secret_id   = google_secret_manager_secret.github_token_secret.secret_id
   policy_data = data.google_iam_policy.serviceagent_secretAccessor.policy_data
+  depends_on  = [google_project_service.service]
 }
 
 resource "google_cloudbuildv2_connection" "cloudbuild-connection" {

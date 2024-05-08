@@ -52,12 +52,10 @@ yarn generate
 確認コードを入力後に、利用するprojectを選択する
 ![alt text](./docs_image/image2.png)
 
-### 以下サービスのAdmin APIを有効化する
-- Compute Engine
-- Cloud RUN
-有効化されるまでに数分かかります
-![alt text](./docs_image/image3.png) 
-![alt text](./docs_image/image6.png)
+### 使用するサービスのAPIを有効化するために以下のコマンドを時効
+```
+./enableapi.sh
+```
 
 ### tfstateファイルをTerraform Cloudに保存するために以下からアカウントを作成
 https://app.terraform.io/public/signup/account

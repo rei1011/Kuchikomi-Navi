@@ -20,4 +20,6 @@ resource "google_cloud_run_v2_service_iam_binding" "default" {
   members = [
     "allUsers"
   ]
+
+  depends_on = [google_project_service.service]
 }
