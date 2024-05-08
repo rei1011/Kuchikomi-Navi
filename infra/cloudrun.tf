@@ -1,5 +1,5 @@
 resource "google_cloud_run_v2_service" "default" {
-  name     = "cloudrun-service"
+  name     = var.frontend_app_name
   location = var.region
 
   template {
