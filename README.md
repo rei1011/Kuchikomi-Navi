@@ -76,6 +76,13 @@ Terraform Cloud経由でデプロイするためには、上記の情報が必�
 | gcp-creds | application_default_credentials.jsonの中身 |
 ![alt text](./docs_image/image5.png)
 
+### Cloud Build経由でCloud Runへdeployするために、patを設定
+[PATを作成](https://cloud.google.com/build/docs/automating-builds/github/connect-repo-github?hl=ja&generation=2nd-gen#connecting_a_github_host_programmatically:~:text=%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%BE%E3%81%99%E3%80%82-,%E5%80%8B%E4%BA%BA%E7%94%A8%E3%81%AE,%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82,-%E5%80%8B%E4%BA%BA%E7%94%A8%E3%81%AE)し、以下のように登録する
+| key | value |
+| --- | ----- |
+| gh-token | <PAT> |
+![alt text](./docs_image/image5.png)
+
 ### リソースのデプロイ
 ```
 ./apply.sh
