@@ -26,6 +26,10 @@ variable "frontend_app_name" {
   default = "frontend-app"
 }
 
+variable "frontend_image_name" {
+  default = "frontend-app"
+}
+
 variable "gcp-creds" {
   default = ""
 }

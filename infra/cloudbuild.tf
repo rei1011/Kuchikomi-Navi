@@ -57,6 +57,6 @@ resource "google_cloudbuild_trigger" "my-app_trigger" {
 
   substitutions = {
     _REGION                         = var.region
-    _ARTIFACT_REPOSITORY_IMAGE_NAME = "${var.region}-docker.pkg.dev/${var.project}/${var.frontend_app_name}"
+    _ARTIFACT_REPOSITORY_IMAGE_NAME = "${var.region}-docker.pkg.dev/${var.project}/${var.frontend_app_name}/${var.frontend_image_name}"
   }
 }
