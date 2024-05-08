@@ -5,6 +5,7 @@ variable "project_num" {
   default = "786726743523"
 }
 
+# 無料枠では東京regionが使用できないサービスが存在するため台湾を指定
 variable "region" {
   default = "asia-east1"
 }
