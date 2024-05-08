@@ -45,7 +45,7 @@ resource "google_cloudbuildv2_repository" "github_repository" {
   remote_uri        = "https://github.com/${var.github_owner}/${var.github_app_repo_name}.git"
 }
 
-resource "google_cloudbuild_trigger" "my-app_trigger" {
+resource "google_cloudbuild_trigger" "frontend_app_trigger" {
   location = var.region
   repository_event_config {
     repository = google_cloudbuildv2_repository.github_repository.id
@@ -61,6 +61,7 @@ resource "google_cloudbuild_trigger" "my-app_trigger" {
   }
 }
 
+# Cloud BuildからCloud Runへデプロイするための権限を付与
 resource "google_project_iam_member" "cloudbuild_iam" {
   for_each = toset([
     "roles/run.admin",
