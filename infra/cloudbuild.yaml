@@ -13,11 +13,11 @@ steps:
         "Dockerfile.prod",
         "--cache-from",
         "$_ARTIFACT_REPOSITORY_IMAGE_NAME:latest",
-        "."
+        ".",
       ]
     dir: "frontend"
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "--all-tags", "$_ARTIFACT_REPOSITORY_IMAGE_NAME"]
 substitutions:
   _REGION: by-terraform
   _ARTIFACT_REPOSITORY_IMAGE_NAME: by-terraform
-images:
-  - "$_ARTIFACT_REPOSITORY_IMAGE_NAME:$SHORT_SHA"
