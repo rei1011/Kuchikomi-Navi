@@ -26,4 +26,5 @@ RUN chown nextjs:nodejs .next
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 USER nextjs
+# Cloud RunのContainer上の環境変数として、PORTが定義されているためDockerfileでPORTの指定は不要
 CMD HOSTNAME="0.0.0.0" node server.js
