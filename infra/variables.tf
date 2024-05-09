@@ -45,3 +45,7 @@ variable "app_installation_id" {
 variable "db-password" {
   default = ""
 }
+
+variable "rails-master-key" {
+  default = ""
+}
