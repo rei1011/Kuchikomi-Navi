@@ -58,6 +58,7 @@ resource "google_cloudbuildv2_repository" "github_repository" {
 
 # mainブランチのコミットを検知してimageのビルド & registryへimageのpush & Cloud Runへのデプロイを実行
 resource "google_cloudbuild_trigger" "frontend_app_trigger" {
+  name     = "${var.frontend_app_name}-trigger"
   location = var.region
   repository_event_config {
     repository = google_cloudbuildv2_repository.github_repository.id
