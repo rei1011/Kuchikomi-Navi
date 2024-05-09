@@ -41,3 +41,7 @@ variable "gh-token" {
 variable "app_installation_id" {
   default = 50451179
 }
+
+variable "db-password" {
+  default = ""
+}
