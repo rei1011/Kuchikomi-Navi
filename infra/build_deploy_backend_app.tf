@@ -2,6 +2,7 @@ variable "secret_id" {
   default = "rails_master_key"
 }
 
+# railsのmaster keyを保存するためのSecret Managerを作成
 resource "google_secret_manager_secret" "rails_secret" {
   secret_id = var.secret_id
   replication {
@@ -9,7 +10,6 @@ resource "google_secret_manager_secret" "rails_secret" {
   }
   depends_on = [google_project_service.service]
 }
-
 resource "google_secret_manager_secret_version" "rails_secret_version" {
   secret      = google_secret_manager_secret.rails_secret.id
   secret_data = var.rails-master-key
@@ -28,4 +28,12 @@ resource "google_secret_manager_secret_iam_binding" "cloudbuild_secret_iam_bindi
   secret_id = var.secret_id
   role      = "roles/secretmanager.secretAccessor"
   members   = ["serviceAccount:${var.project_num}@cloudbuild.gserviceaccount.com"]
+}
+
+# Cloud Build に Cloud SQL へのアクセス権を付与
+resource "google_project_iam_binding" "name" {
+  project = var.project
+  role    = "roles/cloudsql.client"
+  members = ["serviceAccount:${var.project_num}@cloudbuild.gserviceaccount.com"]
+
 }
