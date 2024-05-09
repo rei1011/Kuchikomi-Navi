@@ -65,7 +65,7 @@ resource "google_cloudbuild_trigger" "frontend_app_trigger" {
       branch = "^main$"
     }
   }
-  filename = "infra/cloudbuild.yaml"
+  filename = "infra/frontend_cloudbuild.yaml"
 
   substitutions = {
     _REGION                         = var.region
