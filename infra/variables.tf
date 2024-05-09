@@ -26,6 +26,10 @@ variable "frontend_app_name" {
   default = "frontend-app"
 }
 
+variable "backend_app_name" {
+  default = "backend-app"
+}
+
 variable "frontend_image_name" {
   default = "frontend-app"
 }

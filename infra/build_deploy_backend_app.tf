@@ -32,3 +32,16 @@ resource "google_project_iam_member" "name" {
   role    = "roles/cloudsql.client"
   member  = "serviceAccount:${var.project_num}@cloudbuild.gserviceaccount.com"
 }
+
+# mainブランチのコミットを検知してimageのビルド & registryへimageのpush & Cloud Runへのデプロイを実行
+resource "google_cloudbuild_trigger" "backend_app_trigger" {
+  name     = "${var.backend_app_name}-trigger"
+  location = var.region
+  repository_event_config {
+    repository = google_cloudbuildv2_repository.github_repository.id
+    push {
+      branch = "^main$"
+    }
+  }
+  filename = "infra/backend_cloudbuild.yaml"
+}
