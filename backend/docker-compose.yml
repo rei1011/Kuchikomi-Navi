@@ -9,14 +9,14 @@ services:
       - kuchikomi-network
   web:
     build:
-      context: ..
-      dockerfile: .devcontainer/Dockerfile
+      context: .
+      dockerfile: Dockerfile.dev
     depends_on:
       - db
     environment:
       DATABASE_PASSWORD: password
     volumes:
-      - ../..:/usr/src/app:cached
+      - ..:/usr/src/app:cached
     ports:
       - 3000:3000
     stdin_open: true

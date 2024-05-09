@@ -1,6 +1,6 @@
 {
     "name": "Kuchikomi Navi",
-    "dockerComposeFile": "./docker-compose.yml",
+    "dockerComposeFile": "../docker-compose.yml",
     "service": "web",
     "workspaceFolder": "/usr/src/app/backend",
     "customizations": {
