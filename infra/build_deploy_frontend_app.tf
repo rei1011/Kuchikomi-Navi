@@ -1,6 +1,13 @@
 # 以下を参考にCloud BuildとGitHubのrepositoryを接続
 # https://cloud.google.com/build/docs/automating-builds/github/connect-repo-github?hl=ja&generation=2nd-gen#terraform_1
 
+resource "google_artifact_registry_repository" "frontend-app" {
+  location      = var.region
+  repository_id = var.frontend_app_name
+  description   = "frontend app"
+  format        = "DOCKER"
+}
+
 resource "google_secret_manager_secret" "github_token_secret" {
   secret_id = "github_token_secret"
   replication {
