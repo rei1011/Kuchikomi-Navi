@@ -51,7 +51,7 @@ resource "google_project_iam_member" "cloudbuild_iam" {
     "roles/run.admin",
     "roles/iam.serviceAccountUser",
   ])
-  role    = each.key
+  role    = each.value
   member  = "serviceAccount:${var.project_num}@cloudbuild.gserviceaccount.com"
   project = var.project
 }
