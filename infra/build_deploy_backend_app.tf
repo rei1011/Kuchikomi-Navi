@@ -35,5 +35,4 @@ resource "google_project_iam_binding" "name" {
   project = var.project
   role    = "roles/cloudsql.client"
   members = ["serviceAccount:${var.project_num}@cloudbuild.gserviceaccount.com"]
-
 }
