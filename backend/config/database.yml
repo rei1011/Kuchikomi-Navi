@@ -18,7 +18,7 @@ development:
   <<: *default
   database: backend_development
   username: <%= ENV['DATABASE_USER'] %>
-  password: <%= ENV.fetch("DATABASE_PASSWORD") %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   host: <%= ENV['DATABASE_HOST'] %>
   port: <%= ENV['DATABASE_PORT'] %>
 
@@ -29,7 +29,7 @@ test:
   <<: *default
   database: backend_test
   username: <%= ENV['DATABASE_USER'] %>
-  password: <%= ENV.fetch("DATABASE_PASSWORD") %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   host: <%= ENV['DATABASE_HOST'] %>
   port: <%= ENV['DATABASE_PORT'] %>
 
