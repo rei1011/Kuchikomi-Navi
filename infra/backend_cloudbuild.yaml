@@ -13,6 +13,8 @@ steps:
         "DATABASE_NAME=${_DATABASE_NAME}",
         "--build-arg",
         "DATABASE_USER=${_DATABASE_USER}",
+        "--build-arg",
+        "DATABASE_SOCKET=${_DATABASE_SOCKET}",
         "--file",
         "Dockerfile.prod",
         "--cache-from",
@@ -36,10 +38,13 @@ steps:
         "run",
         "deploy",
         "backend-app",
+        "--platform",
+        "managed",
         "--image",
         "$_ARTIFACT_REPOSITORY_IMAGE_NAME:$SHORT_SHA",
         "--region" ,
-        "$_REGION"
+        "$_REGION",
+        "--allow-unauthenticated"
       ]
     dir: "backend"
 
@@ -47,6 +52,7 @@ substitutions:
   _REGION: by-terraform
   _DATABASE_NAME: by-terraform
   _DATABASE_USER: by-terraform
+  _DATABASE_SOCKET: by-terraform
   _ARTIFACT_REPOSITORY_IMAGE_NAME: by-terraform
   _SECRET_NAME: by-terraform
 

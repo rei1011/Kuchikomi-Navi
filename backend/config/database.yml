@@ -58,5 +58,5 @@ production:
   database: <%= ENV["DATABASE_NAME"] %>
   username: <%= ENV["DATABASE_USER"] %>
   password: <%= Rails.application.credentials.gcp[:db_password] %>
-  socket: <%= ENV["CLOUD_SQL_CONNECTION_NAME_PROD"] %>
+  socket: <%= ENV["DATABASE_SOCKET"] %>
   host: localhost
