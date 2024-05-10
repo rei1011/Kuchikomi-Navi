@@ -57,6 +57,6 @@ production:
   <<: *default
   database: <%= ENV["DATABASE_NAME"] %>
   username: <%= ENV["DATABASE_USER"] %>
-  password: <%= Rails.application.credentials.gcp[:db_password] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
   socket: <%= ENV["DATABASE_SOCKET"] %>
   host: localhost

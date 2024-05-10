@@ -10,6 +10,8 @@ steps:
         "--build-arg",
         "MASTER_KEY=$$RAILS_KEY",
         "--build-arg",
+        "DATABASE_PASSWORD=$$DATABASE_PASSWORD",
+        "--build-arg",
         "DATABASE_NAME=${_DATABASE_NAME}",
         "--build-arg",
         "DATABASE_USER=${_DATABASE_USER}",
@@ -22,7 +24,7 @@ steps:
         "."
       ]
     dir: "backend"
-    secretEnv: ["RAILS_KEY"]
+    secretEnv: ["RAILS_KEY", "DATABASE_PASSWORD"]
   - name: "gcr.io/cloud-builders/docker"
     args: 
       [
@@ -53,6 +55,7 @@ substitutions:
   _DATABASE_NAME: by-terraform
   _DATABASE_USER: by-terraform
   _DATABASE_SOCKET: by-terraform
+  _DATABASE_PASSWORD_KEY: by-terraform
   _ARTIFACT_REPOSITORY_IMAGE_NAME: by-terraform
   _SECRET_NAME: by-terraform
 
@@ -60,3 +63,5 @@ availableSecrets:
   secretManager:
   - versionName: projects/${PROJECT_ID}/secrets/${_SECRET_NAME}/versions/latest
     env: RAILS_KEY
+  - versionName: projects/${PROJECT_ID}/secrets/${_DATABASE_PASSWORD_KEY}/versions/latest
+    env: DATABASE_PASSWORD
