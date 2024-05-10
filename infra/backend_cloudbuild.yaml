@@ -44,6 +44,7 @@ steps:
     dir: "backend"
 
 substitutions:
+  _REGION: by-terraform
   _DATABASE_NAME: by-terraform
   _DATABASE_USER: by-terraform
   _ARTIFACT_REPOSITORY_IMAGE_NAME: by-terraform
