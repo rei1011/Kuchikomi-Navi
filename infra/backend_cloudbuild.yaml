@@ -19,6 +19,7 @@ steps:
         "${_ARTIFACT_REPOSITORY_IMAGE_NAME}:latest",
         "."
       ]
+    dir: "backend"
     secretEnv: ["RAILS_KEY"]
 
 substitutions:
