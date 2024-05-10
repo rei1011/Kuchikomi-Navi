@@ -13,8 +13,6 @@ services:
       dockerfile: Dockerfile.dev
     depends_on:
       - db
-    environment:
-      DATABASE_PASSWORD: password
     volumes:
       - ..:/usr/src/app:cached
     ports:
