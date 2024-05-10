@@ -4,7 +4,7 @@ steps:
       [
         "build",
         "--tag",
-        "${_ARTIFACT_REPOSITORY_IMAGE_NAME}:$SHORT_SHA",
+        "${_ARTIFACT_REPOSITORY_IMAGE_NAME}:${SHORT_SHA}",
         "--tag",
         "${_ARTIFACT_REPOSITORY_IMAGE_NAME}:latest",
         "--build-arg",
@@ -13,8 +13,6 @@ steps:
         "DATABASE_NAME=${_DATABASE_NAME}",
         "--build-arg",
         "DATABASE_USER=${_DATABASE_USER}",
-        "--tag",
-        "gcr.io/${PROJECT_ID}/${_SERVICE_NAME}",
         "--file",
         "Dockerfile.prod",
         "--cache-from",
