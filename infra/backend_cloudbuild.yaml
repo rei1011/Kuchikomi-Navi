@@ -27,6 +27,7 @@ substitutions:
   _DATABASE_NAME: by-terraform
   _DATABASE_USER: by-terraform
   _ARTIFACT_REPOSITORY_IMAGE_NAME: by-terraform
+  _SECRET_NAME: by-terraform
 
 availableSecrets:
   secretManager:
