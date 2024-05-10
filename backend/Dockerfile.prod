@@ -1,0 +1,33 @@
+FROM ruby:3.3.1
+
+RUN bundle config --global frozen 1
+
+WORKDIR /usr/src/app/backend
+
+COPY Gemfile Gemfile.lock ./
+RUN bundle lock --add-platform x86_64-linux \
+    && bundle install
+
+RUN echo "source /usr/share/bash-completion/completions/git" >> ~/.bashrc
+
+RUN curl -SL https://deb.nodesource.com/setup_20.x | bash \
+    && apt-get update \
+    && apt-get install -y nodejs sudo lsof vim\
+    && npm install -g yarn
+
+COPY . /usr/src/app/backend
+
+ENV RAILS_ENV=production
+ENV RAILS_SERVE_STATIC_FILES=true
+ARG MASTER_KEY
+ENV RAILS_MASTER_KEY=${MASTER_KEY}
+
+# db setting
+ARG DATABASE_USER
+ARG DATABASE_NAME
+ENV DATABASE_USER=${DATABASE_USER}
+ENV DATABASE_NAME=${DATABASE_NAME}
+
+EXPOSE 8080
+# CMD ["bin/rails", "server", "-b", "0.0.0.0", "-p", "8080"]
+CMD env
