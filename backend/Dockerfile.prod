@@ -29,5 +29,4 @@ ENV DATABASE_USER=${DATABASE_USER}
 ENV DATABASE_NAME=${DATABASE_NAME}
 
 EXPOSE 8080
-# CMD ["bin/rails", "server", "-b", "0.0.0.0", "-p", "8080"]
-CMD env
+CMD ["bin/rails", "server", "-b", "0.0.0.0", "-p", "8080"]
