@@ -1,3 +1,3 @@
 export default function SamplePage() {
-  return <>Sample Page</>;
+  return <>Sample Page 2</>;
 }
