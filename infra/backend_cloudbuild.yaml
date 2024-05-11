@@ -8,9 +8,9 @@ steps:
         "--tag",
         "${_ARTIFACT_REPOSITORY_IMAGE_NAME}:latest",
         "--build-arg",
-        "RAILS_MASTER_KEY=5390b2f97938a2b88825fb5d956d296d",
+        "RAILS_MASTER_KEY=$$RAILS_MASTER_KEY",
         "--build-arg",
-        "DATABASE_PASSWORD=lckMMsBpBvhtUFYeYoTdZiftJBTqKhwBwETYVrvpuxZQiPKqwG",
+        "DATABASE_PASSWORD=$$DATABASE_PASSWORD",
         "--build-arg",
         "DATABASE_NAME=${_DATABASE_NAME}",
         "--build-arg",
@@ -61,7 +61,7 @@ substitutions:
 
 availableSecrets:
   secretManager:
-  - versionName: projects/${PROJECT_ID}/secrets/${_SECRET_NAME}/versions/latest
+  - versionName: projects/${PROJECT_ID}/secrets/${_SECRET_NAME}/versions/1
     env: RAILS_MASTER_KEY
-  - versionName: projects/${PROJECT_ID}/secrets/${_DATABASE_PASSWORD_KEY}/versions/latest
+  - versionName: projects/${PROJECT_ID}/secrets/${_DATABASE_PASSWORD_KEY}/versions/1
     env: DATABASE_PASSWORD
