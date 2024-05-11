@@ -34,6 +34,10 @@ variable "frontend_image_name" {
   default = "frontend-app"
 }
 
+variable "backend_image_name" {
+  default = "backend-app"
+}
+
 variable "gcp-creds" {
   default = ""
 }
@@ -46,8 +50,28 @@ variable "app_installation_id" {
   default = 50451179
 }
 
+variable "db-user" {
+  default = "user"
+}
+
 variable "db-password" {
   default = ""
+}
+
+variable "database_password_key" {
+  default = "database_password_key"
+}
+
+variable "database_instance_name" {
+  default = "main"
+}
+
+variable "database_name" {
+  default = "main_db"
+}
+
+variable "rails_secret_id" {
+  default = "rails_secret_id"
 }
 
 variable "rails-master-key" {

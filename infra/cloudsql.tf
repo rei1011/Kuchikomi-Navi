@@ -1,5 +1,5 @@
 resource "google_sql_database_instance" "db_instance" {
-  name             = "main"
+  name             = var.database_instance_name
   database_version = "MYSQL_8_0_36"
   region           = var.region
   settings {
@@ -8,12 +8,12 @@ resource "google_sql_database_instance" "db_instance" {
 }
 
 resource "google_sql_database" "db" {
-  name     = "main_db"
+  name     = var.database_name
   instance = google_sql_database_instance.db_instance.name
 }
 
 resource "google_sql_user" "example_user" {
-  name     = "user"
+  name     = var.db-user
   instance = google_sql_database_instance.db_instance.name
   password = var.db-password
   host     = "%"
