@@ -16,15 +16,6 @@ module Backend
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
 
-    puts '## DATABASE_PASSWORD ##'
-    puts ENV['DATABASE_PASSWORD']
-    puts '## DATABASE_PASSWORD_TEST ##'
-    puts ENV['DATABASE_PASSWORD_TEST']
-    puts '## RAILS_MASTER_KEY ##'
-    puts ENV['RAILS_MASTER_KEY']
-    puts '## RAILS_MASTER_KEY_TEST ##'
-    puts ENV['RAILS_MASTER_KEY_TEST']
-
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

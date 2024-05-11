@@ -4,7 +4,7 @@ steps:
     args: 
       [
         "-c",
-        "docker build --tag ${_ARTIFACT_REPOSITORY_IMAGE_NAME}:${SHORT_SHA} --tag ${_ARTIFACT_REPOSITORY_IMAGE_NAME}:latest --build-arg RAILS_MASTER_KEY=5390b2f97938a2b88825fb5d956d296d --build-arg RAILS_MASTER_KEY_TEST=$$RAILS_MASTER_KEY --build-arg DATABASE_PASSWORD=lckMMsBpBvhtUFYeYoTdZiftJBTqKhwBwETYVrvpuxZQiPKqwG --build-arg DATABASE_PASSWORD_TEST=$$DATABASE_PASSWORD --build-arg DATABASE_NAME=${_DATABASE_NAME} --build-arg DATABASE_USER=${_DATABASE_USER} --build-arg DATABASE_SOCKET=${_DATABASE_SOCKET} --file Dockerfile.prod --cache-from ${_ARTIFACT_REPOSITORY_IMAGE_NAME}:latest . ",
+        "docker build --tag ${_ARTIFACT_REPOSITORY_IMAGE_NAME}:${SHORT_SHA} --tag ${_ARTIFACT_REPOSITORY_IMAGE_NAME}:latest --build-arg RAILS_MASTER_KEY=$$RAILS_MASTER_KEY --build-arg DATABASE_PASSWORD=$$DATABASE_PASSWORD --build-arg DATABASE_NAME=${_DATABASE_NAME} --build-arg DATABASE_USER=${_DATABASE_USER} --build-arg DATABASE_SOCKET=${_DATABASE_SOCKET} --file Dockerfile.prod --cache-from ${_ARTIFACT_REPOSITORY_IMAGE_NAME}:latest . ",
       ]
     dir: "backend"
     secretEnv: ["RAILS_MASTER_KEY", "DATABASE_PASSWORD"]
