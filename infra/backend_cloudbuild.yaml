@@ -42,7 +42,7 @@ steps:
       [
         "run",
         "deploy",
-        "{_SERVICE_NAME}",,
+        "{_SERVICE_NAME}",
         "--platform",
         "managed",
         "--image",
