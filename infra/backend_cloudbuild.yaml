@@ -34,6 +34,22 @@ steps:
         "--allow-unauthenticated"
       ]
     dir: "backend"
+  - name: "gcr.io/google-appengine/exec-wrapper"
+    entrypoint: "bash"
+    args:
+      [
+        "-c",
+        "/buildstep/execute.sh -i gcr.io/${PROJECT_ID}/${_SERVICE_NAME} -s ${PROJECT_ID}:${_REGION}:${_INSTANCE_NAME} -e RAILS_MASTER_KEY=$$RAILS_KEY -- bundle exec rails db:create"
+      ]
+    secretEnv: ["RAILS_KEY"]
+  - name: "gcr.io/google-appengine/exec-wrapper"
+    entrypoint: "bash"
+    args:
+      [
+        "-c",
+        "/buildstep/execute.sh -i gcr.io/${PROJECT_ID}/${_SERVICE_NAME} -s ${PROJECT_ID}:${_REGION}:${_INSTANCE_NAME} -e RAILS_MASTER_KEY=$$RAILS_KEY -- bundle exec rails db:migrate"
+      ]
+    secretEnv: ["RAILS_KEY"]
 
 substitutions:
   _REGION: by-terraform
@@ -43,6 +59,8 @@ substitutions:
   _DATABASE_PASSWORD_KEY: by-terraform
   _ARTIFACT_REPOSITORY_IMAGE_NAME: by-terraform
   _SECRET_NAME: by-terraform
+  _SERVICE_NAME: by-terraform
+  _INSTANCE_NAME: by-terraform
 
 availableSecrets:
   secretManager:
