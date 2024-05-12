@@ -23,7 +23,7 @@ steps:
     args:
       [
         "-c",
-        "/buildstep/execute.sh -i gcr.io/${PROJECT_ID}/${_SERVICE_NAME} -s ${PROJECT_ID}:${_REGION}:${_INSTANCE_NAME} -e RAILS_MASTER_KEY=$$RAILS_MASTER_KEY -- bundle exec rails db:create"
+        "/buildstep/execute.sh -i ${_ARTIFACT_REPOSITORY_IMAGE_NAME}:${SHORT_SHA} -s ${PROJECT_ID}:${_REGION}:${_INSTANCE_NAME} -e RAILS_MASTER_KEY=$$RAILS_MASTER_KEY -- bundle exec rails db:create"
       ]
     secretEnv: ["RAILS_MASTER_KEY"]
     dir: "backend"
@@ -32,7 +32,7 @@ steps:
     args:
       [
         "-c",
-        "/buildstep/execute.sh -i gcr.io/${PROJECT_ID}/${_SERVICE_NAME} -s ${PROJECT_ID}:${_REGION}:${_INSTANCE_NAME} -e RAILS_MASTER_KEY=$$RAILS_MASTER_KEY -- bundle exec rails db:migrate"
+        "/buildstep/execute.sh -i ${_ARTIFACT_REPOSITORY_IMAGE_NAME}:${SHORT_SHA} -s ${PROJECT_ID}:${_REGION}:${_INSTANCE_NAME} -e RAILS_MASTER_KEY=$$RAILS_MASTER_KEY -- bundle exec rails db:migrate"
       ]
     secretEnv: ["RAILS_MASTER_KEY"]
     dir: "backend"
@@ -42,7 +42,7 @@ steps:
       [
         "run",
         "deploy",
-        "backend-app",
+        "{_SERVICE_NAME}",,
         "--platform",
         "managed",
         "--image",
