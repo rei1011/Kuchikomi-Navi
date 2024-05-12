@@ -80,6 +80,7 @@ resource "google_cloudbuild_trigger" "backend_app_trigger" {
 
   substitutions = {
     _SECRET_NAME                    = var.rails_secret_id
+    _SERVICE_NAME                   = var.backend_app_name
     _REGION                         = var.region
     _DATABASE_NAME                  = var.database_name
     _DATABASE_USER                  = var.db-user
