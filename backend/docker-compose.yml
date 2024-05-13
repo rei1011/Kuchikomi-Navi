@@ -14,6 +14,7 @@ services:
     depends_on:
       - db
     environment:
+      ALLOW_ORIGINS: localhost:3001
       DATABASE_USER: root
       DATABASE_PASSWORD: password
       DATABASE_HOST: db
