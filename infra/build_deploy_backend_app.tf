@@ -87,6 +87,6 @@ resource "google_cloudbuild_trigger" "backend_app_trigger" {
     _DATABASE_SOCKET                = "/cloudsql/${var.project}:${var.region}:${var.database_instance_name}"
     _ARTIFACT_REPOSITORY_IMAGE_NAME = "${var.region}-docker.pkg.dev/${var.project}/${var.backend_app_name}/${var.backend_app_name}"
     _DATABASE_PASSWORD_KEY          = var.database_password_key
-    _INSTANCE_NAME = var.database_instance_name
+    _INSTANCE_NAME                  = var.database_instance_name
   }
 }
