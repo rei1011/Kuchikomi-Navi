@@ -28,13 +28,46 @@ paths:
                     comment:
                       type: string
                     publication_date:
-                      type: string
+                      type: date
                   required:
                   - id
                   - store_name
                   - prostutite_name
                   - comment
                   - publication_date
+  "/stores":
+    get:
+      summary: Get Stores
+      tags:
+      - Stores
+      responses:
+        '200':
+          description: store found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    store_name:
+                      type: string
+                    address:
+                      type: object
+                      properties:
+                        prefecture: string
+                        municipality: string
+                      required:
+                      - prefecture
+                      - municipality
+                    home_page: string
+                  required:
+                  - id
+                  - store_name
+                  - address
+                  - homepage
 servers:
 - url: http://{defaultHost}
   variables:

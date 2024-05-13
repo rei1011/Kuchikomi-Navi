@@ -19,6 +19,12 @@ rails db:create
 (container内で) rails s -b "0.0.0.0"
 ```
 
+### 新規コントローラーの作成
+例えば、stores_controllerを作成したい場合は以下
+```
+rails generate controller Stores index --skip-routes
+```
+
 ### API定義の出力
 ```
 rails spec

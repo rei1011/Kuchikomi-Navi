@@ -1,22 +1,10 @@
 # frozen_string_literal: true
 
-require 'rubygems'
-require 'mechanize'
-require 'nokogiri'
-
 class CommentsController < ApplicationController # rubocop:disable Style/Documentation
   before_action :set_comment, only: %i[show update destroy]
 
   # GET /comments
   def index
-    agent = Mechanize.new
-    page = agent.get('https://fujoho.jp/index.php?p=shop_list&w=M%E6%80%A7%E6%84%9F')
-    doc = Nokogiri::HTML.parse(page.body)
-
-    doc.css('.shop_header_info_shopname').each do |shop|
-      p shop.children.text
-    end
-
     @comments = Comment.all
 
     render(json: @comments)
