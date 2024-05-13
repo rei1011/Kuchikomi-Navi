@@ -30,7 +30,7 @@ steps:
       [
         "run",
         "deploy",
-        "frontend-app",
+        "${_SERVICE_NAME}",
         "--image",
         "$_ARTIFACT_REPOSITORY_IMAGE_NAME:$SHORT_SHA",
         "--region" ,
@@ -40,5 +40,6 @@ steps:
 substitutions:
   _REGION: by-terraform
   _ARTIFACT_REPOSITORY_IMAGE_NAME: by-terraform
+  _SERVICE_NAME: by-terraform
 images:
   - $_ARTIFACT_REPOSITORY_IMAGE_NAME:$SHORT_SHA
