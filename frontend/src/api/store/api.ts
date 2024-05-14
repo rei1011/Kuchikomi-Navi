@@ -1,5 +1,5 @@
 import { paths } from "../../../openapi/schema";
-import { client } from "./client";
+import { client } from "../client";
 
 export async function getStore() {
   const apiClient = client<paths>();
