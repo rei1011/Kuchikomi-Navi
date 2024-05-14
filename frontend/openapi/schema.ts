@@ -17,7 +17,29 @@ export interface paths {
                 store_name: string;
                 prostutite_name: string;
                 comment: string;
-                publication_date: string;
+                publication_date: Record<string, never>;
+              }[];
+          };
+        };
+      };
+    };
+  };
+  "/stores": {
+    /** Get Stores */
+    get: {
+      responses: {
+        /** @description store found */
+        200: {
+          content: {
+            "application/json": {
+                id: number;
+                store_name: string;
+                address: {
+                  prefecture: string;
+                  municipality: string;
+                };
+                home_page: string;
+                store_image: string;
               }[];
           };
         };
