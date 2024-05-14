@@ -57,17 +57,23 @@ paths:
                     address:
                       type: object
                       properties:
-                        prefecture: string
-                        municipality: string
+                        prefecture:
+                          type: string
+                        municipality:
+                          type: string
                       required:
                       - prefecture
                       - municipality
-                    home_page: string
+                    home_page:
+                      type: string
+                    store_image:
+                      type: string
                   required:
                   - id
                   - store_name
                   - address
-                  - homepage
+                  - home_page
+                  - store_image
 servers:
 - url: http://{defaultHost}
   variables:

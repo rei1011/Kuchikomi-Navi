@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'api/stores', type: :request do # rubocop:disable Metrics/BlockLength
+RSpec.describe 'api/stores', type: :request do
   path '/stores' do
     get 'Get Stores' do
       tags 'Stores'
@@ -17,14 +17,15 @@ RSpec.describe 'api/stores', type: :request do # rubocop:disable Metrics/BlockLe
                    address: {
                      type: :object,
                      properties: {
-                       prefecture: :string,
-                       municipality: :string
+                       prefecture: { type: :string },
+                       municipality: { type: :string }
                      },
                      required: %i[prefecture municipality]
                    },
-                   home_page: :string
+                   home_page: { type: :string },
+                   store_image: { type: :string }
                  },
-                 required: %i[id store_name address homepage]
+                 required: %i[id store_name address home_page store_image]
                }
         run_test!
       end
