@@ -22,7 +22,7 @@ type Address = {
 export function Card(props: CardProps) {
   const { storeName, homePageUri, address, imageUri } = props;
   return (
-    <MuiCard sx={{ display: "flex" }}>
+    <MuiCard sx={{ display: "flex", width: "100%" }}>
       <CardMedia
         component="img"
         sx={{ width: 151 }}
