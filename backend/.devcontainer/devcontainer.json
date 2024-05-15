@@ -17,7 +17,9 @@
 				"formulahendry.auto-close-tag",
 				"ms-azuretools.vscode-docker",
 				"esbenp.prettier-vscode",
-				"koichisasada.vscode-rdbg"
+				"koichisasada.vscode-rdbg",
+				"cweijan.vscode-redis-client",
+				"cweijan.vscode-mysql-client2"
 		  	]
 		}
     },

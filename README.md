@@ -25,6 +25,20 @@ rails db:create
 rails generate controller Stores index --skip-routes
 ```
 
+### 新規Jobの作成
+例えば、stores_controllerを作成したい場合は以下
+```
+rails generate job guests_cleanup
+```
+
+### Jobの登録
+[参照](https://github.com/sidekiq/sidekiq/wiki/Getting-Started)
+
+### sidekiqの起動
+```
+bundle exec sidekiq
+```
+
 ### API定義の出力
 ```
 rails spec
