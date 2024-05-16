@@ -49,9 +49,10 @@ resource "google_cloud_run_v2_job_iam_member" "scheduler_iam_member" {
 
 # Cloud Run Jobsを定期実行するためのトリガー
 resource "google_cloud_scheduler_job" "job" {
-  name             = "schedule-job"
-  description      = "job scheduling"
-  schedule         = "*/5 * * * *"
+  name        = "schedule-job"
+  description = "job scheduling"
+  # 毎日午前8時にjobを起動
+  schedule         = "0 8 * * *"
   attempt_deadline = "320s"
   region           = var.region
 
