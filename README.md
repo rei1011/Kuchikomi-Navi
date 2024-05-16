@@ -25,6 +25,22 @@ rails db:create
 rails generate controller Stores index --skip-routes
 ```
 
+### モデルの作成
+例えば、string型のtitleと、text型のbodyをフィールドに持つArticleモデルを作成したい場合
+```
+rails generate model Article title:string body:text
+```
+上記コマンド成功後に以下のコマンドを実行するとmigrationされる
+```
+rails db:migrate
+```
+
+### マイグレーションの作成
+```
+rails generate migration AddPartNumberToProducts
+```
+
+
 ### 新規Jobの作成
 例えば、stores_controllerを作成したい場合は以下
 ```
