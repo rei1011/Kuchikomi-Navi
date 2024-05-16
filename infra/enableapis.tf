@@ -8,7 +8,8 @@ resource "google_project_service" "service" {
     "compute.googleapis.com",
     "cloudbuild.googleapis.com",
     "secretmanager.googleapis.com",
-    "artifactregistry.googleapis.com"
+    "artifactregistry.googleapis.com",
+    "cloudscheduler.googleapis.com"
   ])
   service                    = each.value
   disable_dependent_services = true
