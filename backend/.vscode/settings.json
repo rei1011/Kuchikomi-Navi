@@ -6,5 +6,6 @@
   "workbench.colorCustomizations": {
     "titleBar.activeBackground": "#ff0000",
     "titleBar.activeForeground": "#ffffff"
-  }
+  },
+  "solargraph.useBundler": true,
 }

@@ -66,6 +66,9 @@ group :development, :test do
   # api doc
   gem 'rspec-rails'
   gem 'rswag-specs'
+
+  # autocomplete
+  gem 'solargraph'
 end
 
 group :development do
