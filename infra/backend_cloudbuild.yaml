@@ -49,7 +49,6 @@ steps:
         "${_ARTIFACT_REPOSITORY_IMAGE_NAME}:${SHORT_SHA}",
         "--region" ,
         "${_REGION}",
-        "--allow-unauthenticated"
       ]
     dir: "backend"
 
