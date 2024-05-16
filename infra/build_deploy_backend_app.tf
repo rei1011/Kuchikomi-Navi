@@ -89,6 +89,6 @@ resource "google_cloudbuild_trigger" "backend_app_trigger" {
     _DATABASE_PASSWORD_KEY          = var.database_password_key
     _INSTANCE_NAME                  = var.database_instance_name
     _ALLOW_ORIGINS                  = "https://frontend-app-uuwuit3kva-de.a.run.app"
-    _RUN_JOB                        = "true"
+    _RUN_JOB                        = "false"
   }
 }

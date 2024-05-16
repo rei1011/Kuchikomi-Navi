@@ -30,12 +30,20 @@ variable "backend_app_name" {
   default = "backend-app"
 }
 
+variable "job_app_name" {
+  default = "job-app"
+}
+
 variable "frontend_image_name" {
   default = "frontend-app"
 }
 
 variable "backend_image_name" {
   default = "backend-app"
+}
+
+variable "job_image_name" {
+  default = "job-app"
 }
 
 variable "gcp-creds" {

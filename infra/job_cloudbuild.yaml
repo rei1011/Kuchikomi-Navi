@@ -1,0 +1,55 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    # シークレットの値を参照するにはbash指定が必要
+    # https://cloud.google.com/build/docs/securing-builds/use-secrets?hl=ja#:~:text=%E3%82%88%E3%81%86%E3%81%AB%E3%81%97%E3%81%BE%E3%81%99%E3%80%82-,%E3%83%93%E3%83%AB%E3%83%89%E3%82%B9%E3%83%86%E3%83%83%E3%83%97,%E8%BF%BD%E5%8A%A0%E3%81%97%E3%81%BE%E3%81%99%E3%80%82,-args%20%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%89%E3%81%AB
+    entrypoint: 'bash'
+    args: 
+      [
+        "-c",
+        "docker build --tag ${_ARTIFACT_REPOSITORY_IMAGE_NAME}:${SHORT_SHA} --tag ${_ARTIFACT_REPOSITORY_IMAGE_NAME}:latest --build-arg ALLOW_ORIGINS=${_ALLOW_ORIGINS} --build-arg RAILS_MASTER_KEY=$$RAILS_MASTER_KEY --build-arg DATABASE_PASSWORD=$$DATABASE_PASSWORD --build-arg DATABASE_NAME=${_DATABASE_NAME} --build-arg DATABASE_USER=${_DATABASE_USER} --build-arg DATABASE_SOCKET=${_DATABASE_SOCKET} --build-arg RUN_JOB=${_RUN_JOB} --file Dockerfile.prod --cache-from ${_ARTIFACT_REPOSITORY_IMAGE_NAME}:latest . ",
+      ]
+    dir: "backend"
+    secretEnv: ["RAILS_MASTER_KEY", "DATABASE_PASSWORD"]
+  - name: "gcr.io/cloud-builders/docker"
+    args: 
+      [
+        "push",
+        "--all-tags",
+        "${_ARTIFACT_REPOSITORY_IMAGE_NAME}"
+      ]
+    dir: "backend"
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: 
+      [
+        "run",
+        "deploy",
+        "${_SERVICE_NAME}",
+        "--platform",
+        "managed",
+        "--image",
+        "${_ARTIFACT_REPOSITORY_IMAGE_NAME}:${SHORT_SHA}",
+        "--region" ,
+        "${_REGION}",
+        "--allow-unauthenticated"
+      ]
+    dir: "backend"
+
+substitutions:
+  _REGION: by-terraform
+  _DATABASE_NAME: by-terraform
+  _DATABASE_USER: by-terraform
+  _DATABASE_SOCKET: by-terraform
+  _DATABASE_PASSWORD_KEY: by-terraform
+  _ARTIFACT_REPOSITORY_IMAGE_NAME: by-terraform
+  _SECRET_NAME: by-terraform
+  _SERVICE_NAME: by-terraform
+  _ALLOW_ORIGINS: by-terraform
+  _RUN_JOB: by-terraform
+
+availableSecrets:
+  secretManager:
+  - versionName: projects/${PROJECT_ID}/secrets/${_SECRET_NAME}/versions/latest
+    env: RAILS_MASTER_KEY
+  - versionName: projects/${PROJECT_ID}/secrets/${_DATABASE_PASSWORD_KEY}/versions/latest
+    env: DATABASE_PASSWORD
