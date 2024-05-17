@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_01_100416) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_16_140456) do
   create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "store_name", null: false
     t.string "prostitute_name", null: false
@@ -19,6 +19,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_01_100416) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["prostitute_name", "store_name"], name: "index_comments_on_prostitute_name_and_store_name"
+  end
+
+  create_table "stores", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "store_name", null: false
+    t.string "prefecture", null: false
+    t.string "municipality", null: false
+    t.text "home_page", null: false
+    t.text "store_image", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
