@@ -40,6 +40,12 @@ rails db:migrate
 rails generate migration AddPartNumberToProducts
 ```
 
+### マイグレーションのロールバック
+```
+rails db:migrate:status
+（↑で表示されたMigration IDの中からロールバックしたい箇所のIDを指定） rails db:migrate:down VERSION=${Migration ID}
+```
+
 
 ### 新規Jobの作成
 例えば、stores_controllerを作成したい場合は以下
