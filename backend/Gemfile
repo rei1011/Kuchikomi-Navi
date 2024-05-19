@@ -69,6 +69,9 @@ group :development, :test do
 
   # autocomplete
   gem 'solargraph'
+
+  # http request mock
+  gem 'webmock'
 end
 
 group :development do
