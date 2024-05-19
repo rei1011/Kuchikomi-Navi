@@ -18,31 +18,14 @@ steps:
         "${_ARTIFACT_REPOSITORY_IMAGE_NAME}"
       ]
     dir: "backend"
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: gcloud
-    args: 
-      [
-        "run",
-        "deploy",
-        "${_SERVICE_NAME}",
-        "--platform",
-        "managed",
-        "--image",
-        "${_ARTIFACT_REPOSITORY_IMAGE_NAME}:${SHORT_SHA}",
-        "--region" ,
-        "${_REGION}"
-      ]
-    dir: "backend"
 
 substitutions:
-  _REGION: by-terraform
   _DATABASE_NAME: by-terraform
   _DATABASE_USER: by-terraform
   _DATABASE_SOCKET: by-terraform
   _DATABASE_PASSWORD_KEY: by-terraform
   _ARTIFACT_REPOSITORY_IMAGE_NAME: by-terraform
   _SECRET_NAME: by-terraform
-  _SERVICE_NAME: by-terraform
   _ALLOW_ORIGINS: by-terraform
   _RUN_JOB: by-terraform
 
