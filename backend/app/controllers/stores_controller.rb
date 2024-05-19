@@ -3,7 +3,10 @@
 class StoresController < ApplicationController # rubocop:disable Style/Documentation
   def index
     stores = []
-    Store.all.each do |store|
+    all_store = Store.all
+    partial_store = [all_store[0], all_store[1]]
+
+    partial_store.each do |store|
       stores.push({
                     id: store[:id],
                     store_name: store[:store_name],
