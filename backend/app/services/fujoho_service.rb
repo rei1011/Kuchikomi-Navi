@@ -14,7 +14,7 @@ class FujohoService # rubocop:disable Style/Documentation
         i += 1
         break if list.size == 0 # rubocop:disable Style/NumericPredicate,Style/ZeroLengthPredicate
       end
-      stores
+      StoreListDomain.new(stores).find_by_prefecture(%w[東京 神奈川])
     end
 
     private

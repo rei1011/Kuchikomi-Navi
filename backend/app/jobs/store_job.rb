@@ -7,11 +7,11 @@ class StoreJob
       # MySQLではtruncateした場合rollbackができないので、deleteでデータを削除している
       Store.delete_all
       stores = []
-      FujohoService.get.each do |store|
+      FujohoService.get.list.each do |store|
         stores.push({
                       store_name: store.store_name,
-                      prefecture: store.address[:prefecture],
-                      municipality: store.address[:municipality],
+                      prefecture: store.address.prefecture,
+                      municipality: store.address.municipality,
                       home_page: store.home_page,
                       store_image: store.store_image
                     })

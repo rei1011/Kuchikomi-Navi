@@ -4,10 +4,7 @@
 class StoreDomain
   def initialize(store_name:, prefecture:, municipality:, home_page:, store_image:)
     @store_name = store_name
-    @address = {
-      prefecture:,
-      municipality:
-    }
+    @address = Address.new(prefecture:, municipality:)
     @store_image = store_image
     @home_page = home_page
   end
