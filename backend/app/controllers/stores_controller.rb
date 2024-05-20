@@ -2,7 +2,8 @@
 
 require_relative './res/stores_res'
 
-class StoresController < ApplicationController # rubocop:disable Style/Documentation
+# 店舗に関する情報を取得するためのAPI
+class StoresController < ApplicationController
   def index
     stores = Store.all
     new_variable = StoresRes.new(stores)
