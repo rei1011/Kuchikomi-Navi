@@ -31,7 +31,7 @@ class FujohoService # rubocop:disable Style/Documentation
         shop_info = agent.get(shop.css('.shop_header_info_shopname')[0][:href]).body
         home_page, prefecture, municipality = find_store_detail(shop_info)
 
-        stores.push(Store.new(store_name:, prefecture:, municipality:, home_page:, store_image:))
+        stores.push(StoreDomain.new(store_name:, prefecture:, municipality:, home_page:, store_image:))
       end
 
       doc.css('section.shop.adrank50,.adrank10,.adrank5,.adrank0').each do |shop|
@@ -42,7 +42,7 @@ class FujohoService # rubocop:disable Style/Documentation
         shop_info = agent.get(shop.css('.header').css('h2').css('a').attr('href').value).body
         home_page, prefecture, municipality = find_store_detail(shop_info)
 
-        stores.push(Store.new(store_name:, prefecture:, municipality:, home_page:, store_image:))
+        stores.push(StoreDomain.new(store_name:, prefecture:, municipality:, home_page:, store_image:))
       end
 
       stores

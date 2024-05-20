@@ -9,11 +9,11 @@ class StoreJob
       stores = []
       FujohoService.get.each do |store|
         stores.push({
-                      store_name: store[:store_name],
-                      prefecture: store[:prefecture],
-                      municipality: store[:municipality],
-                      home_page: store[:home_page],
-                      store_image: store[:store_image]
+                      store_name: store.store_name,
+                      prefecture: store.address[:prefecture],
+                      municipality: store.address[:municipality],
+                      home_page: store.home_page,
+                      store_image: store.store_image
                     })
       end
       Store.insert_all(stores)
