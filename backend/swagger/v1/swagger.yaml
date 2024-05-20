@@ -73,7 +73,6 @@ paths:
                   - store_name
                   - address
                   - home_page
-                  - store_image
 servers:
 - url: http://{defaultHost}
   variables:

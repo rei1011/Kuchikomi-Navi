@@ -3,57 +3,103 @@
  * Do not make direct changes to the file.
  */
 
-
 export interface paths {
-  "/comments": {
-    /** Get Comments */
-    get: {
-      responses: {
-        /** @description comment found */
-        200: {
-          content: {
-            "application/json": {
-                id: number;
-                store_name: string;
-                prostutite_name: string;
-                comment: string;
-                publication_date: Record<string, never>;
-              }[];
-          };
+    "/comments": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-    };
-  };
-  "/stores": {
-    /** Get Stores */
-    get: {
-      responses: {
-        /** @description store found */
-        200: {
-          content: {
-            "application/json": {
-                id: number;
-                store_name: string;
-                address: {
-                  prefecture: string;
-                  municipality: string;
+        /** Get Comments */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description comment found */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            id: number;
+                            store_name: string;
+                            prostutite_name: string;
+                            comment: string;
+                            publication_date: Record<string, never>;
+                        }[];
+                    };
                 };
-                home_page: string;
-                store_image: string;
-              }[];
-          };
+            };
         };
-      };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-  };
+    "/stores": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Stores */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description store found */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            id: number;
+                            store_name: string;
+                            address: {
+                                prefecture: string;
+                                municipality: string;
+                            };
+                            home_page: string;
+                            store_image?: string;
+                        }[];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
-
 export type webhooks = Record<string, never>;
-
-export type components = Record<string, never>;
-
+export interface components {
+    schemas: never;
+    responses: never;
+    parameters: never;
+    requestBodies: never;
+    headers: never;
+    pathItems: never;
+}
 export type $defs = Record<string, never>;
-
-export type external = Record<string, never>;
-
 export type operations = Record<string, never>;

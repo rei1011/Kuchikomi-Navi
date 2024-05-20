@@ -25,7 +25,7 @@ RSpec.describe 'api/stores', type: :request do
                    home_page: { type: :string },
                    store_image: { type: :string }
                  },
-                 required: %i[id store_name address home_page store_image]
+                 required: %i[id store_name address home_page]
                }
         run_test!
       end
