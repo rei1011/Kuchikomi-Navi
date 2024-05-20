@@ -19,6 +19,6 @@ class StoreJob
       Store.insert_all(stores)
     end
   rescue StandardError => e
-    p e
+    Rails.logger.error e
   end
 end
