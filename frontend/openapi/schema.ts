@@ -70,15 +70,17 @@ export interface paths {
                     };
                     content: {
                         "application/json": {
-                            id: number;
-                            store_name: string;
-                            address: {
-                                prefecture: string;
-                                municipality: string;
-                            };
-                            home_page: string;
-                            store_image?: string;
-                        }[];
+                            list: {
+                                id: number;
+                                store_name: string;
+                                address: {
+                                    prefecture: string;
+                                    municipality: string;
+                                };
+                                home_page: string;
+                                store_image?: string;
+                            }[];
+                        };
                     };
                 };
             };
