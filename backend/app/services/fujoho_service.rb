@@ -36,8 +36,9 @@ class FujohoService # rubocop:disable Style/Documentation
 
       doc.css('section.shop.adrank50,.adrank10,.adrank5,.adrank0').each do |shop|
         store_name = shop.css('.header').css('h2').css('a').children.text
-        store_image = shop.css('.shop_list_ad_img').attr('data-original')&.value ||
-                      shop.css('.shop_girl')[0].css('img').attr('data-original').value ||
+        p store_name
+        store_image = shop.css('.shop_list_ad_img')&.attr('data-original')&.value ||
+                      shop.css('.shop_girl')[0]&.css('img')&.attr('data-original')&.value ||
                       nil
         shop_info = agent.get(shop.css('.header').css('h2').css('a').attr('href').value).body
         home_page, prefecture, municipality = find_store_detail(shop_info)
