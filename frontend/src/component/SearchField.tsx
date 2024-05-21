@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import SearchSharpIcon from "@mui/icons-material/Search";
+import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import { InputAdornment, TextField } from "@mui/material";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -38,14 +38,16 @@ export function SearchField(props: SearchFieldType) {
     <form onSubmit={handleSubmit(onSubmit)} className={className}>
       <TextField
         {...register("keyword")}
-        sx={{ width: 1 }}
-        variant="filled"
+        className="w-full h-2"
+        variant="standard"
         InputProps={{
-          className: "bg-secondary",
-          sx: { borderRadius: 2 },
+          sx: {
+            borderRadius: 2,
+            backgroundColor: "#EDEDED",
+          },
           disableUnderline: true,
           startAdornment: (
-            <InputAdornment position="end">
+            <InputAdornment position="start">
               <SearchSharpIcon />
             </InputAdornment>
           ),

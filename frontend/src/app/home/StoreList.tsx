@@ -6,7 +6,7 @@ export async function StoreList() {
   const stores = await getStore();
 
   return (
-    <div className="flex flex-col gap-y-2">
+    <div className="flex flex-col gap-y-2 px-4">
       {stores.list.map((store) => {
         return (
           <Card
