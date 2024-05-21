@@ -16,7 +16,7 @@ rails db:create
 
 ### 起動
 ```
-(container内で) rails s -b "0.0.0.0"
+(container内で) bin/rails s -b "0.0.0.0"
 ```
 
 ### 新規コントローラーの作成
