@@ -4,7 +4,6 @@
 class StoresController < ApplicationController
   def index
     stores = Store.all
-    new_variable = StoresRes.new(stores)
-    render(json: new_variable)
+    render(json: StoresRes.new(stores))
   end
 end
