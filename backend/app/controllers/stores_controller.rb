@@ -6,7 +6,7 @@ require_relative './res/stores_res'
 class StoresController < ApplicationController
   def index
     stores = Store.all
-    new_variable = StoresRes.new(stores)
+    new_variable = Res::StoresRes.new(stores)
     render(json: new_variable)
   end
 end
