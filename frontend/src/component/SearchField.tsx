@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import SearchIcon from "@mui/icons-material/Search";
+import SearchSharpIcon from "@mui/icons-material/Search";
 import { InputAdornment, TextField } from "@mui/material";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -19,6 +19,7 @@ type SchemaType = z.infer<typeof schema>;
  */
 type SearchFieldType = {
   submit: (data: SchemaType) => void;
+  className?: string;
 };
 
 /**
@@ -30,18 +31,22 @@ export function SearchField(props: SearchFieldType) {
     handleSubmit,
     formState: { errors },
   } = useForm<SchemaType>({ resolver: zodResolver(schema) });
-  const { submit } = props;
+  const { submit, className } = props;
   const onSubmit: SubmitHandler<SchemaType> = (data) => submit(data);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className={className}>
       <TextField
         {...register("keyword")}
-        variant="outlined"
+        sx={{ width: 1 }}
+        variant="filled"
         InputProps={{
+          className: "bg-secondary",
+          sx: { borderRadius: 2 },
+          disableUnderline: true,
           startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon />
+            <InputAdornment position="end">
+              <SearchSharpIcon />
             </InputAdornment>
           ),
         }}
