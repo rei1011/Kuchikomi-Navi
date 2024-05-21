@@ -7,7 +7,6 @@ export async function StoreList() {
 
   return (
     <div className="flex flex-col gap-y-2">
-      店舗一覧
       {stores.list.map((store) => {
         return (
           <Card

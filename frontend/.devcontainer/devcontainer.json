@@ -17,7 +17,8 @@
         "rvest.vs-code-prettier-eslint",
         "dbaeumer.vscode-eslint",
         "ritwickdey.liveserver",
-        "unifiedjs.vscode-mdx"
+        "unifiedjs.vscode-mdx",
+        "bradlc.vscode-tailwindcss"
       ]
     }
   },
