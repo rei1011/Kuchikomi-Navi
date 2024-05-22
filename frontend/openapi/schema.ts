@@ -56,7 +56,9 @@ export interface paths {
         /** Get Stores */
         get: {
             parameters: {
-                query?: never;
+                query?: {
+                    keyword?: string;
+                };
                 header?: never;
                 path?: never;
                 cookie?: never;

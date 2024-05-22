@@ -3,7 +3,7 @@
 # 店舗に関する情報を取得するためのAPI
 class StoresController < ApplicationController
   def index
-    stores = StoreRepository.find_all
+    stores = StoreService.find(SearchWord.new(params[:keyword]))
     render(json: StoresRes.new(stores))
   end
 end

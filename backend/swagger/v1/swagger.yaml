@@ -40,6 +40,11 @@ paths:
       summary: Get Stores
       tags:
       - Stores
+      parameters:
+      - name: keyword
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: store found

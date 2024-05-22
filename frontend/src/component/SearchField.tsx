@@ -3,14 +3,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import { InputAdornment, TextField } from "@mui/material";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
 /**
  * バリデーション定義
  */
 const schema = z.object({
-  keyword: z.string(),
+  keyword: z.string().nullable(),
 });
 type SchemaType = z.infer<typeof schema>;
 
@@ -18,7 +18,8 @@ type SchemaType = z.infer<typeof schema>;
  * props
  */
 type SearchFieldType = {
-  submit: (data: SchemaType) => void;
+  submit: (data: SchemaType["keyword"]) => void;
+  defaultValue: string | null;
   className?: string;
 };
 
@@ -26,33 +27,45 @@ type SearchFieldType = {
  * 検索バー
  */
 export function SearchField(props: SearchFieldType) {
+  const { submit, className, defaultValue } = props;
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
-  } = useForm<SchemaType>({ resolver: zodResolver(schema) });
-  const { submit, className } = props;
-  const onSubmit: SubmitHandler<SchemaType> = (data) => submit(data);
+  } = useForm<SchemaType>({
+    resolver: zodResolver(schema),
+    defaultValues: { keyword: defaultValue },
+  });
+
+  const onSubmit: SubmitHandler<SchemaType> = (data) => submit(data.keyword);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={className}>
-      <TextField
-        {...register("keyword")}
-        className="w-full h-2"
-        variant="standard"
-        InputProps={{
-          sx: {
-            borderRadius: 2,
-            backgroundColor: "#EDEDED",
-          },
-          disableUnderline: true,
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchSharpIcon />
-            </InputAdornment>
-          ),
+      <Controller
+        name="keyword"
+        control={control}
+        render={({ field }) => {
+          return (
+            <TextField
+              {...field}
+              className="w-full h-2"
+              variant="standard"
+              InputProps={{
+                sx: {
+                  borderRadius: 2,
+                  backgroundColor: "#EDEDED",
+                },
+                disableUnderline: true,
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchSharpIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          );
         }}
-      />
+      ></Controller>
     </form>
   );
 }

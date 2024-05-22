@@ -21,8 +21,12 @@ RSpec.describe 'api/stores', type: :request do # rubocop:disable Metrics/BlockLe
   path '/stores' do # rubocop:disable Metrics/BlockLength
     get 'Get Stores' do # rubocop:disable Metrics/BlockLength
       tags 'Stores'
+      parameter name: :keyword,
+                in: :query,
+                type: :string
       produces 'application/json'
       response '200', 'store found' do
+        let(:keyword) { 'keyword' }
         schema type: :object,
                properties: {
                  list: { type: :array,

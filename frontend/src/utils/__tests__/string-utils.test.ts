@@ -1,4 +1,4 @@
-import { stringToUrl } from "../string-utils";
+import { isBlank, stringToUrl } from "../string-utils";
 
 describe("StringToUrl", () => {
   test.each`
@@ -10,5 +10,16 @@ describe("StringToUrl", () => {
     ${undefined}            | ${undefined}
   `("returns $expected when input is $input", ({ input, expected }) => {
     expect(stringToUrl(input)).toEqual(expected);
+  });
+});
+
+describe("isBlank", () => {
+  test.each`
+    input        | expected
+    ${""}        | ${true}
+    ${null}      | ${true}
+    ${undefined} | ${true}
+  `("returns $expected when input is $input", ({ input, expected }) => {
+    expect(isBlank(input)).toEqual(expected);
   });
 });
