@@ -11,7 +11,7 @@ export async function StoreList(props: StoreListProsp) {
   const stores = await getStore(keyword);
 
   return (
-    <div className="flex flex-col gap-y-2 px-4">
+    <div className="flex flex-col gap-y-8 px-4">
       {stores.list.map((store) => {
         return (
           <Card

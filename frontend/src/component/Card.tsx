@@ -4,8 +4,8 @@ import {
   CardMedia,
   Link,
   Card as MuiCard,
-  Typography,
 } from "@mui/material";
+import { ShopInfo } from "./ShopInfo";
 
 export type CardProps = {
   storeName: string;
@@ -22,54 +22,36 @@ type Address = {
 export function Card(props: CardProps) {
   const { storeName, homePageUri, address, imageUri } = props;
   return (
-    <MuiCard sx={{ display: "flex", width: "100%" }}>
-      <Media imageUri={imageUri} />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <CardContent
+    <Link
+      href={homePageUri?.href}
+      target="_blank"
+      rel="noopener"
+      style={{ textDecoration: "none" }}
+    >
+      <MuiCard sx={{ width: "100%", borderRadius: 2 }} elevation={0}>
+        <Media imageUri={imageUri} />
+        <Box
           sx={{
-            flex: "1 0 auto",
-            alignContent: "center",
+            display: "flex",
+            flexDirection: "column",
           }}
         >
-          <StoreName homePageUri={homePageUri} storeName={storeName} />
-          <Typography
-            variant="subtitle1"
-            color="text.secondary"
-            component="div"
+          <CardContent
+            style={{ paddingBottom: "0" }}
+            sx={{
+              flex: "1 0 auto",
+              alignContent: "center",
+              padding: "4px",
+            }}
           >
-            {address.prefecture} {address.municipality}
-          </Typography>
-        </CardContent>
-      </Box>
-    </MuiCard>
-  );
-}
-
-function StoreName({
-  homePageUri,
-  storeName,
-}: {
-  homePageUri?: URL;
-  storeName: string;
-}) {
-  const store = (
-    <Typography component="div" variant="h5">
-      {storeName}
-    </Typography>
-  );
-
-  if (homePageUri == null) {
-    return store;
-  }
-
-  return (
-    <Link href={homePageUri.href} target="_blank" rel="noopener">
-      {store}
+            <ShopInfo
+              storeName={storeName}
+              prefecture={address.prefecture}
+              municipality={address.municipality}
+            />
+          </CardContent>
+        </Box>
+      </MuiCard>
     </Link>
   );
 }
@@ -86,7 +68,7 @@ function Media({ imageUri }: { imageUri?: URL }) {
   return (
     <CardMedia
       component="img"
-      sx={{ width: 151 }}
+      sx={{ width: 1, maxHeight: "200px" }}
       image={imageUri.href}
       alt="Live from space album cover"
     />
