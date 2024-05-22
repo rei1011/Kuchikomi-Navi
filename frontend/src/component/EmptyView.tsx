@@ -1,4 +1,4 @@
-import { SlaveryWhipSvgrepoCom } from "@/components/icons";
+import { SlaveryWhipSvgrepoCom } from "@/component/icons";
 import { Typography } from "@mui/material";
 
 export function EmptyView() {
