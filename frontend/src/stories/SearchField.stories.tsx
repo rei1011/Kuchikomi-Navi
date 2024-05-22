@@ -14,5 +14,6 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     submit: console.log,
+    defaultValue: "",
   },
 };
