@@ -62,6 +62,7 @@ export function SearchField(props: SearchFieldType) {
                   </InputAdornment>
                 ),
               }}
+              inputProps={{ enterKeyHint: "search" }}
             />
           );
         }}
