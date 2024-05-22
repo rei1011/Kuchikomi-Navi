@@ -7,14 +7,20 @@ class StoreRepository
   end
 
   def self.find_by_prefecture(prefecture)
-    Store.where(prefecture:).map(&:to_domain)
+    Store.where('prefecture LIKE ?', "%#{prefecture}%").map(&:to_domain)
   end
 
   def self.find_by_municipality(municipality)
     Store.where(municipality:).map(&:to_domain)
+    Store.where('municipality LIKE ?', "%#{municipality}%").map(&:to_domain)
   end
 
   def self.find_by_store_name(store_name)
-    Store.where(store_name:).map(&:to_domain)
+    Store.where('store_name LIKE ?', "%#{store_name}%").map(&:to_domain)
+  end
+
+  def self.find_by_keyword(keyword)
+    Store.where('prefecture LIKE ? OR municipality LIKE ? OR store_name LIKE ?', "%#{keyword}%", "%#{keyword}%",
+                "%#{keyword}%").map(&:to_domain)
   end
 end
