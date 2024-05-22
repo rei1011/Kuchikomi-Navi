@@ -18,7 +18,7 @@ export function AppBar() {
         defaultValue={keyword}
         submit={(keyword: string | null) => {
           if (isBlank(keyword)) {
-            return;
+            router.push("/");
           }
           router.push(`?${queryParamKey}=${keyword}`);
         }}
