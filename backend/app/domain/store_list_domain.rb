@@ -14,4 +14,9 @@ class StoreListDomain
     end
     StoreListDomain.new(stores)
   end
+
+  def uniq
+    stores = @list.uniq(&:home_page)
+    StoreListDomain.new(stores)
+  end
 end
