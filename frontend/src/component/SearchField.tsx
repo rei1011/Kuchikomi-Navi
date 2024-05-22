@@ -34,7 +34,7 @@ export function SearchField(props: SearchFieldType) {
     formState: { errors },
   } = useForm<SchemaType>({
     resolver: zodResolver(schema),
-    defaultValues: { keyword: defaultValue },
+    defaultValues: { keyword: defaultValue ?? "" },
   });
 
   const onSubmit: SubmitHandler<SchemaType> = (data) => submit(data.keyword);
