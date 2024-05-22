@@ -33,5 +33,6 @@ module Backend
     config.active_job.queue_adapter = :sidekiq
 
     config.autoload_paths += Dir.glob("#{config.root}/app/controllers/res")
+    config.autoload_paths += Dir.glob("#{config.root}/app/controllers/domain")
   end
 end
