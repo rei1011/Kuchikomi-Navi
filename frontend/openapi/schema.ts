@@ -71,7 +71,6 @@ export interface paths {
                     content: {
                         "application/json": {
                             list: {
-                                id: number;
                                 store_name: string;
                                 address: {
                                     prefecture: string;

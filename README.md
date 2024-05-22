@@ -11,7 +11,7 @@ docker network create kuchikomi-network
 ```
 cd backend
 (vs code上で) Rebuid and Reopen in Containerを実行 
-rails db:create
+bin/rails db:create
 ```
 
 ### 起動
@@ -22,35 +22,35 @@ rails db:create
 ### 新規コントローラーの作成
 例えば、stores_controllerを作成したい場合は以下
 ```
-rails generate controller Stores index --skip-routes
+bin/rails generate controller Stores index --skip-routes
 ```
 
 ### モデルの作成
 例えば、string型のtitleと、text型のbodyをフィールドに持つArticleモデルを作成したい場合
 ```
-rails generate model Article title:string body:text
+bin/rails generate model Article title:string body:text
 ```
 上記コマンド成功後に以下のコマンドを実行するとmigrationされる
 ```
-rails db:migrate
+bin/rails db:migrate
 ```
 
 ### マイグレーションの作成
 ```
-rails generate migration AddPartNumberToProducts
+bin/rails generate migration AddPartNumberToProducts
 ```
 
 ### マイグレーションのロールバック
 ```
-rails db:migrate:status
-（↑で表示されたMigration IDの中からロールバックしたい箇所のIDを指定） rails db:migrate:down VERSION=${Migration ID}
+bin/rails db:migrate:status
+（↑で表示されたMigration IDの中からロールバックしたい箇所のIDを指定） bin/rails db:migrate:down VERSION=${Migration ID}
 ```
 
 
 ### 新規Jobの作成
 例えば、stores_controllerを作成したい場合は以下
 ```
-rails generate job guests_cleanup
+bin/rails generate job guests_cleanup
 ```
 
 ### Jobの登録
@@ -63,8 +63,8 @@ bundle exec sidekiq
 
 ### API定義の出力
 ```
-rails spec
-（↑のコマンドがpassしたら） rails rswag:specs:swaggerize
+bin/rails spec
+（↑のコマンドがpassしたら） bin/rails rswag:specs:swaggerize
 ```
 上記コマンド実行後、[http://localhost:3000/api-docs](http://localhost:3000/api-docs)へアクセス
 

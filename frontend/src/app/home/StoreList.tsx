@@ -10,7 +10,7 @@ export async function StoreList() {
       {stores.list.map((store) => {
         return (
           <Card
-            key={store.id}
+            key={store.home_page}
             storeName={store.store_name}
             imageUri={stringToUrl(store.store_image)}
             homePageUri={stringToUrl(store.home_page)}

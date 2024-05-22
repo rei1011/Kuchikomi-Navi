@@ -53,8 +53,6 @@ paths:
                     items:
                       type: object
                       properties:
-                        id:
-                          type: integer
                         store_name:
                           type: string
                         address:
@@ -72,7 +70,6 @@ paths:
                         store_image:
                           type: string
                       required:
-                      - id
                       - store_name
                       - address
                       - home_page

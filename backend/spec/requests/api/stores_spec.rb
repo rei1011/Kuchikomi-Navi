@@ -29,7 +29,6 @@ RSpec.describe 'api/stores', type: :request do # rubocop:disable Metrics/BlockLe
                          items: {
                            type: :object,
                            properties: {
-                             id: { type: :integer },
                              store_name: { type: :string },
                              address: {
                                type: :object,
@@ -42,7 +41,7 @@ RSpec.describe 'api/stores', type: :request do # rubocop:disable Metrics/BlockLe
                              home_page: { type: :string },
                              store_image: { type: :string }
                            },
-                           required: %i[id store_name address home_page]
+                           required: %i[store_name address home_page]
                          } }
                },
                required: %i[list]
