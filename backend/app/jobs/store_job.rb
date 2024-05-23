@@ -7,7 +7,10 @@ class StoreJob
       # MySQLではtruncateした場合rollbackができないので、deleteでデータを削除している
       Store.delete_all
       stores = []
-      FujohoService.find.list.each do |store|
+      store_list_from_fujoho = FujohoService.find
+      store_list_from_fuzoku = FuzokuService.find
+      store_list = store_list_from_fujoho.add_stores(store_list_from_fuzoku).uniq
+      store_list.list.each do |store|
         stores.push({
                       store_name: store.store_name,
                       prefecture: store.address.prefecture,
@@ -19,6 +22,7 @@ class StoreJob
       Store.insert_all(stores)
     end
   rescue StandardError => e
+    p e
     Rails.logger.error e
   end
 end

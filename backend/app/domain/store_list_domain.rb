@@ -8,6 +8,11 @@ class StoreListDomain
     @list = stores
   end
 
+  def add_stores(store_list)
+    list = @list + store_list.list
+    StoreListDomain.new(list)
+  end
+
   def find_by_prefecture(prefecture)
     stores = @list.select do |store|
       prefecture.include?(store.address.prefecture)
