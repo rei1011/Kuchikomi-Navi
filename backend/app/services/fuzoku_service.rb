@@ -39,25 +39,16 @@ class FuzokuService
       doc = Nokogiri::HTML.parse(page.body)
       doc.css('.shopList__item.p-shopItem').each do |shop|
         store_link = shop.css('.shopItem__shopName').css('a').attr('href').value
-        # p "get store_link = #{store_link}"
-        # p 'agent.get start'
         store_page = agent.get(store_link)
-        # p 'agent.get end'
         store_doc = Nokogiri::HTML.parse(store_page.body)
-
-        # p 'parse end'
         home_page = store_doc.css('.shop-hp').attr('href').value
-        # p "get home_page = #{home_page}"
+        # M性感のお店でない場合はスキップする
         next unless m_sexual_feeling(store_doc)
 
-        # p "#{page_path} #{area}"
         store_name = shop.css('.shopItem__shopName').css('a').children.text
-        # p "get store_name = #{store_name}"
         store_image = shop.css('.shopItem__thumbnail')&.attr('data-original')&.value
-        # p "get store_image = #{store_image}"
-        prefecture = '東京'
+        prefecture = area == 'tokyo' ? '東京' : '神奈川'
         municipality = shop.attr('data-selectshopmainarea')
-        # p "get municipality = #{municipality}"
 
         stores.push(StoreDomain.new(
                       store_name:,
