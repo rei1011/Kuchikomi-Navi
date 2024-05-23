@@ -21,7 +21,7 @@ RSpec.describe 'get store from fujoho page' do
     stub_request(:get, %r{https://fujoho\.jp/index\.php\?id=\d+&p=shop})
       .to_return(status: 200, body: raw_shop_detail_file, headers: { content_type: 'text/html' })
 
-    store_list = FujohoService.get
+    store_list = FujohoService.find
     expect(store_list.list.size).to eq 200
   end
 end

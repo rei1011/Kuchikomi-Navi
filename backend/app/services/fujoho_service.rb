@@ -5,7 +5,7 @@ require 'nokogiri'
 
 class FujohoService # rubocop:disable Style/Documentation
   class << self
-    def get
+    def find
       stores = []
       i = 0
       loop do
