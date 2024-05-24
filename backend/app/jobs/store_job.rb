@@ -2,7 +2,7 @@
 
 # 複数サイトから収集した店舗情報を保存
 class StoreJob
-  def self.perform # rubocop:disable Metrics/MethodLength
+  def self.perform # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
     Store.transaction do
       # MySQLではtruncateした場合rollbackができないので、deleteでデータを削除している
       Store.delete_all
@@ -22,9 +22,6 @@ class StoreJob
       Store.insert_all(stores)
     end
   rescue StandardError => e
-    p "#{e.class}: #{e}"
-    p e.backtrace
-    Rails.logger.error "#{e.class}: #{e}"
-    Rails.logger.error e.backtrace
+    KuchikomiLogger.error e
   end
 end

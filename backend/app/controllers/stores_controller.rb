@@ -12,7 +12,6 @@ class StoresController < ApplicationController
     TestService.test
     render(json: StoresRes.new(stores))
   rescue StandardError => e
-    Rails.logger.error "#{e.class}: #{e}"
-    Rails.logger.error e.backtrace
+    KuchikomiLogger.error e
   end
 end
