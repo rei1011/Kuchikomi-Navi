@@ -12,7 +12,7 @@ class StoresController < ApplicationController
     TestService.test
     render(json: StoresRes.new(stores))
   rescue StandardError => e
-    Rails.logger.error e
+    Rails.logger.error "#{e.class}: #{e}"
     Rails.logger.error e.backtrace
   end
 end
