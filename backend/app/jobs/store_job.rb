@@ -23,6 +23,8 @@ class StoreJob
     end
   rescue StandardError => e
     p e
+    p e.backtrace
     Rails.logger.error e
+    Rails.logger.error e.backtrace
   end
 end

@@ -6,4 +6,13 @@ class StoresController < ApplicationController
     stores = StoreService.find(SearchWord.new(params[:keyword]))
     render(json: StoresRes.new(stores))
   end
+
+  def error_test
+    stores = StoreService.find(SearchWord.new(params[:keyword]))
+    TestService.test
+    render(json: StoresRes.new(stores))
+  rescue StandardError => e
+    Rails.logger.error e
+    Rails.logger.error e.backtrace
+  end
 end
