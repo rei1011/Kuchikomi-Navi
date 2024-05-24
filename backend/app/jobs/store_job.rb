@@ -22,9 +22,9 @@ class StoreJob
       Store.insert_all(stores)
     end
   rescue StandardError => e
-    p e
+    p "#{e.class}: #{e}"
     p e.backtrace
-    Rails.logger.error e
+    Rails.logger.error "#{e.class}: #{e}"
     Rails.logger.error e.backtrace
   end
 end
