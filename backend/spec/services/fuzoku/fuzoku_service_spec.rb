@@ -39,6 +39,29 @@ RSpec.describe '風俗じゃぱん！から店舗一覧を取得' do
     expect(store_list.list.size).to eq 200
   end
 
+  it '店舗一覧画面を表示する際に404が返却されてもエラーは発生しない' do
+    # 店舗一覧で404が返却される
+    prefectures = %w[tokyo kanagawa]
+    prefectures.each do |prefecture|
+      stub_request(:get, "https://fuzoku.jp/#{prefecture}/ge_14/")
+        .to_return(status: 404, body: 'Not Found', headers: {})
+    end
+    store_list = FuzokuService.find
+    expect(store_list.list.size).to eq 0
+  end
+
+  it '店舗一覧画面を表示する際に404以外の異常なstatus codeが返却されたたらエラーが発生する' do
+    # 店舗一覧で500が返却される
+    prefectures = %w[tokyo kanagawa]
+    prefectures.each do |prefecture|
+      stub_request(:get, "https://fuzoku.jp/#{prefecture}/ge_14/")
+        .to_return(status: 500, body: 'Server Error', headers: {})
+    end
+    expect do
+      FuzokuService.find
+    end.to raise_error(Mechanize::ResponseCodeError)
+  end
+
   it 'M性感のお店だけ取得する' do
     # 店舗詳細のmock
     raw_shop_detail_file = File.new('/usr/src/app/backend/spec/services/fuzoku/shop_detail_response.txt')

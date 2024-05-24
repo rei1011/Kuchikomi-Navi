@@ -44,8 +44,8 @@ RSpec.describe 'StoreJob' do # rubocop:disable Metrics/BlockLength
   end
 
   it 'the data will be rolled back if the job fails.' do
-    # DBエラーが発生したとする
-    allow(FujohoService).to receive(:find).and_raise(ActiveRecord::StaleObjectError)
+    # 何かしらのエラーが発生したとする
+    allow(FujohoService).to receive(:find).and_raise(StandardError)
     mock_empty_fuzoku_service
 
     # 事前に一件データを挿入する
