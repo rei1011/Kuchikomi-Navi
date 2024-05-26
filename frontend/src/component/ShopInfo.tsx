@@ -1,21 +1,23 @@
 import {
   Divider,
-  List,
   ListItem,
   ListItemText,
+  List as MuiList,
   Typography,
 } from "@mui/material";
+import { List } from "./List";
 
 type ListProps = {
   storeName: string;
   prefecture: string;
   municipality: string;
+  open: { from: string; to: string };
 };
 
 export function ShopInfo(props: ListProps) {
-  const { storeName, prefecture, municipality } = props;
+  const { storeName, prefecture, municipality, open } = props;
   return (
-    <List>
+    <MuiList>
       <ListItem>
         <ListItemText>
           <Typography component="div" variant="h6">
@@ -24,17 +26,12 @@ export function ShopInfo(props: ListProps) {
         </ListItemText>
       </ListItem>
       <Divider variant="fullWidth" component="li" />
-      <ListItem>
-        <ListItemText>
-          <Typography
-            variant="subtitle1"
-            color="text.secondary"
-            component="div"
-          >
-            {`${prefecture} ${municipality}`}
-          </Typography>
-        </ListItemText>
-      </ListItem>
-    </List>
+      <List
+        items={[
+          { title: "Location", content: `${prefecture} ${municipality}` },
+          { title: "Open", content: `${open.from} - ${open.to}` },
+        ]}
+      />
+    </MuiList>
   );
 }

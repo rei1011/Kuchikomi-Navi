@@ -16,5 +16,9 @@ export const Primary: Story = {
     storeName: "東京店",
     prefecture: "東京",
     municipality: "池袋",
+    open: {
+      from: "10:00",
+      to: "19:00",
+    },
   },
 };

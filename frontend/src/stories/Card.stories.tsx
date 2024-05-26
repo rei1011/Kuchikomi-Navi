@@ -22,5 +22,9 @@ export const Primary: Story = {
     imageUri: new URL(
       "https://img.fujoho.jp/public/img_shop_list_ad_img/slai_33161_5e057b1fc97735.00376143.jpg"
     ),
+    open: {
+      from: "10:00",
+      to: "19:00",
+    },
   },
 };

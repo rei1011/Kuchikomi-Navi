@@ -12,6 +12,10 @@ export type CardProps = {
   homePageUri?: URL;
   address: Address;
   imageUri?: URL;
+  open: {
+    from: string;
+    to: string;
+  };
 };
 
 type Address = {
@@ -20,7 +24,7 @@ type Address = {
 };
 
 export function Card(props: CardProps) {
-  const { storeName, homePageUri, address, imageUri } = props;
+  const { storeName, homePageUri, address, imageUri, open } = props;
   return (
     <Link
       href={homePageUri?.href}
@@ -48,6 +52,7 @@ export function Card(props: CardProps) {
               storeName={storeName}
               prefecture={address.prefecture}
               municipality={address.municipality}
+              open={open}
             />
           </CardContent>
         </Box>

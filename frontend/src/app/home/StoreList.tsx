@@ -25,6 +25,7 @@ export async function StoreList(props: StoreListProsp) {
             imageUri={stringToUrl(store.store_image)}
             homePageUri={stringToUrl(store.home_page)}
             address={store.address}
+            open={store.open}
           />
         );
       })}

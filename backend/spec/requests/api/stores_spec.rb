@@ -5,7 +5,7 @@ require 'rails_helper'
 
 RSpec.describe 'api/stores', type: :request do # rubocop:disable Metrics/BlockLength
   before do
-    allow(StoreRepository).to receive(:find_all).and_return(
+    allow(StoreService).to receive(:find).and_return(
       [
         StoreDomain.new(
           store_name: 'sample store',
@@ -43,9 +43,18 @@ RSpec.describe 'api/stores', type: :request do # rubocop:disable Metrics/BlockLe
                                required: %i[prefecture municipality]
                              },
                              home_page: { type: :string },
-                             store_image: { type: :string }
+                             store_image: { type: :string },
+                             open: {
+                               type: :object,
+                               properties: {
+                                 # 営業時間はHH:MMの形式で表現する
+                                 from: { type: :string, pattern: /^(?:[01]\d|2[0-3]):[0-5]\d$/ },
+                                 to: { type: :string, pattern: /^(?:[01]\d|2[0-3]):[0-5]\d$/ }
+                               },
+                               required: %i[from to]
+                             }
                            },
-                           required: %i[store_name address home_page]
+                           required: %i[store_name address home_page open]
                          } }
                },
                required: %i[list]
