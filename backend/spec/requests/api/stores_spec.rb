@@ -12,7 +12,8 @@ RSpec.describe 'api/stores', type: :request do # rubocop:disable Metrics/BlockLe
           store_image: 'https://sample.co.jp/sample.jpg',
           home_page: 'https://sample.co.jp',
           prefecture: 'smaple',
-          municipality: 'sample'
+          municipality: 'sample',
+          open_hours: OpenHours.new(from: '10:00', to: '19:00')
         )
       ]
     )
@@ -50,8 +51,7 @@ RSpec.describe 'api/stores', type: :request do # rubocop:disable Metrics/BlockLe
                                  # 営業時間はHH:MMの形式で表現する
                                  from: { type: :string, pattern: /^(?:[01]\d|2[0-3]):[0-5]\d$/ },
                                  to: { type: :string, pattern: /^(?:[01]\d|2[0-3]):[0-5]\d$/ }
-                               },
-                               required: %i[from to]
+                               }
                              }
                            },
                            required: %i[store_name address home_page open]

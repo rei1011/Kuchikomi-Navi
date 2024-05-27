@@ -23,5 +23,11 @@ RSpec.describe 'get store from fujoho page' do
 
     store_list = FujohoService.find
     expect(store_list.list.size).to eq 200
+    store_list.list.each do |store|
+      expect(store.store_name).not_to eq nil
+      expect(store.address.prefecture).not_to eq nil
+      expect(store.address.municipality).not_to eq nil
+      expect(store.home_page).not_to eq nil
+    end
   end
 end

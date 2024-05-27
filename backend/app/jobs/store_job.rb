@@ -16,7 +16,9 @@ class StoreJob
                       prefecture: store.address.prefecture,
                       municipality: store.address.municipality,
                       home_page: store.home_page,
-                      store_image: store.store_image
+                      store_image: store.store_image,
+                      open_from: store.open_hours.from,
+                      open_to: store.open_hours.to
                     })
       end
       Store.insert_all(stores)

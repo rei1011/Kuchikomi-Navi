@@ -81,8 +81,8 @@ export interface paths {
                                 home_page: string;
                                 store_image?: string;
                                 open: {
-                                    from: string;
-                                    to: string;
+                                    from?: string;
+                                    to?: string;
                                 };
                             }[];
                         };

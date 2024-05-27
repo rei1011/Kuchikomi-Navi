@@ -13,8 +13,8 @@ export type CardProps = {
   address: Address;
   imageUri?: URL;
   open: {
-    from: string;
-    to: string;
+    from?: string;
+    to?: string;
   };
 };
 

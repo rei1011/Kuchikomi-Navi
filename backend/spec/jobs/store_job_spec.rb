@@ -9,7 +9,10 @@ RSpec.describe 'StoreJob' do # rubocop:disable Metrics/BlockLength
                                                                                            prefecture: 'sample prefecture',
                                                                                            municipality: 'sample municipality',
                                                                                            home_page: 'https://sample.co.jp',
-                                                                                           store_image: 'https://sample.co.jp/sample.jpg')]))
+                                                                                           store_image: 'https://sample.co.jp/sample.jpg',
+                                                                                           open_hours: OpenHours.new(
+                                                                                             from: '10:00', to: '19:00'
+                                                                                           ))]))
   end
 
   def mock_fuzoku_service
@@ -18,7 +21,10 @@ RSpec.describe 'StoreJob' do # rubocop:disable Metrics/BlockLength
                                                                                            prefecture: 'sample prefecture',
                                                                                            municipality: 'sample municipality',
                                                                                            home_page: 'https://sample.co.jp',
-                                                                                           store_image: 'https://sample.co.jp/sample.jpg')]))
+                                                                                           store_image: 'https://sample.co.jp/sample.jpg',
+                                                                                           open_hours: OpenHours.new(
+                                                                                             from: '10:00', to: '19:00'
+                                                                                           ))]))
   end
 
   def mock_empty_fuzoku_service

@@ -27,7 +27,7 @@ export function List(props: ListProps) {
                       color="text.black"
                       component="span"
                     >
-                      <span className="font-bold">{item.title}</span>
+                      <span className="font-semibold">{item.title}</span>
                     </Typography>
                   </div>
 

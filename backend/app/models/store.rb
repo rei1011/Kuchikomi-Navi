@@ -8,7 +8,8 @@ class Store < ApplicationRecord
       store_image:,
       home_page:,
       prefecture:,
-      municipality:
+      municipality:,
+      open_hours: OpenHours.new(from: open_from, to: open_to)
     )
   end
 end

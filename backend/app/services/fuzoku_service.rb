@@ -49,13 +49,15 @@ class FuzokuService
         store_image = shop.css('.shopItem__thumbnail')&.attr('data-original')&.value
         prefecture = area == 'tokyo' ? '東京' : '神奈川'
         municipality = shop.attr('data-selectshopmainarea')
+        open = shop.css('.shopItem__dataItem--open').text.presence || shop.css('.shopItem__dataItem')[1].text
 
         stores.push(StoreDomain.new(
                       store_name:,
                       store_image:,
                       home_page:,
                       prefecture:,
-                      municipality:
+                      municipality:,
+                      open_hours: OpenHours.from_time_str(open)
                     ))
       end
       stores

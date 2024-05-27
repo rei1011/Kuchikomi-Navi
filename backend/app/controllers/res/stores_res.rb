@@ -12,10 +12,7 @@ class StoresRes
         address: store.address,
         home_page: store.home_page,
         store_image: store.store_image,
-        open: {
-          from: '10:00',
-          to: '19:00'
-        }
+        open: store.open_hours
       }
       @list.push(
         new_variable

@@ -11,7 +11,7 @@ type ListProps = {
   storeName: string;
   prefecture: string;
   municipality: string;
-  open: { from: string; to: string };
+  open: { from?: string; to?: string };
 };
 
 export function ShopInfo(props: ListProps) {
@@ -29,7 +29,13 @@ export function ShopInfo(props: ListProps) {
       <List
         items={[
           { title: "Location", content: `${prefecture} ${municipality}` },
-          { title: "Open", content: `${open.from} - ${open.to}` },
+          {
+            title: "Open",
+            content:
+              open.from == null && open.to == null
+                ? "不明"
+                : `${open.from} - ${open.to}`,
+          },
         ]}
       />
     </MuiList>

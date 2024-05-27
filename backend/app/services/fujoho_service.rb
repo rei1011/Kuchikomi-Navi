@@ -30,8 +30,10 @@ class FujohoService # rubocop:disable Style/Documentation
         store_image = shop.css('.shop_body_photo_list_item_link_img')[0].attr('data-original')
         shop_info = agent.get(shop.css('.shop_header_info_shopname')[0][:href]).body
         home_page, prefecture, municipality = find_store_detail(shop_info)
+        open = shop.css('.shop_header_info_time').children.text
 
-        stores.push(StoreDomain.new(store_name:, prefecture:, municipality:, home_page:, store_image:))
+        stores.push(StoreDomain.new(store_name:, prefecture:, municipality:, home_page:, store_image:,
+                                    open_hours: OpenHours.from_time_str(open)))
       end
 
       doc.css('section.shop.adrank50,.adrank10,.adrank5,.adrank0').each do |shop|
@@ -41,8 +43,10 @@ class FujohoService # rubocop:disable Style/Documentation
                       nil
         shop_info = agent.get(shop.css('.header').css('h2').css('a').attr('href').value).body
         home_page, prefecture, municipality = find_store_detail(shop_info)
+        open = shop.css('.open_time').children.text
 
-        stores.push(StoreDomain.new(store_name:, prefecture:, municipality:, home_page:, store_image:))
+        stores.push(StoreDomain.new(store_name:, prefecture:, municipality:, home_page:, store_image:,
+                                    open_hours: OpenHours.from_time_str(open)))
       end
 
       stores
