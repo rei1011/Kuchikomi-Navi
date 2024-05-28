@@ -85,3 +85,19 @@ variable "rails_secret_id" {
 variable "rails-master-key" {
   default = ""
 }
+
+variable "basic_auth_user" {
+  default = ""
+}
+
+variable "basic_auth_user_id" {
+  default = "basic_auth_user"
+}
+
+variable "basic_auth_password" {
+  default = ""
+}
+
+variable "basic_auth_password_id" {
+  default = "basic_auth_password"
+}
