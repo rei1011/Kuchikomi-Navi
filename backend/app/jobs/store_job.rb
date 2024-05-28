@@ -18,7 +18,8 @@ class StoreJob
                       home_page: store.home_page,
                       store_image: store.store_image,
                       open_from: store.open_hours.from,
-                      open_to: store.open_hours.to
+                      open_to: store.open_hours.to,
+                      data_source: store.data_source.value
                     })
       end
       Store.insert_all(stores)

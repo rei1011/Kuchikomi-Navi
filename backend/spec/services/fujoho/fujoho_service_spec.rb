@@ -28,6 +28,7 @@ RSpec.describe 'get store from fujoho page' do
       expect(store.address.prefecture).not_to eq nil
       expect(store.address.municipality).not_to eq nil
       expect(store.home_page).not_to eq nil
+      expect(store.data_source.value).to eq 0
     end
   end
 end

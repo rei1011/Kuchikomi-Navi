@@ -13,7 +13,8 @@ RSpec.describe 'api/stores', type: :request do # rubocop:disable Metrics/BlockLe
           home_page: 'https://sample.co.jp',
           prefecture: 'smaple',
           municipality: 'sample',
-          open_hours: OpenHours.new(from: '10:00', to: '19:00')
+          open_hours: OpenHours.new(from: '10:00', to: '19:00'),
+          data_source: DataSource.new(DataSource::UNKNOWN)
         )
       ]
     )

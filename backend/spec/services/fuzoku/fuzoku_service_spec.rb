@@ -37,6 +37,14 @@ RSpec.describe '風俗じゃぱん！から店舗一覧を取得' do
 
     store_list = FuzokuService.find
     expect(store_list.list.size).to eq 200
+
+    store_list.list.each do |store|
+      expect(store.store_name).not_to eq nil
+      expect(store.home_page).not_to eq nil
+      expect(store.address.prefecture).not_to eq nil
+      expect(store.address.municipality).not_to eq nil
+      expect(store.data_source.value).to eq 1
+    end
   end
 
   it '店舗一覧画面を表示する際に404が返却されてもエラーは発生しない' do

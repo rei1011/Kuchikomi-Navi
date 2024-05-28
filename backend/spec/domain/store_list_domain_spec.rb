@@ -9,7 +9,8 @@ RSpec.describe StoreListDomain do
                     municipality: '池袋',
                     store_image: 'https://sample.co.jp',
                     home_page:,
-                    open_hours: OpenHours.new(from: '10:00', to: '19:00'))
+                    open_hours: OpenHours.new(from: '10:00', to: '19:00'),
+                    data_source: DataSource.new(DataSource::UNKNOWN))
   end
   it 'find by prefecture name' do
     store1 = create_store('東京', 'https://sample.co.jp')

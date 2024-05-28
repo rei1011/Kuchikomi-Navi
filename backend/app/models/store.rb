@@ -9,7 +9,8 @@ class Store < ApplicationRecord
       home_page:,
       prefecture:,
       municipality:,
-      open_hours: OpenHours.new(from: open_from, to: open_to)
+      open_hours: OpenHours.new(from: open_from, to: open_to),
+      data_source: DataSource.new(data_source)
     )
   end
 end

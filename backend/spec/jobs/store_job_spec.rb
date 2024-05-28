@@ -5,26 +5,36 @@ require 'rails_helper'
 RSpec.describe 'StoreJob' do # rubocop:disable Metrics/BlockLength
   def mock_fujoho_service
     # 一件の店舗情報が見つかったと仮定する
-    allow(FujohoService).to receive(:find).and_return(StoreListDomain.new([StoreDomain.new(store_name: 'sample store 1',
-                                                                                           prefecture: 'sample prefecture',
-                                                                                           municipality: 'sample municipality',
-                                                                                           home_page: 'https://sample.co.jp',
-                                                                                           store_image: 'https://sample.co.jp/sample.jpg',
-                                                                                           open_hours: OpenHours.new(
-                                                                                             from: '10:00', to: '19:00'
-                                                                                           ))]))
+    allow(FujohoService).to receive(:find).and_return(StoreListDomain.new(
+                                                        [
+                                                          StoreDomain.new(store_name: 'sample store 1',
+                                                                          prefecture: 'sample prefecture',
+                                                                          municipality: 'sample municipality',
+                                                                          home_page: 'https://sample.co.jp',
+                                                                          store_image: 'https://sample.co.jp/sample.jpg',
+                                                                          open_hours: OpenHours.new(
+                                                                            from: '10:00', to: '19:00'
+                                                                          ),
+                                                                          data_source: DataSource.new(DataSource::UNKNOWN))
+                                                        ]
+                                                      ))
   end
 
   def mock_fuzoku_service
     # 一件の店舗情報が見つかったと仮定する
-    allow(FuzokuService).to receive(:find).and_return(StoreListDomain.new([StoreDomain.new(store_name: 'sample store 1',
-                                                                                           prefecture: 'sample prefecture',
-                                                                                           municipality: 'sample municipality',
-                                                                                           home_page: 'https://sample.co.jp',
-                                                                                           store_image: 'https://sample.co.jp/sample.jpg',
-                                                                                           open_hours: OpenHours.new(
-                                                                                             from: '10:00', to: '19:00'
-                                                                                           ))]))
+    allow(FuzokuService).to receive(:find).and_return(StoreListDomain.new(
+                                                        [
+                                                          StoreDomain.new(store_name: 'sample store 1',
+                                                                          prefecture: 'sample prefecture',
+                                                                          municipality: 'sample municipality',
+                                                                          home_page: 'https://sample.co.jp',
+                                                                          store_image: 'https://sample.co.jp/sample.jpg',
+                                                                          open_hours: OpenHours.new(
+                                                                            from: '10:00', to: '19:00'
+                                                                          ),
+                                                                          data_source: DataSource.new(DataSource::UNKNOWN))
+                                                        ]
+                                                      ))
   end
 
   def mock_empty_fuzoku_service

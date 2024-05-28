@@ -57,7 +57,8 @@ class FuzokuService
                       home_page:,
                       prefecture:,
                       municipality:,
-                      open_hours: OpenHours.from_time_str(open)
+                      open_hours: OpenHours.from_time_str(open),
+                      data_source: DataSource.new(DataSource::FUZOKU)
                     ))
       end
       stores

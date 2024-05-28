@@ -33,7 +33,7 @@ class FujohoService # rubocop:disable Style/Documentation
         open = shop.css('.shop_header_info_time').children.text
 
         stores.push(StoreDomain.new(store_name:, prefecture:, municipality:, home_page:, store_image:,
-                                    open_hours: OpenHours.from_time_str(open)))
+                                    open_hours: OpenHours.from_time_str(open), data_source: DataSource.new(DataSource::FUJOHO)))
       end
 
       doc.css('section.shop.adrank50,.adrank10,.adrank5,.adrank0').each do |shop|
@@ -46,7 +46,7 @@ class FujohoService # rubocop:disable Style/Documentation
         open = shop.css('.open_time').children.text
 
         stores.push(StoreDomain.new(store_name:, prefecture:, municipality:, home_page:, store_image:,
-                                    open_hours: OpenHours.from_time_str(open)))
+                                    open_hours: OpenHours.from_time_str(open), data_source: DataSource.new(DataSource::FUJOHO)))
       end
 
       stores
