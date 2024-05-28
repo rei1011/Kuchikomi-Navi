@@ -5,6 +5,7 @@ resource "google_cloud_run_v2_job" "job_app" {
 
   template {
     template {
+      timeout = "1200s"
       containers {
         image = "${var.region}-docker.pkg.dev/${var.project}/${var.job_app_name}/${var.job_image_name}:latest"
 
