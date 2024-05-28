@@ -9,6 +9,10 @@ steps:
         "$_ARTIFACT_REPOSITORY_IMAGE_NAME:$SHORT_SHA",
         "--tag",
         "$_ARTIFACT_REPOSITORY_IMAGE_NAME:latest",
+        "--build-arg",
+        "BASIC_AUTH_USER=${_BASIC_AUTH_USER}",
+        "--build-arg",
+        "BASIC_AUTH_PASSWORD=${_BASIC_AUTH_PASSWORD}",
         "--file",
         "Dockerfile.prod",
         "--cache-from",
@@ -41,5 +45,7 @@ substitutions:
   _REGION: by-terraform
   _ARTIFACT_REPOSITORY_IMAGE_NAME: by-terraform
   _SERVICE_NAME: by-terraform
+  _BASIC_AUTH_USER: by-terraform
+  _BASIC_AUTH_PASSWORD: by-terraform
 images:
   - $_ARTIFACT_REPOSITORY_IMAGE_NAME:$SHORT_SHA
