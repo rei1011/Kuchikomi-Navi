@@ -34,7 +34,7 @@ export function ShopInfo(props: ListProps) {
             content:
               open.from == null && open.to == null
                 ? "不明"
-                : `${open.from} - ${open.to}`,
+                : `${open.from ?? ""} - ${open.to ?? ""}`,
           },
         ]}
       />
