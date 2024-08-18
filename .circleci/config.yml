@@ -1,17 +1,18 @@
 version: 2.1
 
+orbs:
+  codecov: codecov/codecov@4.0.1
+
 jobs:
-  say-hello:
+  codecov_upload:
     docker:
       - image: 'cimg/base:stable'
     steps:
       - checkout
-      - run:
-          name: Print Hello World
-          command: echo "Hello, World!"
+      - codecov/upload
 
 workflows:
   version: 2
-  hello-world-workflow:
+  build:
     jobs:
-      - say-hello
+      - codecov_upload
