@@ -1,18 +1,35 @@
 version: 2.1
 
 orbs:
+  ruby: circleci/ruby@2.1.4
   codecov: codecov/codecov@4.0.1
 
 jobs:
-  codecov_upload:
+  build:
+    working_directory: ~/root/backend
     docker:
-      - image: 'cimg/base:stable'
+      - image: cimg/ruby:3.3.1  # 適切なRubyバージョンを使用
     steps:
-      - checkout
-      - codecov/upload
+      - checkout:
+          path: ~/root
+      - ruby/install-deps  # Bundlerで依存関係をインストール
+      - run:
+          name: Run RSpec tests
+          command: bundle exec rspec
+      - run:
+          name: Generate coverage report
+          command: bundle exec rspec --format RspecJunitFormatter --out test_results/rspec.xml --format progress
+      - store_artifacts:
+          path: test_results
+          destination: test_results
+      - store_artifacts:
+          path: coverage/
+          destination: coverage/
+      - codecov/upload:
+          file: coverage/cobertura.xml  # SimpleCovで生成されたレポートをアップロード
 
 workflows:
   version: 2
-  build:
+  test-and-deploy:
     jobs:
-      - codecov_upload
+      - build
