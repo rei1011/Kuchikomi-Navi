@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  codecov: codecov/codecov@4.1.0
+
 jobs:
   test:
     machine:
@@ -23,6 +26,7 @@ jobs:
             docker-compose exec web bundle exec rails db:create
             docker-compose exec web bundle exec rails db:migrate
             docker-compose exec web bundle exec rspec
+      - codecov/upload
 
 workflows:
   test-and-deploy:
