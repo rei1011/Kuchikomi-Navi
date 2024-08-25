@@ -1,35 +1,30 @@
 version: 2.1
 
-orbs:
-  ruby: circleci/ruby@2.1.4
-  codecov: codecov/codecov@4.0.1
-
 jobs:
-  build:
-    working_directory: ~/root/backend
-    docker:
-      - image: cimg/ruby:3.3.1  # 適切なRubyバージョンを使用
+  test:
+    machine:
+      image: ubuntu-2204:current
     steps:
-      - checkout:
-          path: ~/root
-      - ruby/install-deps  # Bundlerで依存関係をインストール
+      - checkout
       - run:
-          name: Run RSpec tests
-          command: bundle exec rspec
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
       - run:
-          name: Generate coverage report
-          command: bundle exec rspec --format RspecJunitFormatter --out test_results/rspec.xml --format progress
-      - store_artifacts:
-          path: test_results
-          destination: test_results
-      - store_artifacts:
-          path: coverage/
-          destination: coverage/
-      - codecov/upload:
-          file: coverage/cobertura.xml  # SimpleCovで生成されたレポートをアップロード
+          working_directory: backend
+          name: Run rspec
+          command: |
+            docker network create kuchikomi-network || true
+            docker-compose up -d
+            # dbが起動するまで待つ
+            docker-compose exec db mysqladmin --user=root --password=password --host=db ping --silent --wait=30
+            docker-compose exec web bundle exec rails db:create
+            docker-compose exec web bundle exec rails db:migrate
+            docker-compose exec web bundle exec rspec
 
 workflows:
-  version: 2
   test-and-deploy:
     jobs:
-      - build
+      - test
