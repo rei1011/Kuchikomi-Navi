@@ -1,18 +1,34 @@
 version: 2.1
 
 orbs:
-  codecov: codecov/codecov@4.0.1
+  codecov: codecov/codecov@4.1.0
 
 jobs:
-  codecov_upload:
-    docker:
-      - image: 'cimg/base:stable'
+  test:
+    machine:
+      image: ubuntu-2204:current
     steps:
       - checkout
+      - run:
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - run:
+          working_directory: backend
+          name: Run rspec
+          command: |
+            docker network create kuchikomi-network || true
+            docker-compose up -d
+            # dbが起動するまで待つ
+            docker-compose exec db mysqladmin --user=root --password=password --host=db ping --silent --wait=30
+            docker-compose exec web bundle exec rails db:create
+            docker-compose exec web bundle exec rails db:migrate
+            docker-compose exec web bundle exec rspec
       - codecov/upload
 
 workflows:
-  version: 2
-  build:
+  test-and-deploy:
     jobs:
-      - codecov_upload
+      - test
