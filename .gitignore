@@ -60,3 +60,6 @@
 # db password
 /infra/dbpassword
 *storybook.log
+
+# coverage files
+/backend/coverage/*
