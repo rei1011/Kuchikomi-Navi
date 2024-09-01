@@ -5,6 +5,8 @@ class StoreService
   def self.find(search_word)
     return StoreRepository.find_all if search_word.empty
 
+    return StoreRepository.find_all if search_word.nil?
+
     StoreRepository.find_by_keyword(search_word.value)
   end
 end
