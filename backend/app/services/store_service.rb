@@ -9,4 +9,8 @@ class StoreService
 
     StoreRepository.find_by_keyword(search_word.value)
   end
+
+  def self.find_test
+    StoreRepository.find_by_keyword(search_word.value)
+  end
 end
