@@ -20,7 +20,8 @@
 				"koichisasada.vscode-rdbg",
 				"cweijan.vscode-redis-client",
 				"cweijan.vscode-mysql-client2",
-				"castwide.solargraph"
+				"castwide.solargraph",
+				"circleci.circleci"
 		  	]
 		}
     },
