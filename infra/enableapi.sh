@@ -9,4 +9,7 @@ gcloud services enable \
     cloudbuild.googleapis.com \
     secretmanager.googleapis.com \
     artifactregistry.googleapis.com \
-    cloudscheduler.googleapis.com
+    cloudscheduler.googleapis.com \
+    domains.googleapis.com \
+    dns.googleapis.com
+    
