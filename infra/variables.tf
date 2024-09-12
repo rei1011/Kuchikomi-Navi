@@ -101,3 +101,39 @@ variable "basic_auth_password" {
 variable "basic_auth_password_id" {
   default = "basic_auth_password"
 }
+
+variable "phone_number" {
+  default = ""
+}
+
+variable "email" {
+  default = ""
+}
+
+variable "region_code" {
+  default = ""
+}
+
+variable "postal_code" {
+  default = ""
+}
+
+variable "administrative_area" {
+  default = ""
+}
+
+variable "locality" {
+  default = ""
+}
+
+variable "recipients" {
+  default = []
+}
+
+variable "address_lines" {
+  default = []
+}
+
+variable "domain_name" {
+  default = "buchy-app.com"
+}
