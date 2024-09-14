@@ -11,5 +11,6 @@ gcloud services enable \
     artifactregistry.googleapis.com \
     cloudscheduler.googleapis.com \
     domains.googleapis.com \
-    dns.googleapis.com
+    dns.googleapis.com \
+    runapps.googleapis.com
     
