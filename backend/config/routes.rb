@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   resources :comments
   get 'stores', to: 'stores#index'
   get 'error_test', to: 'stores#error_test'
+  get 'comparison_report', to: 'comparison_report#show'
   get 'up' => 'rails/health#show', :as => :rails_health_check
 end
