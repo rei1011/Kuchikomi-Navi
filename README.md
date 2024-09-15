@@ -132,3 +132,8 @@ Terraform Cloud経由でデプロイするためには、上記の情報が必�
 ```
 terraform destroy
 ```
+
+### 既存のリソースをtfファイルに出力
+```
+gcloud beta resource-config bulk-export --resource-format=terraform > infla.tf
+```
