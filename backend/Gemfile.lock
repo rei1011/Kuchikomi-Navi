@@ -443,6 +443,7 @@ DEPENDENCIES
   bootsnap
   debug
   dotenv
+  faraday
   mechanize
   mysql2 (~> 0.5)
   nokogiri
