@@ -9,24 +9,24 @@ resource "google_dns_managed_zone" "dns_zone" {
   }
 }
 
-# 静的IPアドレスの取得
-resource "google_compute_global_address" "lb-ip" {
-  project      = var.project
-  address_type = "EXTERNAL"
-  ip_version   = "IPV4"
-  name         = "lb-ip"
-}
+# # 静的IPアドレスの取得
+# resource "google_compute_global_address" "lb-ip" {
+#   project      = var.project
+#   address_type = "EXTERNAL"
+#   ip_version   = "IPV4"
+#   name         = "lb-ip"
+# }
 
-# 静的IPアドレスとドメインの紐付け
-resource "google_dns_record_set" "lb-dns" {
-  managed_zone = google_dns_managed_zone.dns_zone.name
-  name         = "lb.${var.domain_name}."
-  type         = "A"
-  ttl          = 300
-  rrdatas = [
-    google_compute_global_address.lb-ip.address
-  ]
-}
+# # 静的IPアドレスとドメインの紐付け
+# resource "google_dns_record_set" "lb-dns" {
+#   managed_zone = google_dns_managed_zone.dns_zone.name
+#   name         = "lb.${var.domain_name}."
+#   type         = "A"
+#   ttl          = 300
+#   rrdatas = [
+#     google_compute_global_address.lb-ip.address
+#   ]
+# }
 
 # ドメインの登録
 # 一度だけしか利用できないためコメントアウト
