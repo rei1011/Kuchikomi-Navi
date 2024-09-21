@@ -11,7 +11,7 @@ class ComparisonReportController < ApplicationController
     end
 
     response = conn.post('/v1/messages') do |req|
-      # req.headers['x-api-key'] = Rails.application.credentials.claude[:api_key]
+      req.headers['x-api-key'] = Rails.application.credentials.claude[:api_key]
       req.headers['x-api-key'] = 'hogehoge'
       req.headers['anthropic-version'] = '2023-06-01'
       req.headers['Content-Type'] = 'application/json'

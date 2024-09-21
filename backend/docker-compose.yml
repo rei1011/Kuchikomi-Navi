@@ -23,6 +23,8 @@ services:
       REDIS_PORT: 6379
       REDIS_DB_NUMBER: 0
       RUN_JOB: "false"
+      BASIC_AUTH_USER: user
+      BASIC_AUTH_PASSWORD: password
     volumes:
       - ..:/usr/src/app:cached
     ports:
