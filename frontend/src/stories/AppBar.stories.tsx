@@ -1,4 +1,4 @@
-import { AppBar } from "@/component/AppBar";
+import { AppBar } from "@/app/home/AppBar";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta = {

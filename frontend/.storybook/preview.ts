@@ -9,6 +9,10 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    // 以下を追加
+    nextjs: {
+      appDirectory: true,
+    },
   },
 };
 
