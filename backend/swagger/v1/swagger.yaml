@@ -9,6 +9,13 @@ paths:
       summary: Get Comments
       tags:
       - Comments
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        description: Authorization token
+        schema:
+          type: string
       responses:
         '200':
           description: comment found
@@ -43,6 +50,12 @@ paths:
       parameters:
       - name: keyword
         in: query
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        required: true
+        description: Authorization token
         schema:
           type: string
       responses:
