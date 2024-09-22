@@ -48,7 +48,7 @@ export function SearchField(props: SearchFieldType) {
           return (
             <TextField
               {...field}
-              className="w-full h-2"
+              className="h-full w-full h-2"
               variant="standard"
               InputProps={{
                 sx: {
