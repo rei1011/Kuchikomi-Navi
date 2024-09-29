@@ -3,7 +3,11 @@
 import { AppBar as CAppBar } from "@/component/AppBar";
 import { SearchField } from "@/component/SearchField";
 import { isBlank } from "@/utils/string-utils";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+import { Box, Stack } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchField } from "./hooks/useSearchField";
 
 const queryParamKey = "keyword";
 
@@ -11,19 +15,30 @@ export function AppBar() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const keyword = searchParams.get(queryParamKey);
+  const { searchFieldOpen, toggleSearchField } = useSearchField();
 
   return (
-    <CAppBar>
-      <SearchField
-        defaultValue={keyword}
-        submit={(keyword: string | null) => {
-          if (isBlank(keyword)) {
-            router.push("/");
-          }
-          router.push(`?${queryParamKey}=${keyword}`);
-        }}
-        className="w-full pl-4"
-      />
-    </CAppBar>
+    <Box sx={{ width: 1 }} className={`bg-primary`}>
+      <Stack>
+        <CAppBar>
+          <Stack direction="row" spacing={2}>
+            <SearchIcon onClick={toggleSearchField} />
+            <MenuIcon />
+          </Stack>
+        </CAppBar>
+        <SearchField
+          defaultValue={keyword}
+          isOpen={searchFieldOpen}
+          placeholder="渋谷"
+          submit={(keyword: string | null) => {
+            if (isBlank(keyword)) {
+              router.push("/");
+            }
+            router.push(`?${queryParamKey}=${keyword}`);
+          }}
+          className="w-full px-4"
+        />
+      </Stack>
+    </Box>
   );
 }

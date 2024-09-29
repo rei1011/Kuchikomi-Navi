@@ -20,7 +20,7 @@ export function AppBar(props: PropsWithChildren<AppBarProps>) {
               width: 1,
               display: "flex",
               alignItems: "center",
-              justifyContent: "space-around",
+              justifyContent: "space-between",
             }}
           >
             <Typography

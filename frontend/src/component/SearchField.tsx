@@ -20,14 +20,16 @@ type SchemaType = z.infer<typeof schema>;
 type SearchFieldType = {
   submit: (data: SchemaType["keyword"]) => void;
   defaultValue: string | null;
+  isOpen: boolean;
   className?: string;
+  placeholder?: string;
 };
 
 /**
  * 検索バー
  */
 export function SearchField(props: SearchFieldType) {
-  const { submit, className, defaultValue } = props;
+  const { submit, className, defaultValue, isOpen, placeholder } = props;
   const {
     control,
     handleSubmit,
@@ -39,6 +41,10 @@ export function SearchField(props: SearchFieldType) {
 
   const onSubmit: SubmitHandler<SchemaType> = (data) => submit(data.keyword);
 
+  if (!isOpen) {
+    return <></>;
+  }
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={className}>
       <Controller
@@ -48,7 +54,8 @@ export function SearchField(props: SearchFieldType) {
           return (
             <TextField
               {...field}
-              className="h-full w-full h-2"
+              placeholder={placeholder}
+              className="h-full w-full"
               variant="standard"
               InputProps={{
                 sx: {
@@ -66,7 +73,7 @@ export function SearchField(props: SearchFieldType) {
             />
           );
         }}
-      ></Controller>
+      />
     </form>
   );
 }

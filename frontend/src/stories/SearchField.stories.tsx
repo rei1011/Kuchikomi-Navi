@@ -15,5 +15,7 @@ export const Primary: Story = {
   args: {
     submit: console.log,
     defaultValue: "",
+    isOpen: true,
+    placeholder: "渋谷",
   },
 };
