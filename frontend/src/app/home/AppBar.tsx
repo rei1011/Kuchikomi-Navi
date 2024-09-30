@@ -1,9 +1,9 @@
 "use client";
 
 import { AppBar as CAppBar } from "@/component/AppBar";
+import { Menu } from "@/component/Menu";
 import { SearchField } from "@/component/SearchField";
 import { isBlank } from "@/utils/string-utils";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, Stack } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -23,7 +23,7 @@ export function AppBar() {
         <CAppBar>
           <Stack direction="row" spacing={2}>
             <SearchIcon onClick={toggleSearchField} />
-            <MenuIcon />
+            <Menu />
           </Stack>
         </CAppBar>
         <SearchField
