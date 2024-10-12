@@ -1,4 +1,5 @@
 import { Box, AppBar as MuiAppBar, Toolbar, Typography } from "@mui/material";
+import Link from "next/link";
 import { PropsWithChildren } from "react";
 
 type AppBarProps = {
@@ -23,14 +24,16 @@ export function AppBar(props: PropsWithChildren<AppBarProps>) {
               justifyContent: "space-between",
             }}
           >
-            <Typography
-              variant="h5"
-              component="span"
-              sx={{ fontWeight: "bold" }}
-              className="text-black font-bold"
-            >
-              M.
-            </Typography>
+            <Link href="/">
+              <Typography
+                variant="h5"
+                component="span"
+                sx={{ fontWeight: "bold" }}
+                className="text-black font-bold"
+              >
+                M.
+              </Typography>
+            </Link>
             {props.children}
           </Box>
         </Toolbar>
