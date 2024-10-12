@@ -1,5 +1,6 @@
 import MenuIcon from "@mui/icons-material/Menu";
-import { MenuItem, Menu as MuiMenu } from "@mui/material";
+import SummarizeIcon from "@mui/icons-material/Summarize";
+import { Box, MenuItem, Menu as MuiMenu } from "@mui/material";
 import { useState } from "react";
 
 export const Menu = () => {
@@ -21,7 +22,16 @@ export const Menu = () => {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem>AI Report</MenuItem>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            p: 1,
+          }}
+        >
+          <SummarizeIcon />
+          <MenuItem>AI Report</MenuItem>
+        </Box>
       </MuiMenu>
     </>
   );
