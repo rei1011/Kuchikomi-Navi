@@ -53,7 +53,7 @@ resource "google_cloud_scheduler_job" "job" {
   name        = "schedule-job"
   description = "job scheduling"
   # 毎日午前8時にjobを起動
-  schedule         = "0 0 */3 * *"
+  schedule         = "0 0 1 1,7 *"
   attempt_deadline = "320s"
   region           = var.region
 
