@@ -1,5 +1,5 @@
-import { AppBar } from "@/component/AppBar";
 import { AddStoreArea } from "./AddStoreArea";
+import { AppBar } from "./AppBar";
 import { ExecuteButton } from "./ExecuteButton";
 import { InputHowToCompareArea } from "./InputHowToCompareArea";
 

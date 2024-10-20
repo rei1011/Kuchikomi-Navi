@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import { InputAdornment, TextField } from "@mui/material";
+import { useCallback } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -39,7 +40,10 @@ export function SearchField(props: SearchFieldType) {
     defaultValues: { keyword: defaultValue ?? "" },
   });
 
-  const onSubmit: SubmitHandler<SchemaType> = (data) => submit(data.keyword);
+  const onSubmit: SubmitHandler<SchemaType> = useCallback(
+    (data) => submit(data.keyword),
+    [submit]
+  );
 
   if (!isOpen) {
     return <></>;
