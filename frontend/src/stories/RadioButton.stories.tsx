@@ -1,11 +1,11 @@
-import { RadioButton } from "@/component/RadioButton";
+import { RadioButtonGroup } from "@/component/RadioButtonGroup";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   title: "Components/RadioButton",
-  component: RadioButton,
+  component: RadioButtonGroup,
   tags: ["autodocs"],
-} satisfies Meta<typeof RadioButton>;
+} satisfies Meta<typeof RadioButtonGroup>;
 
 export default meta;
 

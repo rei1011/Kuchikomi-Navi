@@ -1,9 +1,15 @@
 import AddBoxIcon from "@mui/icons-material/AddBox";
 
-export const AddStore = () => {
+type Props = {
+  selectedStore: string | undefined;
+};
+
+export const AddStore = (props: Props) => {
+  const { selectedStore } = props;
+
   return (
     <div className="border-2 border-gray flex justify-center p-10 border-dashed rounded-xl">
-      <AddBoxIcon className="text-gray" />
+      {selectedStore ?? <AddBoxIcon className="text-gray" />}
     </div>
   );
 };

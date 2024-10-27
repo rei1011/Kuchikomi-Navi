@@ -7,14 +7,15 @@ import RadioGroup from "@mui/material/RadioGroup";
 type Props = {
   label?: string;
   defaultValue?: string;
-  options: {
-    value: string;
-    label: string;
-  }[];
+  selectedValue?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  options: RadioButtonOptions;
 };
 
-export const RadioButton = (props: Props) => {
-  const { label, defaultValue, options } = props;
+export type RadioButtonOptions = { value: string; label: string }[];
+
+export const RadioButtonGroup = (props: Props) => {
+  const { label, defaultValue, options, selectedValue, onChange } = props;
   return (
     <FormControl>
       <FormLabel id="radio-buttons-group">{label}</FormLabel>
@@ -22,6 +23,8 @@ export const RadioButton = (props: Props) => {
         aria-labelledby="radio-buttons-group"
         defaultValue={defaultValue}
         name="radio-buttons-group"
+        value={selectedValue}
+        onChange={onChange}
       >
         {options.map((option) => {
           const { value, label } = option;

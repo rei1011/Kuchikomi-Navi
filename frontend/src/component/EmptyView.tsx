@@ -2,9 +2,14 @@ import { SlaveryWhipSvgrepoCom } from "@/component/icons";
 import { Typography } from "@mui/material";
 import { Credit } from "./Credit";
 
-export function EmptyView() {
+type Props = {
+  className?: string;
+};
+
+export function EmptyView(props: Props) {
+  const { className } = props;
   return (
-    <div className="flex flex-col items-center">
+    <div className={`flex flex-col items-center ${className}`}>
       <Typography variant="h4" className="text-black">
         Not Found !!
       </Typography>
