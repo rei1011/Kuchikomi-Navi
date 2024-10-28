@@ -24,6 +24,6 @@ class ComparisonReportController < ApplicationController
       }.to_json
     end
 
-    puts response.body
+    render(json: { report: response.body })
   end
 end

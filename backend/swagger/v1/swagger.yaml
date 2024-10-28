@@ -42,6 +42,49 @@ paths:
                   - prostutite_name
                   - comment
                   - publication_date
+  "/comparison_report":
+    get:
+      summary: Get Comparison Report
+      tags:
+      - Comparison Report
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        description: Authorization token
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Comparison Report found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  report:
+                    type: string
+                required:
+                - report
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                stores:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                  - uuid1
+                  - uuid2
+                compare_method:
+                  type: string
+                  example: おすすめのお店を教えて
+              required:
+              - stores
+              - compare_method
   "/stores":
     get:
       summary: Get Stores
