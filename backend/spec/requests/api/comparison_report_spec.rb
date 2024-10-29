@@ -39,7 +39,7 @@ RSpec.describe 'api/comparison_report', type: :request do # rubocop:disable Metr
           }
         },
         required: %w[stores compare_method]
-      }
+      }, required: true
       produces 'application/json'
       response '200', 'Comparison Report found' do
         schema type: :object,

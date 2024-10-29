@@ -72,6 +72,7 @@ paths:
               required:
               - stores
               - compare_method
+        required: true
   "/stores":
     get:
       summary: Get Stores
