@@ -9,13 +9,6 @@ paths:
       summary: Get Comments
       tags:
       - Comments
-      parameters:
-      - name: Authorization
-        in: header
-        required: true
-        description: Authorization token
-        schema:
-          type: string
       responses:
         '200':
           description: comment found
@@ -47,13 +40,7 @@ paths:
       summary: Get Comparison Report
       tags:
       - Comparison Report
-      parameters:
-      - name: Authorization
-        in: header
-        required: true
-        description: Authorization token
-        schema:
-          type: string
+      parameters: []
       responses:
         '200':
           description: Comparison Report found
@@ -93,12 +80,6 @@ paths:
       parameters:
       - name: keyword
         in: query
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        required: true
-        description: Authorization token
         schema:
           type: string
       responses:

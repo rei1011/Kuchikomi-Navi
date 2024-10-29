@@ -46,6 +46,56 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/comparison_report": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Comparison Report */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": {
+                        /** @example [
+                         *       "uuid1",
+                         *       "uuid2"
+                         *     ] */
+                        stores: string[];
+                        /** @example おすすめのお店を教えて */
+                        compare_method: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description Comparison Report found */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            report: string;
+                        };
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/stores": {
         parameters: {
             query?: never;

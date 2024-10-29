@@ -28,8 +28,7 @@ RSpec.describe 'api/stores', type: :request do # rubocop:disable Metrics/BlockLe
                 in: :query,
                 type: :string
       produces 'application/json'
-      parameter name: 'Authorization', in: :header, type: :string, required: true, description: 'Authorization token'
-      response '200', 'store found' do
+      response '200', 'store found' do # rubocop:disable Metrics/BlockLength
         let(:keyword) { 'keyword' }
         schema type: :object,
                properties: {
@@ -61,9 +60,6 @@ RSpec.describe 'api/stores', type: :request do # rubocop:disable Metrics/BlockLe
                          } }
                },
                required: %i[list]
-        let(:Authorization) do
-          "Basic #{Base64.encode64("#{ENV['BASIC_AUTH_USER']}:#{ENV['BASIC_AUTH_PASSWORD']}")}"
-        end
         run_test!
       end
     end

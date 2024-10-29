@@ -4,7 +4,7 @@ require 'swagger_helper'
 require 'rails_helper'
 require 'base64'
 
-RSpec.describe 'api/comparison_report', type: :request do
+RSpec.describe 'api/comparison_report', type: :request do # rubocop:disable Metrics/BlockLength
   before do
     stub_request(:post, 'https://api.anthropic.com/v1/messages')
       .with(
@@ -21,8 +21,8 @@ RSpec.describe 'api/comparison_report', type: :request do
       .to_return(status: 200, body: '', headers: {})
   end
 
-  path '/comparison_report' do
-    get 'Get Comparison Report' do
+  path '/comparison_report' do # rubocop:disable Metrics/BlockLength
+    get 'Get Comparison Report' do # rubocop:disable Metrics/BlockLength
       tags 'Comparison Report'
       consumes 'application/json'
       parameter name: :request_body, in: :body, schema: {
@@ -40,8 +40,6 @@ RSpec.describe 'api/comparison_report', type: :request do
         },
         required: %w[stores compare_method]
       }
-      parameter name: 'Authorization', in: :header, type: :string, required: true,
-                description: 'Authorization token'
       produces 'application/json'
       response '200', 'Comparison Report found' do
         schema type: :object,
@@ -49,8 +47,8 @@ RSpec.describe 'api/comparison_report', type: :request do
                  report: { type: :string }
                },
                required: %i[report]
-        let(:Authorization) do
-          "Basic #{Base64.encode64("#{ENV['BASIC_AUTH_USER']}:#{ENV['BASIC_AUTH_PASSWORD']}")}"
+        let(:request_body) do
+          { stores: %w[uuid1 uuid2], compare_method: 'おすすめのお店を教えて' }
         end
         run_test!
       end
