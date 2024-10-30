@@ -56,24 +56,15 @@ export interface paths {
         /** Get Comparison Report */
         get: {
             parameters: {
-                query?: never;
+                query: {
+                    stores: unknown[];
+                    compare_method: string;
+                };
                 header?: never;
                 path?: never;
                 cookie?: never;
             };
-            requestBody: {
-                content: {
-                    "application/json": {
-                        /** @example [
-                         *       "uuid1",
-                         *       "uuid2"
-                         *     ] */
-                        stores: string[];
-                        /** @example おすすめのお店を教えて */
-                        compare_method: string;
-                    };
-                };
-            };
+            requestBody?: never;
             responses: {
                 /** @description Comparison Report found */
                 200: {

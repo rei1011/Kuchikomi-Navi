@@ -40,7 +40,19 @@ paths:
       summary: Get Comparison Report
       tags:
       - Comparison Report
-      parameters: []
+      parameters:
+      - name: stores
+        in: query
+        items:
+          type: string
+        required: true
+        schema:
+          type: array
+      - name: compare_method
+        in: query
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Comparison Report found
@@ -53,26 +65,6 @@ paths:
                     type: string
                 required:
                 - report
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                stores:
-                  type: array
-                  items:
-                    type: string
-                  example:
-                  - uuid1
-                  - uuid2
-                compare_method:
-                  type: string
-                  example: おすすめのお店を教えて
-              required:
-              - stores
-              - compare_method
-        required: true
   "/stores":
     get:
       summary: Get Stores

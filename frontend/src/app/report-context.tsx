@@ -22,6 +22,7 @@ const useReport = () => {
     0: undefined,
     1: undefined,
   });
+  const [compareMethod, setCompareMethod] = useState("");
 
   const setStore = useCallback(
     (value: string) => {
@@ -41,6 +42,8 @@ const useReport = () => {
     selectedIndex,
     setSelectedIndex,
     setStore,
+    compareMethod,
+    setCompareMethod,
   };
 };
 

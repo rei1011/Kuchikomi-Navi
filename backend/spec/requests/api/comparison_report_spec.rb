@@ -15,31 +15,18 @@ RSpec.describe 'api/comparison_report', type: :request do # rubocop:disable Metr
           'Anthropic-Version' => '2023-06-01',
           'Content-Type' => 'application/json',
           'User-Agent' => 'Faraday v2.9.0',
-          'X-Api-Key' => 'hogehoge'
+          'X-Api-Key' => Rails.application.credentials.claude[:api_key]
         }
       )
       .to_return(status: 200, body: '', headers: {})
   end
 
-  path '/comparison_report' do # rubocop:disable Metrics/BlockLength
-    get 'Get Comparison Report' do # rubocop:disable Metrics/BlockLength
+  path '/comparison_report' do
+    get 'Get Comparison Report' do
       tags 'Comparison Report'
       consumes 'application/json'
-      parameter name: :request_body, in: :body, schema: {
-        type: :object,
-        properties: {
-          stores: {
-            type: :array,
-            items: { type: :string },
-            example: %w[uuid1 uuid2]
-          },
-          compare_method: {
-            type: :string,
-            example: 'おすすめのお店を教えて'
-          }
-        },
-        required: %w[stores compare_method]
-      }, required: true
+      parameter name: :stores, in: :query, type: :array, items: { type: :string }, required: true
+      parameter name: :compare_method, in: :query, type: :string, required: true
       produces 'application/json'
       response '200', 'Comparison Report found' do
         schema type: :object,
@@ -47,9 +34,9 @@ RSpec.describe 'api/comparison_report', type: :request do # rubocop:disable Metr
                  report: { type: :string }
                },
                required: %i[report]
-        let(:request_body) do
-          { stores: %w[uuid1 uuid2], compare_method: 'おすすめのお店を教えて' }
-        end
+        let(:stores) { %w[uuid1 uuid2] }
+        let(:compare_method) { 'おすすめのお店を教えて' }
+
         run_test!
       end
     end
