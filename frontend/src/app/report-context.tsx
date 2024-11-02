@@ -1,6 +1,7 @@
 "use client";
 
 import { getComparisonReport } from "@/api/report/api";
+import { RadioButtonOptions } from "@/component/RadioButtonGroup";
 import {
   createContext,
   PropsWithChildren,
@@ -8,6 +9,11 @@ import {
   useContext,
   useState,
 } from "react";
+
+type SelectedStore = {
+  value: string;
+  label: string;
+};
 
 type ReportContextType = ReturnType<typeof useReport>;
 
@@ -19,7 +25,9 @@ const useReport = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
     undefined
   );
-  const [selectedStore, setSelectedStore] = useState({
+  const [selectedStore, setSelectedStore] = useState<{
+    [key: number]: SelectedStore | undefined;
+  }>({
     0: undefined,
     1: undefined,
   });
@@ -32,7 +40,7 @@ const useReport = () => {
     }
 
     const res = await getComparisonReport({
-      stores: [selectedStore[0], selectedStore[1]],
+      stores: [selectedStore[0].value, selectedStore[1].value],
       compareMethod,
     });
 
@@ -40,13 +48,14 @@ const useReport = () => {
   }, [compareMethod, selectedStore]);
 
   const setStore = useCallback(
-    (value: string) => {
+    (value: string, options: RadioButtonOptions) => {
       if (selectedIndex === undefined) {
         return;
       }
 
+      const selectedOption = options.find((e) => e.value === value);
       setSelectedStore((prev) => {
-        return { ...prev, [selectedIndex]: value };
+        return { ...prev, [selectedIndex]: selectedOption };
       });
     },
     [selectedIndex]

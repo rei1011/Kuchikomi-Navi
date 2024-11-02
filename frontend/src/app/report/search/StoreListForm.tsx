@@ -32,7 +32,7 @@ export const StoreListForm = (props: Props) => {
           label="店舗を選択"
           options={options}
           onChange={(event) => {
-            setStore(event.target.value);
+            setStore(event.target.value, options);
           }}
         />
         <Button className="w-full" type="submit" variant="outlined">

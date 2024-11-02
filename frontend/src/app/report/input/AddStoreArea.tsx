@@ -10,10 +10,10 @@ export const AddStoreArea = () => {
     () => (
       <div className="flex flex-col gap-8">
         <Link href="/report/search" onClick={() => setSelectedIndex(0)}>
-          <AddStore selectedStore={selectedStore[0]} />
+          <AddStore selectedStore={selectedStore[0]?.label} />
         </Link>
         <Link href="/report/search" onClick={() => setSelectedIndex(1)}>
-          <AddStore selectedStore={selectedStore[1]} />
+          <AddStore selectedStore={selectedStore[1]?.label} />
         </Link>
       </div>
     ),
