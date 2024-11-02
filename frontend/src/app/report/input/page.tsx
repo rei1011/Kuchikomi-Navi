@@ -1,7 +1,8 @@
-import { AddStoreArea } from "./AddStoreArea";
+import { AddStoreSection } from "./AddStoreSection";
 import { AppBar } from "./AppBar";
+import { ChatSection } from "./ChatSection";
 import { ExecuteButton } from "./ExecuteButton";
-import { InputHowToCompareArea } from "./InputHowToCompareArea";
+import { InputHowToCompareSection } from "./InputHowToCompareSection";
 import { ReportResult } from "./ReportResult";
 
 export default function ReportInput() {
@@ -10,10 +11,11 @@ export default function ReportInput() {
       <div className="flex flex-col gap-4 w-full">
         <AppBar />
         <div className="flex flex-col gap-8 w-full px-4">
-          <AddStoreArea />
-          <InputHowToCompareArea />
+          <AddStoreSection />
+          <InputHowToCompareSection />
           <ExecuteButton />
           <ReportResult />
+          <ChatSection />
         </div>
       </div>
     </main>

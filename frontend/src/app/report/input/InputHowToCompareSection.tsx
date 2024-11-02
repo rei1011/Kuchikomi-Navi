@@ -3,7 +3,7 @@ import { useReportContext } from "@/app/report-context";
 import { TextareaAutosize } from "@mui/material";
 import { useMemo } from "react";
 
-export const InputHowToCompareArea = () => {
+export const InputHowToCompareSection = () => {
   const { setCompareMethod } = useReportContext();
   return useMemo(
     () => (

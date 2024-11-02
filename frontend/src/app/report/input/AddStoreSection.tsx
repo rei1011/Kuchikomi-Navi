@@ -4,7 +4,7 @@ import { AddStore } from "@/component/AddStore";
 import Link from "next/link";
 import { useMemo } from "react";
 
-export const AddStoreArea = () => {
+export const AddStoreSection = () => {
   const { setSelectedIndex, selectedStore } = useReportContext();
   return useMemo(
     () => (
