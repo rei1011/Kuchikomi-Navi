@@ -9,15 +9,7 @@ class ReportRepository
       f.adapter Faraday.default_adapter
     end
 
-    store_info = stores.map do |store|
-      {
-        store_name: store.store_name,
-        open_from: store.open_hours.from,
-        open_to: store.open_hours.to
-      }
-    end
-    content = compare_method + store_info.to_s
-
+    content = compare_method + stores.to_s
     response = conn.post('/v1/messages') do |req|
       req.headers['x-api-key'] = Rails.application.credentials.claude[:api_key]
       req.headers['anthropic-version'] = '2023-06-01'
