@@ -14,11 +14,13 @@ export async function getComparisonReport({
 }) {
   const apiClient = client<paths>();
   const res = await apiClient.GET(path, {
-    params: { query: { stores, compare_method: compareMethod } },
+    params: {
+      query: { stores, compare_method: compareMethod },
+    },
   });
 
   if (res.error) {
-    throw new Error(`Failed to fetch data. path = /stores`);
+    throw new Error(`Failed to fetch data. path = ${path}`);
   }
 
   return res.data;

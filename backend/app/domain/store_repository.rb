@@ -23,4 +23,10 @@ class StoreRepository
     Store.where('prefecture LIKE ? OR municipality LIKE ? OR store_name LIKE ?', "%#{keyword}%", "%#{keyword}%",
                 "%#{keyword}%").map(&:to_domain)
   end
+
+  def self.find_by_home_pages(home_pages)
+    home_pages.map do |home_page|
+      Store.where(home_page:).map(&:to_domain).first
+    end
+  end
 end

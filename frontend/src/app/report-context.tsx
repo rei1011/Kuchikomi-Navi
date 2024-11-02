@@ -1,5 +1,6 @@
 "use client";
 
+import { getComparisonReport } from "@/api/report/api";
 import {
   createContext,
   PropsWithChildren,
@@ -23,6 +24,20 @@ const useReport = () => {
     1: undefined,
   });
   const [compareMethod, setCompareMethod] = useState("");
+  const [report, setReport] = useState("");
+
+  const getReport = useCallback(async () => {
+    if (!selectedStore[0] || !selectedStore[1]) {
+      return;
+    }
+
+    const res = await getComparisonReport({
+      stores: [selectedStore[0], selectedStore[1]],
+      compareMethod,
+    });
+
+    setReport(res.report);
+  }, [compareMethod, selectedStore]);
 
   const setStore = useCallback(
     (value: string) => {
@@ -44,6 +59,8 @@ const useReport = () => {
     setStore,
     compareMethod,
     setCompareMethod,
+    getReport,
+    report,
   };
 };
 

@@ -2,6 +2,7 @@ import { AddStoreArea } from "./AddStoreArea";
 import { AppBar } from "./AppBar";
 import { ExecuteButton } from "./ExecuteButton";
 import { InputHowToCompareArea } from "./InputHowToCompareArea";
+import { ReportResult } from "./ReportResult";
 
 export default function ReportInput() {
   return (
@@ -12,6 +13,7 @@ export default function ReportInput() {
           <AddStoreArea />
           <InputHowToCompareArea />
           <ExecuteButton />
+          <ReportResult />
         </div>
       </div>
     </main>

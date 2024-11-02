@@ -4,21 +4,9 @@ require 'swagger_helper'
 require 'rails_helper'
 require 'base64'
 
-RSpec.describe 'api/comparison_report', type: :request do # rubocop:disable Metrics/BlockLength
+RSpec.describe 'api/comparison_report', type: :request do
   before do
-    stub_request(:post, 'https://api.anthropic.com/v1/messages')
-      .with(
-        body: '{"model":"claude-3-haiku-20240307","max_tokens":1024,"messages":[{"role":"user","content":"Hello, world"}]}',
-        headers: {
-          'Accept' => '*/*',
-          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-          'Anthropic-Version' => '2023-06-01',
-          'Content-Type' => 'application/json',
-          'User-Agent' => 'Faraday v2.9.0',
-          'X-Api-Key' => Rails.application.credentials.claude[:api_key]
-        }
-      )
-      .to_return(status: 200, body: '', headers: {})
+    allow(ReportService).to receive(:find).and_return('report')
   end
 
   path '/comparison_report' do
