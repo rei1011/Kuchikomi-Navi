@@ -16,5 +16,8 @@ export const Primary: Story = {
     onChange: (e) => {
       console.log(e.target.value);
     },
+    onSubmit: () => {
+      console.log("submit!!");
+    },
   },
 };
