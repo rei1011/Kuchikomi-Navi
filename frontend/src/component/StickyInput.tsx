@@ -16,7 +16,7 @@ export const StickyInput = (props: Props) => {
         minRows={1}
         maxRows={10}
         className="w-full bg-secondary outline-none text-black resize-none"
-        placeholder="選択したお店をどのように比較したいですか？"
+        placeholder="send message"
         onChange={onChange}
       />
       <button
