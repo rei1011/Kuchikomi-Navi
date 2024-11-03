@@ -1,15 +1,12 @@
 "use client";
 
-import { StickyInput } from "@/component/StickyInput";
+import { useReportContext } from "@/app/report-context";
 
 export const ChatSection = () => {
-  console.log("ChatSection");
+  const { report } = useReportContext();
   return (
     <div>
-      <StickyInput
-        onSubmit={() => console.log("submit")}
-        onChange={(e) => console.log(e.target.value)}
-      />
+      <p>{report}</p>
     </div>
   );
 };

@@ -9,7 +9,7 @@ type Props = {
 export const StickyInput = (props: Props) => {
   const { onChange, onSubmit } = props;
   return (
-    <div className="bg-secondary p-4 rounded-t-2xl flex justify-between items-end gap-4">
+    <div className="bg-secondary px-4 pt-4 pb-8 rounded-t-2xl flex justify-between items-end gap-4 sticky bottom-0">
       <TextareaAutosize
         minRows={1}
         className="w-full bg-secondary outline-none text-black resize-none"

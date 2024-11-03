@@ -20,4 +20,12 @@ export const Primary: Story = {
       console.log("submit!!");
     },
   },
+  render: (args) => (
+    <div className="flex flex-col h-32">
+      {[...Array(10)].map((_, index) => (
+        <div key={index}>test</div>
+      ))}
+      <StickyInput {...args} />
+    </div>
+  ),
 };

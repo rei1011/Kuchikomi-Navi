@@ -61,13 +61,17 @@ const useReport = () => {
     [selectedIndex]
   );
 
+  const setMethod = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setCompareMethod(e.target.value);
+  }, []);
+
   return {
     selectedStore,
     selectedIndex,
     setSelectedIndex,
     setStore,
     compareMethod,
-    setCompareMethod,
+    setMethod,
     getReport,
     report,
   };
