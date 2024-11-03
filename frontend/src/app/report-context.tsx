@@ -39,6 +39,8 @@ const useReport = () => {
       return;
     }
 
+    setCompareMethod("");
+
     const res = await getComparisonReport({
       stores: [selectedStore[0].value, selectedStore[1].value],
       compareMethod,

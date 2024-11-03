@@ -19,6 +19,7 @@ export const Primary: Story = {
     onSubmit: () => {
       console.log("submit!!");
     },
+    value: "おすすめのお店を紹介して",
   },
   render: (args) => (
     <div className="flex flex-col h-32">
