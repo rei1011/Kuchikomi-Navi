@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_28_021754) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_04_014042) do
   create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "store_name", null: false
     t.string "prostitute_name", null: false
@@ -19,6 +19,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_28_021754) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["prostitute_name", "store_name"], name: "index_comments_on_prostitute_name_and_store_name"
+  end
+
+  create_table "messages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "room_id"
+    t.string "message"
+    t.integer "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+  end
+
+  create_table "rooms", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
   create_table "stores", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -34,4 +51,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_28_021754) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "rooms", "users"
 end
