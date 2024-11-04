@@ -1,3 +1,4 @@
+import { Main } from "@/component/Main";
 import { AppBar } from "./home/AppBar";
 import { StoreList } from "./home/StoreList";
 
@@ -9,11 +10,11 @@ export default function Home({
   searchParams: SearchParamsType;
 }) {
   return (
-    <main className="flex min-h-screen flex-col items-center py-4">
+    <Main>
       <div className="flex flex-col gap-4 w-full">
         <AppBar />
         <StoreList keyword={searchParams["keyword"]} />
       </div>
-    </main>
+    </Main>
   );
 }

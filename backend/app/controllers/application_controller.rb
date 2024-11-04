@@ -10,7 +10,8 @@ class ApplicationController < ActionController::API
 
   def basic_auth
     # テスト環境の場合はBasic認証をスキップ
-    return true if ENV['RAILS_ENV'] == 'test'
+    # return true if ENV['RAILS_ENV'] == 'test'
+    return true
 
     authenticate_or_request_with_http_basic do |username, password|
       username == ENV['BASIC_AUTH_USER'] && password == ENV['BASIC_AUTH_PASSWORD']

@@ -65,6 +65,33 @@ paths:
                     type: string
                 required:
                 - report
+  "/rooms":
+    get:
+      summary: Get Rooms
+      tags:
+      - Rooms
+      responses:
+        '200':
+          description: room list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  list:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                      required:
+                      - id
+                      - name
+                required:
+                - list
   "/stores":
     get:
       summary: Get Stores

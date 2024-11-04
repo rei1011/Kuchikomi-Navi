@@ -1,3 +1,4 @@
+import { Main } from "@/component/Main";
 import AppBar from "./AppBar";
 import { StoreListWrapper } from "./StoreListWrapper";
 
@@ -9,9 +10,9 @@ export default function ReportSearch({
   searchParams: SearchParamsType;
 }) {
   return (
-    <main className="flex min-h-screen flex-col items-center py-4">
+    <Main>
       <AppBar />
       <StoreListWrapper keyword={searchParams["keyword"]} />
-    </main>
+    </Main>
   );
 }

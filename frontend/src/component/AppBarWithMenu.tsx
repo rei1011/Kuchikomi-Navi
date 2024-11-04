@@ -3,7 +3,7 @@
 import { AppBar as CAppBar } from "@/component/AppBar";
 import { Menu } from "@/component/Menu";
 
-export const AppBar = () => {
+export const AppBarWithMenu = () => {
   return (
     <CAppBar>
       <Menu />

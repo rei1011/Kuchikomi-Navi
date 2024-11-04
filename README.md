@@ -79,7 +79,7 @@ rspec /path/to/test_spec.rb
 ## frontend
 ### yamlファイルからAPIの型定義を作成
 ```
-yarn generate
+npm run generate
 ```
 
 ## infra

@@ -1,19 +1,20 @@
+import { AppBarWithMenu } from "@/component/AppBarWithMenu";
+import { Main } from "@/component/Main";
 import { AddStoreSection } from "./AddStoreSection";
-import { AppBar } from "./AppBar";
 import { ChatSection } from "./ChatSection";
 import { SendMessageSection } from "./SendMessageSection";
 
 export default function ReportInput() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between pt-4 h-full">
+    <Main paddingBottom={false}>
       <div className="flex flex-col gap-4 w-full h-full">
-        <AppBar />
+        <AppBarWithMenu />
         <div className="flex flex-col gap-8 px-4 w-full justify-between overscroll-y-auto">
           <AddStoreSection />
           <ChatSection />
         </div>
       </div>
       <SendMessageSection />
-    </main>
+    </Main>
   );
 }
