@@ -4,7 +4,13 @@ require 'swagger_helper'
 require 'rails_helper'
 require 'base64'
 
-RSpec.describe 'api/rooms', type: :request do
+RSpec.describe 'api/rooms', type: :request do # rubocop:disable Metrics/BlockLength
+  before do
+    allow(RoomService).to receive(:find).and_return(
+      []
+    )
+  end
+
   path '/rooms' do
     get 'Get Rooms' do
       tags 'Rooms'

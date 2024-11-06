@@ -78,6 +78,9 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
     ast (2.4.2)
     backport (1.2.0)
     base64 (0.2.0)
@@ -92,6 +95,12 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
+    database_cleaner (2.1.0)
+      database_cleaner-active_record (>= 2, < 3)
+    database_cleaner-active_record (2.2.0)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     date (3.3.4)
     debug (1.9.2)
       irb (~> 1.10)
@@ -103,6 +112,11 @@ GEM
     drb (2.2.1)
     e2mmap (0.1.0)
     erubi (1.12.0)
+    factory_bot (6.5.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.4)
+      factory_bot (~> 6.5)
+      railties (>= 5.0.0)
     faraday (2.9.0)
       faraday-net_http (>= 2.0, < 3.2)
     faraday-net_http (3.1.0)
@@ -440,9 +454,12 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  annotate
   bootsnap
+  database_cleaner
   debug
   dotenv
+  factory_bot_rails
   faraday
   mechanize
   mysql2 (~> 0.5)

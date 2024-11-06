@@ -35,6 +35,11 @@ bin/rails generate model Article title:string body:text
 bin/rails db:migrate
 ```
 
+### モデルに注釈をつけたい場合
+```
+annotate --models
+```
+
 ### マイグレーションの作成
 ```
 bin/rails generate migration AddPartNumberToProducts
