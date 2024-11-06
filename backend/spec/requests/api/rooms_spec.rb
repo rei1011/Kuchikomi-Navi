@@ -22,7 +22,7 @@ RSpec.describe 'api/rooms', type: :request do # rubocop:disable Metrics/BlockLen
                          items: {
                            type: :object,
                            properties: {
-                             id: { type: :string },
+                             id: { type: :number },
                              name: { type: :string }
                            },
                            required: %i[id name]

@@ -112,7 +112,7 @@ export interface paths {
                     content: {
                         "application/json": {
                             list: {
-                                id: string;
+                                id: number;
                                 name: string;
                             }[];
                         };

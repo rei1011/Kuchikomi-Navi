@@ -6,7 +6,7 @@ import ListItemText from "@mui/material/ListItemText";
 import { useRouter } from "next/navigation";
 
 type Props = {
-  items: { title: string; roomId: string }[];
+  items: { name: string; id: number }[];
 };
 
 export const ClickableList = (props: Props) => {
@@ -16,18 +16,18 @@ export const ClickableList = (props: Props) => {
   return (
     <List>
       {items.map((item) => {
-        const { title, roomId } = item;
+        const { name, id } = item;
         return (
           <ListItemButton
-            key={roomId}
+            key={id}
             onClick={() => {
-              router.push(`/room/${roomId}`);
+              router.push(`/room/${id}`);
             }}
           >
             <ListItemIcon>
               <ChatIcon />
             </ListItemIcon>
-            <ListItemText primary={title} />
+            <ListItemText primary={name} />
           </ListItemButton>
         );
       })}
