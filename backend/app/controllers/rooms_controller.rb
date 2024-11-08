@@ -8,4 +8,9 @@ class RoomsController < ApplicationController
     rooms = RoomService.find(user_id)
     render json: { list: rooms }
   end
+
+  def create
+    room = RoomService.create(params[:user_id])
+    render json: { id: room.id }
+  end
 end
