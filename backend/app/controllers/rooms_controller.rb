@@ -4,7 +4,7 @@
 class RoomsController < ApplicationController
   def index
     # TODO: user_idをheaderから取得できるようにする
-    user_id = '1'
+    user_id = '2'
     rooms = RoomService.find(user_id)
     render json: { list: rooms }
   end

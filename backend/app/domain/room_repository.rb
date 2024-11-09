@@ -7,6 +7,6 @@ class RoomRepository
   end
 
   def self.create(user_id)
-    Room.create(user_id:)
+    Room.create!(user_id:, name: '')
   end
 end

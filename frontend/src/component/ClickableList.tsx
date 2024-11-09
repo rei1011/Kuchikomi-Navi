@@ -21,7 +21,7 @@ export const ClickableList = (props: Props) => {
           <ListItemButton
             key={id}
             onClick={() => {
-              router.push(`/room/${id}`);
+              router.push(`/report/rooms/${id}/input`);
             }}
           >
             <ListItemIcon>

@@ -121,7 +121,35 @@ export interface paths {
             };
         };
         put?: never;
-        post?: never;
+        /** Create Room */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": {
+                        user_id: number;
+                    };
+                };
+            };
+            responses: {
+                /** @description room created */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            id: number;
+                        };
+                    };
+                };
+            };
+        };
         delete?: never;
         options?: never;
         head?: never;
