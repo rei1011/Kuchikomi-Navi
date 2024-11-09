@@ -4,10 +4,11 @@ import { StoreListForm } from "./StoreListForm";
 
 type StoreListProsp = {
   keyword?: string;
+  roomId: string;
 };
 
 export async function StoreListWrapper(props: StoreListProsp) {
-  const { keyword } = props;
+  const { keyword, roomId } = props;
   const stores = await getStore(keyword);
   const options = stores.list.map((e) => {
     return {
@@ -20,5 +21,5 @@ export async function StoreListWrapper(props: StoreListProsp) {
     return <EmptyView className="p-4" />;
   }
 
-  return <StoreListForm options={options} />;
+  return <StoreListForm options={options} roomId={roomId} />;
 }

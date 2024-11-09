@@ -11,18 +11,19 @@ import { useCallback } from "react";
 
 type Props = {
   options: RadioButtonOptions;
+  roomId: string;
 };
 
 export const StoreListForm = (props: Props) => {
-  const { options } = props;
+  const { options, roomId } = props;
   const { setStore } = useReportContext();
   const router = useRouter();
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      router.push("/report/input");
+      router.push(`/report/rooms/${roomId}/input`);
     },
-    [router]
+    [roomId, router]
   );
 
   return (

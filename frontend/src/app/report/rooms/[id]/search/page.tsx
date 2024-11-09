@@ -4,15 +4,18 @@ import { StoreListWrapper } from "./StoreListWrapper";
 
 type SearchParamsType = { [key: string]: string | undefined };
 
-export default function ReportSearch({
+export default async function ReportSearch({
   searchParams,
+  params,
 }: {
   searchParams: SearchParamsType;
+  params: Promise<{ id: string }>;
 }) {
+  const roomId = (await params).id;
   return (
     <Main>
       <AppBar />
-      <StoreListWrapper keyword={searchParams["keyword"]} />
+      <StoreListWrapper keyword={searchParams["keyword"]} roomId={roomId} />
     </Main>
   );
 }
