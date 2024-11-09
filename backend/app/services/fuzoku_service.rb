@@ -52,6 +52,7 @@ class FuzokuService
         open = shop.css('.shopItem__dataItem--open').text.presence || shop.css('.shopItem__dataItem')[1].text
 
         stores.push(StoreDomain.new(
+                      id: nil,
                       store_name:,
                       store_image:,
                       home_page:,

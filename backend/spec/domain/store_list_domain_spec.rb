@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe StoreListDomain do
+RSpec.describe StoreListDomain do # rubocop:disable Metrics/BlockLength
   def create_store(prefecture, home_page)
-    StoreDomain.new(store_name: '東京店',
+    StoreDomain.new(id: nil, store_name: '東京店',
                     prefecture:,
                     municipality: '池袋',
                     store_image: 'https://sample.co.jp',

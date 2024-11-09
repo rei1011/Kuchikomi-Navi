@@ -7,7 +7,8 @@ RSpec.describe 'StoreJob' do # rubocop:disable Metrics/BlockLength
     # 一件の店舗情報が見つかったと仮定する
     allow(FujohoService).to receive(:find).and_return(StoreListDomain.new(
                                                         [
-                                                          StoreDomain.new(store_name: 'sample store 1',
+                                                          StoreDomain.new(id: nil,
+                                                                          store_name: 'sample store 1',
                                                                           prefecture: 'sample prefecture',
                                                                           municipality: 'sample municipality',
                                                                           home_page: 'https://sample.co.jp',
@@ -24,7 +25,8 @@ RSpec.describe 'StoreJob' do # rubocop:disable Metrics/BlockLength
     # 一件の店舗情報が見つかったと仮定する
     allow(FuzokuService).to receive(:find).and_return(StoreListDomain.new(
                                                         [
-                                                          StoreDomain.new(store_name: 'sample store 1',
+                                                          StoreDomain.new(id: 1,
+                                                                          store_name: 'sample store 1',
                                                                           prefecture: 'sample prefecture',
                                                                           municipality: 'sample municipality',
                                                                           home_page: 'https://sample.co.jp',

@@ -20,6 +20,7 @@
 class Store < ApplicationRecord
   def to_domain
     StoreDomain.new(
+      id:,
       store_name:,
       store_image:,
       home_page:,

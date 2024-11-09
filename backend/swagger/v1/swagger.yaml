@@ -142,6 +142,8 @@ paths:
                     items:
                       type: object
                       properties:
+                        id:
+                          type: integer
                         store_name:
                           type: string
                         address:

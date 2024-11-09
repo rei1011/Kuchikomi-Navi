@@ -5,10 +5,12 @@ require 'rails_helper'
 require 'base64'
 
 RSpec.describe 'api/stores', type: :request do # rubocop:disable Metrics/BlockLength
+  let(:store_id) { 1 }
   before do
     allow(StoreService).to receive(:find).and_return(
       [
         StoreDomain.new(
+          id: store_id,
           store_name: 'sample store',
           store_image: 'https://sample.co.jp/sample.jpg',
           home_page: 'https://sample.co.jp',
@@ -36,6 +38,7 @@ RSpec.describe 'api/stores', type: :request do # rubocop:disable Metrics/BlockLe
                          items: {
                            type: :object,
                            properties: {
+                             id: { type: :integer },
                              store_name: { type: :string },
                              address: {
                                type: :object,

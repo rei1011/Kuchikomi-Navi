@@ -32,7 +32,7 @@ class FujohoService # rubocop:disable Style/Documentation
         home_page, prefecture, municipality = find_store_detail(shop_info)
         open = shop.css('.shop_header_info_time').children.text
 
-        stores.push(StoreDomain.new(store_name:, prefecture:, municipality:, home_page:, store_image:,
+        stores.push(StoreDomain.new(id: nil, store_name:, prefecture:, municipality:, home_page:, store_image:,
                                     open_hours: OpenHours.from_time_str(open), data_source: DataSource.new(DataSource::FUJOHO)))
       end
 
@@ -45,7 +45,7 @@ class FujohoService # rubocop:disable Style/Documentation
         home_page, prefecture, municipality = find_store_detail(shop_info)
         open = shop.css('.open_time').children.text
 
-        stores.push(StoreDomain.new(store_name:, prefecture:, municipality:, home_page:, store_image:,
+        stores.push(StoreDomain.new(id: nil, store_name:, prefecture:, municipality:, home_page:, store_image:,
                                     open_hours: OpenHours.from_time_str(open), data_source: DataSource.new(DataSource::FUJOHO)))
       end
 
