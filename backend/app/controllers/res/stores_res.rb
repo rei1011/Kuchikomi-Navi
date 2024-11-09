@@ -8,6 +8,7 @@ class StoresRes
     @list = []
     stores.each do |store|
       new_variable = {
+        id: store.id,
         store_name: store.store_name,
         address: store.address,
         home_page: store.home_page,

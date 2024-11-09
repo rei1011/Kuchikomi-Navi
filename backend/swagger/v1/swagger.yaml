@@ -170,6 +170,7 @@ paths:
                               type: string
                               pattern: "(?-mix:^(?:[01]\\d|2[0-3]):[0-5]\\d$)"
                       required:
+                      - id
                       - store_name
                       - address
                       - home_page

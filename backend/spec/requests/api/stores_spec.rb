@@ -59,7 +59,7 @@ RSpec.describe 'api/stores', type: :request do # rubocop:disable Metrics/BlockLe
                                }
                              }
                            },
-                           required: %i[store_name address home_page open]
+                           required: %i[id store_name address home_page open]
                          } }
                },
                required: %i[list]
