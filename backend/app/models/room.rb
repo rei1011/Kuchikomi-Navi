@@ -9,6 +9,8 @@
 #  name       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  store1_id  :bigint
+#  store2_id  :bigint
 #
 class Room < ApplicationRecord
   belongs_to :user

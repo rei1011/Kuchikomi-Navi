@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_04_014042) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_09_023827) do
   create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "store_name", null: false
     t.string "prostitute_name", null: false
@@ -35,6 +35,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_04_014042) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "store1_id"
+    t.bigint "store2_id"
+    t.index ["store1_id"], name: "index_rooms_on_store1_id"
+    t.index ["store2_id"], name: "index_rooms_on_store2_id"
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
@@ -57,5 +61,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_04_014042) do
   end
 
   add_foreign_key "messages", "rooms"
+  add_foreign_key "rooms", "stores", column: "store1_id"
+  add_foreign_key "rooms", "stores", column: "store2_id"
   add_foreign_key "rooms", "users"
 end
