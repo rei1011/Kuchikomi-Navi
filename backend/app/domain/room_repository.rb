@@ -9,4 +9,8 @@ class RoomRepository
   def self.create(user_id)
     Room.create!(user_id:, name: '')
   end
+
+  def self.update(room)
+    Room.find(room.id).update!(store1_id: room.store1_id, store2_id: room.store2_id)
+  end
 end

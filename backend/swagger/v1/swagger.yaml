@@ -119,6 +119,37 @@ paths:
                   type: number
               required:
               - user_id
+        required: true
+  "/rooms/{room_id}":
+    patch:
+      summary: Update Room
+      tags:
+      - Rooms
+      parameters:
+      - name: room_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: room updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                store1_id:
+                  type: number
+                  nullable: true
+                store2_id:
+                  type: number
+                  nullable: true
+              required:
+              - store1_id
+              - store2_id
+        required: true
   "/stores":
     get:
       summary: Get Stores

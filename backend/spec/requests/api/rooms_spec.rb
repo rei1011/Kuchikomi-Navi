@@ -41,7 +41,7 @@ RSpec.describe 'api/rooms', type: :request do # rubocop:disable Metrics/BlockLen
       tags 'Rooms'
       produces 'application/json'
       consumes 'application/json'
-      parameter name: :user_id, in: :body, schema: {
+      parameter name: :user_id, in: :body, required: true, schema: {
         type: :object,
         properties: {
           user_id: { type: :number }
@@ -55,6 +55,32 @@ RSpec.describe 'api/rooms', type: :request do # rubocop:disable Metrics/BlockLen
                  id: { type: :number }
                },
                required: %i[id]
+        run_test!
+      end
+    end
+  end
+
+  path '/rooms/{room_id}' do
+    patch 'Update Room' do
+      before do
+        allow(RoomService).to receive(:update).and_return(
+          nil
+        )
+      end
+      tags 'Rooms'
+      produces 'application/json'
+      consumes 'application/json'
+      parameter name: :room_id, in: :path, type: :string
+      parameter name: :body, in: :body, required: true, schema: {
+        type: :object,
+        properties: {
+          store1_id: { type: :number, nullable: true },
+          store2_id: { type: :number, nullable: true }
+        },
+        required: %w[store1_id store2_id]
+      }
+      response '200', 'room updated' do
+        let(:room_id) { create(:room).id }
         run_test!
       end
     end

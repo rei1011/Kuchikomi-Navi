@@ -9,4 +9,8 @@ class RoomService
   def self.create(user_id)
     RoomRepository.create(user_id)
   end
+
+  def self.update(room)
+    RoomRepository.update(room)
+  end
 end
