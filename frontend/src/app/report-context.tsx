@@ -11,7 +11,7 @@ import {
 } from "react";
 
 type SelectedStore = {
-  value: string;
+  value: number;
   label: string;
 };
 
@@ -55,7 +55,7 @@ const useReport = () => {
         return;
       }
 
-      const selectedOption = options.find((e) => e.value === value);
+      const selectedOption = options.find((e) => e.value === Number(value));
       setSelectedStore((prev) => {
         return { ...prev, [selectedIndex]: selectedOption };
       });

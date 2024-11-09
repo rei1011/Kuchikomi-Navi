@@ -6,13 +6,13 @@ import RadioGroup from "@mui/material/RadioGroup";
 
 type Props = {
   label?: string;
-  defaultValue?: string;
-  selectedValue?: string;
+  defaultValue?: number;
+  selectedValue?: number;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   options: RadioButtonOptions;
 };
 
-export type RadioButtonOptions = { value: string; label: string }[];
+export type RadioButtonOptions = { value: number; label: string }[];
 
 export const RadioButtonGroup = (props: Props) => {
   const { label, defaultValue, options, selectedValue, onChange } = props;

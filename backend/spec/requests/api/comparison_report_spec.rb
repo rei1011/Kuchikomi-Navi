@@ -22,7 +22,7 @@ RSpec.describe 'api/comparison_report', type: :request do
                  report: { type: :string }
                },
                required: %i[report]
-        let(:stores) { %w[uuid1 uuid2] }
+        let(:stores) { [1, 2] }
         let(:compare_method) { 'おすすめのお店を教えて' }
 
         run_test!

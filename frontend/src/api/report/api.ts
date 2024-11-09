@@ -3,15 +3,14 @@
 import { paths } from "../../../openapi/schema";
 import { client } from "../client";
 
-const path = "/comparison_report";
-
 export async function getComparisonReport({
   stores,
   compareMethod,
 }: {
-  stores: string[];
+  stores: number[];
   compareMethod: string;
 }) {
+  const path = "/comparison_report";
   const apiClient = client<paths>();
   const res = await apiClient.GET(path, {
     params: {

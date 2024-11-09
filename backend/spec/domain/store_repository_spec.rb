@@ -71,4 +71,16 @@ RSpec.describe StoreRepository do
       expect(stores.size).to eq 0
     end
   end
+
+  context 'find_by_ids' do
+    it '複数IDを指定して店舗情報を取得できる' do
+      store1 = create_store_by_address('東京', '池袋')
+      store2 = create_store_by_address('東京', '五反田')
+      create_store_by_address('埼玉', '秩父')
+      stores = StoreRepository.find_by_ids([store1.id, store2.id])
+      expect(stores.size).to eq 2
+      expect(stores[0].address.municipality).to eq '池袋'
+      expect(stores[1].address.municipality).to eq '五反田'
+    end
+  end
 end

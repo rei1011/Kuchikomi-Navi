@@ -29,4 +29,10 @@ class StoreRepository
       Store.where(home_page:).map(&:to_domain).first
     end
   end
+
+  def self.find_by_ids(ids)
+    ids.map do |id|
+      Store.find(id).to_domain
+    end
+  end
 end

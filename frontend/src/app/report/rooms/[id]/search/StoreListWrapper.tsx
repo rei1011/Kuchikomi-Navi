@@ -12,7 +12,7 @@ export async function StoreListWrapper(props: StoreListProsp) {
   const stores = await getStore(keyword);
   const options = stores.list.map((e) => {
     return {
-      value: e.home_page,
+      value: e.id,
       label: e.store_name,
     };
   });
