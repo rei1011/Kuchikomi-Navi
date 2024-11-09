@@ -16,14 +16,15 @@ type Props = {
 
 export const StoreListForm = (props: Props) => {
   const { options, roomId } = props;
-  const { setStore } = useReportContext();
+  const { setStore, updateRoom } = useReportContext();
   const router = useRouter();
   const onSubmit = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
+    async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+      await updateRoom();
       router.push(`/report/rooms/${roomId}/input`);
     },
-    [roomId, router]
+    [roomId, router, updateRoom]
   );
 
   return (

@@ -2,6 +2,8 @@
 
 # ApplicationControllerの基底クラス
 class ApplicationController < ActionController::API
+  @@current_user_id = 2
+
   include ActionController::HttpAuthentication::Basic::ControllerMethods
   include ActionController::HttpAuthentication::Token::ControllerMethods
   before_action :basic_auth

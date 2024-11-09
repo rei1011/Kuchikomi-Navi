@@ -1,7 +1,9 @@
 "use client";
 
 import { getComparisonReport } from "@/api/report/api";
+import { updateRoom as innerUpdateRoom } from "@/api/report/rooms/api";
 import { RadioButtonOptions } from "@/component/RadioButtonGroup";
+import { useParams } from "next/navigation";
 import {
   createContext,
   PropsWithChildren,
@@ -22,6 +24,9 @@ export const ReportContext = createContext<ReportContextType>(
 );
 
 const useReport = () => {
+  const params = useParams();
+  const roomId = params.id as string;
+
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
     undefined
   );
@@ -67,6 +72,14 @@ const useReport = () => {
     setCompareMethod(e.target.value);
   }, []);
 
+  const updateRoom = useCallback(async () => {
+    await innerUpdateRoom(
+      roomId,
+      selectedStore[0]?.value ?? null,
+      selectedStore[1]?.value ?? null
+    );
+  }, [roomId, selectedStore]);
+
   return {
     selectedStore,
     selectedIndex,
@@ -76,6 +89,7 @@ const useReport = () => {
     setMethod,
     getReport,
     report,
+    updateRoom,
   };
 };
 

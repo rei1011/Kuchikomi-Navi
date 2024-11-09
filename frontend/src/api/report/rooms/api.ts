@@ -30,3 +30,21 @@ export async function createRoom(id: number) {
 
   return res.data;
 }
+
+export async function updateRoom(
+  roomId: string,
+  store1Id: number | null,
+  store2Id: number | null
+) {
+  const path = `/rooms/{room_id}`;
+  const apiClient = client<paths>();
+  const res = await apiClient.PATCH(path, {
+    params: {
+      path: { room_id: roomId },
+    },
+    body: {
+      store1_id: store1Id,
+      store2_id: store2Id,
+    },
+  });
+}

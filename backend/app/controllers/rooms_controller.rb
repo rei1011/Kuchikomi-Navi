@@ -4,7 +4,7 @@
 class RoomsController < ApplicationController
   def index
     # TODO: user_idをheaderから取得できるようにする
-    user_id = '2'
+    user_id = @@current_user_id
     rooms = RoomService.find(user_id)
     render json: { list: rooms }
   end
@@ -16,11 +16,11 @@ class RoomsController < ApplicationController
 
   def update
     RoomService.update(Room.new do |r|
-      r.id = params[:room_id]
-      r.user_id = '2'
+      r.id = params[:id]
+      r.user_id = @@current_user_id
       r.store1_id = params[:store1_id]
       r.store2_id = params[:store2_id]
     end)
-    render status: 200
+    render json: {}
   end
 end
