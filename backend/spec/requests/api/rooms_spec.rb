@@ -60,7 +60,38 @@ RSpec.describe 'api/rooms', type: :request do # rubocop:disable Metrics/BlockLen
     end
   end
 
-  path '/rooms/{room_id}' do
+  path '/rooms/{room_id}' do # rubocop:disable Metrics/BlockLength
+    get 'Get Room' do # rubocop:disable Metrics/BlockLength
+      before do
+        allow(RoomService).to receive(:find_by_id).and_return(
+          create(:room)
+        )
+      end
+      tags 'Rooms'
+      produces 'application/json'
+      consumes 'application/json'
+      parameter name: :room_id, in: :path, type: :string
+      response '200', 'room found' do
+        let(:room_id) { create(:room).id }
+        schema type: :object,
+               properties: {
+                 id: { type: :number },
+                 name: { type: :string, nullable: true },
+                 store1: {
+                   type: :object,
+                   properties: { id: { type: :number }, name: { type: :string } },
+                   required: %w[id name]
+                 },
+                 store2: {
+                   type: :object,
+                   properties: { id: { type: :number }, name: { type: :string } },
+                   required: %w[id name]
+                 }
+               },
+               required: %i[id name]
+        run_test!
+      end
+    end
     patch 'Update Room' do
       before do
         allow(RoomService).to receive(:update).and_return(

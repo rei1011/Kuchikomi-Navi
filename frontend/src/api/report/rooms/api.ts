@@ -15,6 +15,24 @@ export async function findAllRooms() {
   return res.data;
 }
 
+export async function findRoomById(id: string) {
+  const path = `/rooms/{room_id}`;
+  const apiClient = client<paths>();
+  const res = await apiClient.GET(path, {
+    params: {
+      path: {
+        room_id: id,
+      },
+    },
+  });
+
+  if (res.error) {
+    throw new Error(`Failed to fetch data. path = ${path}`);
+  }
+
+  return res.data;
+}
+
 export async function createRoom(id: number) {
   const path = "/rooms";
   const apiClient = client<paths>();

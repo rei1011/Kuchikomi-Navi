@@ -163,7 +163,40 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        /** Get Room */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    room_id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description room found */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            id: number;
+                            name: string | null;
+                            store1?: {
+                                id: number;
+                                name: string;
+                            };
+                            store2?: {
+                                id: number;
+                                name: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
         put?: never;
         post?: never;
         delete?: never;

@@ -9,6 +9,11 @@ class RoomsController < ApplicationController
     render json: { list: rooms }
   end
 
+  def show
+    room = RoomService.find_by_id(params[:id])
+    render json: RoomSerializer.render(room)
+  end
+
   def create
     room = RoomService.create(params[:user_id])
     render json: { id: room.id }

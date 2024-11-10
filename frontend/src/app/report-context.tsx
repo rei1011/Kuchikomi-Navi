@@ -23,7 +23,7 @@ export const ReportContext = createContext<ReportContextType>(
   {} as ReportContextType
 );
 
-const useReport = () => {
+const useReport = ({ store1, store2 }: { store1?: Store; store2?: Store }) => {
   const params = useParams();
   const roomId = params.id as string;
 
@@ -33,8 +33,9 @@ const useReport = () => {
   const [selectedStore, setSelectedStore] = useState<{
     [key: number]: SelectedStore | undefined;
   }>({
-    0: undefined,
-    1: undefined,
+    // 店舗情報がある場合は初期値を設定
+    0: store1 ? { value: store1.id, label: store1.name } : undefined,
+    1: store2 ? { value: store2.id, label: store2.name } : undefined,
   });
   const [compareMethod, setCompareMethod] = useState("");
   const [report, setReport] = useState("");
@@ -93,8 +94,22 @@ const useReport = () => {
   };
 };
 
-export const ReportContextProvider = ({ children }: PropsWithChildren) => {
-  const value = useReport();
+type Store = {
+  id: number;
+  name: string;
+};
+
+type Props = {
+  store1?: Store;
+  store2?: Store;
+};
+
+export const ReportContextProvider = ({
+  children,
+  store1,
+  store2,
+}: PropsWithChildren<Props>) => {
+  const value = useReport({ store1, store2 });
   return (
     <ReportContext.Provider value={value}>{children}</ReportContext.Provider>
   );

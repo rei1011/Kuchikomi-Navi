@@ -34,6 +34,7 @@ module Backend
 
     config.autoload_paths += Dir.glob("#{config.root}/app/controllers/res")
     config.autoload_paths += Dir.glob("#{config.root}/app/controllers/domain")
+    config.autoload_paths += Dir.glob("#{config.root}/app/controllers/serializer")
     config.autoload_paths += Dir.glob("#{config.root}/app/services")
     config.autoload_paths += Dir.glob("#{config.root}/app/logger")
   end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe RoomRepository do
+RSpec.describe RoomRepository do # rubocop:disable Metrics/BlockLength
   context 'find_by_user_id' do
     context 'チャットルームが複数ある時' do
       it '特定のユーザーのチャットルームだけ取得できる' do

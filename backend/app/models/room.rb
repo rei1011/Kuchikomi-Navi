@@ -14,4 +14,6 @@
 #
 class Room < ApplicationRecord
   belongs_to :user
+  belongs_to :store1, class_name: 'Store', optional: true
+  belongs_to :store2, class_name: 'Store', optional: true
 end
