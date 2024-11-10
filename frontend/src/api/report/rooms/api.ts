@@ -3,7 +3,7 @@
 import { client } from "@/api/client";
 import { paths } from "../../../../openapi/schema";
 
-export async function getRooms() {
+export async function findAllRooms() {
   const path = "/rooms";
   const apiClient = client<paths>();
   const res = await apiClient.GET(path);
