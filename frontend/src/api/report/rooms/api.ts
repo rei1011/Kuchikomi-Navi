@@ -1,6 +1,7 @@
 "use server";
 
 import { client } from "@/api/client";
+import { revalidatePath } from "next/cache";
 import { paths } from "../../../../openapi/schema";
 
 export async function findAllRooms() {
@@ -46,6 +47,8 @@ export async function createRoom(id: number) {
     throw new Error(`Failed create room. path = ${path}`);
   }
 
+  revalidatePath("/report/rooms");
+
   return res.data;
 }
 
@@ -56,7 +59,7 @@ export async function updateRoom(
 ) {
   const path = `/rooms/{room_id}`;
   const apiClient = client<paths>();
-  const res = await apiClient.PATCH(path, {
+  await apiClient.PATCH(path, {
     params: {
       path: { room_id: roomId },
     },
@@ -65,4 +68,6 @@ export async function updateRoom(
       store2_id: store2Id,
     },
   });
+
+  revalidatePath("/report/rooms/[id]", "layout");
 }
