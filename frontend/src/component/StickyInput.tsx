@@ -5,13 +5,15 @@ type Props = {
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onSubmit: () => void;
   value: string;
+  disabled: boolean;
 };
 
 export const StickyInput = (props: Props) => {
-  const { onChange, onSubmit, value } = props;
+  const { onChange, onSubmit, value, disabled } = props;
   return (
     <div className="bg-secondary px-4 pt-4 pb-8 rounded-t-2xl flex justify-between items-end gap-4 sticky bottom-0">
       <TextareaAutosize
+        disabled={disabled}
         value={value}
         minRows={1}
         maxRows={10}
@@ -21,7 +23,8 @@ export const StickyInput = (props: Props) => {
       />
       <button
         type="submit"
-        className="bg-gray rounded-lg flex justify-center items-center p-2"
+        disabled={disabled}
+        className={`bg-gray rounded-lg flex justify-center items-center p-2 ${disabled && `opacity-30`}`}
         style={{ height: 24, width: 24 }}
         onClick={onSubmit}
       >

@@ -20,6 +20,7 @@ export const Primary: Story = {
       console.log("submit!!");
     },
     value: "おすすめのお店を紹介して",
+    disabled: false,
   },
   render: (args) => (
     <div className="flex flex-col h-32">
