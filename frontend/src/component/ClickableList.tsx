@@ -1,9 +1,9 @@
 import ChatIcon from "@mui/icons-material/Chat";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { useRouter } from "next/navigation";
+import { EditChatRoomButton } from "./EditChatRoomButton";
 
 type Props = {
   items: { name: string; id: number }[];
@@ -29,14 +29,7 @@ export const ClickableList = (props: Props) => {
               <ChatIcon className="bg-primary" />
               <ListItemText primary={name} />
             </div>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                console.log("hoge");
-              }}
-            >
-              <MoreHorizIcon />
-            </button>
+            <EditChatRoomButton />
           </ListItemButton>
         );
       })}
