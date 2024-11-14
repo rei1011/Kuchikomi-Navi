@@ -1,3 +1,4 @@
+import { deleteRoom } from "@/api/report/rooms/api";
 import ChatIcon from "@mui/icons-material/Chat";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
@@ -41,7 +42,9 @@ export const ClickableList = (props: Props) => {
                 {
                   title: "削除する",
                   icon: <DeleteIcon />,
-                  callback: () => {},
+                  callback: async () => {
+                    await deleteRoom(id.toString());
+                  },
                   isDanger: true,
                 },
               ]}

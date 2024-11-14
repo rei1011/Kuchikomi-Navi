@@ -71,3 +71,17 @@ export async function updateRoom(
 
   revalidatePath("/report/rooms/[id]", "layout");
 }
+
+export async function deleteRoom(roomId: string) {
+  const path = `/rooms/{room_id}`;
+  const apiClient = client<paths>();
+  await apiClient.DELETE(path, {
+    params: {
+      path: {
+        room_id: roomId,
+      },
+    },
+  });
+
+  revalidatePath("/report/rooms");
+}
