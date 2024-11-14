@@ -196,6 +196,19 @@ paths:
               - store1_id
               - store2_id
         required: true
+    delete:
+      summary: Delete Room
+      tags:
+      - Rooms
+      parameters:
+      - name: room_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: room updated
   "/stores":
     get:
       summary: Get Stores

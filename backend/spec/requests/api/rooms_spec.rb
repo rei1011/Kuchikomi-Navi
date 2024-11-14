@@ -92,6 +92,7 @@ RSpec.describe 'api/rooms', type: :request do # rubocop:disable Metrics/BlockLen
         run_test!
       end
     end
+
     patch 'Update Room' do
       before do
         allow(RoomService).to receive(:update).and_return(
@@ -112,6 +113,17 @@ RSpec.describe 'api/rooms', type: :request do # rubocop:disable Metrics/BlockLen
       }
       response '200', 'room updated' do
         let(:room_id) { create(:room).id }
+        run_test!
+      end
+    end
+
+    delete 'Delete Room' do
+      tags 'Rooms'
+      produces 'application/json'
+      consumes 'application/json'
+      parameter name: :room_id, in: :path, type: :string
+      response '200', 'room updated' do
+        let(:room_id) { SecureRandom.uuid }
         run_test!
       end
     end

@@ -17,4 +17,8 @@ class RoomService
   def self.update(room)
     RoomRepository.update(room)
   end
+
+  def self.delete(room_id)
+    nil
+  end
 end

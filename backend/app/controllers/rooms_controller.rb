@@ -28,4 +28,9 @@ class RoomsController < ApplicationController
     end)
     render json: {}
   end
+
+  def destroy
+    RoomService.delete(params[:id])
+    render json: {}
+  end
 end

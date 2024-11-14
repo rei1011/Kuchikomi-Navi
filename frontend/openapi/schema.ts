@@ -199,7 +199,27 @@ export interface paths {
         };
         put?: never;
         post?: never;
-        delete?: never;
+        /** Delete Room */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    room_id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description room updated */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         options?: never;
         head?: never;
         /** Update Room */
