@@ -17,4 +17,8 @@ class RoomRepository
   def self.update(room)
     Room.find(room.id).update!(store1_id: room.store1_id, store2_id: room.store2_id)
   end
+
+  def self.delete(room_id)
+    Room.destroy(room_id)
+  end
 end

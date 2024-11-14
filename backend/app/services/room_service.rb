@@ -19,6 +19,6 @@ class RoomService
   end
 
   def self.delete(room_id)
-    nil
+    RoomRepository.delete(room_id)
   end
 end

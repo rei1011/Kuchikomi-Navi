@@ -58,4 +58,22 @@ RSpec.describe RoomRepository do # rubocop:disable Metrics/BlockLength
       expect(result.store2_id).to eq store2.id
     end
   end
+
+  context 'delete' do
+    let(:user) { create(:user) }
+    before do
+      RoomRepository.create(user.id)
+    end
+
+    it 'チャットルームを削除できること' do
+      room = RoomRepository.find_by_user_id(user.id).first
+      expect(RoomRepository.find_by_user_id(user.id).count).to eq 1
+      RoomRepository.delete(room.id)
+      expect(RoomRepository.find_by_user_id(user.id).count).to eq 0
+    end
+
+    it '存在しないチャットルームを削除しようとするとエラーが発生すること' do
+      expect { RoomRepository.delete(SecureRandom.uuid) }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
 end
