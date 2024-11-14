@@ -1,4 +1,6 @@
 import ChatIcon from "@mui/icons-material/Chat";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
@@ -29,7 +31,21 @@ export const ClickableList = (props: Props) => {
               <ChatIcon className="bg-primary" />
               <ListItemText primary={name} />
             </div>
-            <EditChatRoomButton />
+            <EditChatRoomButton
+              options={[
+                {
+                  title: "名前を変更する",
+                  icon: <ModeEditIcon />,
+                  callback: () => {},
+                },
+                {
+                  title: "削除する",
+                  icon: <DeleteIcon />,
+                  callback: () => {},
+                  isDanger: true,
+                },
+              ]}
+            />
           </ListItemButton>
         );
       })}
