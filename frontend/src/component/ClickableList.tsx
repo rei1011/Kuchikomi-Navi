@@ -40,13 +40,21 @@ export const ClickableList = (props: Props) => {
               <ChatIcon />
               <div className="px-4 w-full">
                 {editableRoom === id ? (
-                  <TextField
-                    hiddenLabel
-                    defaultValue={name}
-                    className="h-full w-full"
-                    variant="standard"
-                    size="small"
-                  />
+                  <form
+                    method="post"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      console.log("change name !!");
+                    }}
+                  >
+                    <TextField
+                      hiddenLabel
+                      defaultValue={name}
+                      className="h-full w-full"
+                      variant="standard"
+                      size="small"
+                    />
+                  </form>
                 ) : (
                   <ListItemText primary={name} />
                 )}
