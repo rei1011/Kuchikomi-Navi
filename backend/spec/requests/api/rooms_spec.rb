@@ -6,7 +6,7 @@ require 'base64'
 
 RSpec.describe 'api/rooms', type: :request do # rubocop:disable Metrics/BlockLength
   path '/rooms' do # rubocop:disable Metrics/BlockLength
-    get 'Get Rooms' do
+    get 'Get Rooms' do # rubocop:disable Metrics/BlockLength
       before do
         allow(RoomService).to receive(:find).and_return(
           [create(:room)]
