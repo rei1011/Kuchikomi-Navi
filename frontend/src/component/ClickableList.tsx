@@ -1,4 +1,5 @@
-import { deleteRoom } from "@/api/report/rooms/api";
+import { deleteRoom, updateRoom } from "@/api/report/rooms/api";
+import { Rooms } from "@/api/report/rooms/type";
 import ChatIcon from "@mui/icons-material/Chat";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
@@ -11,7 +12,7 @@ import { useState } from "react";
 import { EditChatRoomButton } from "./EditChatRoomButton";
 
 type Props = {
-  items: { name: string; id: number }[];
+  items: Rooms;
 };
 
 export const ClickableList = (props: Props) => {
@@ -24,7 +25,7 @@ export const ClickableList = (props: Props) => {
   return (
     <List className="flex flex-col gap-4">
       {items.map((item) => {
-        const { name, id } = item;
+        const { name, id, store1_id: store1Id, store2_id: store2Id } = item;
         return (
           <ListItemButton
             key={id}
@@ -42,9 +43,17 @@ export const ClickableList = (props: Props) => {
                 {editableRoom === id ? (
                   <form
                     method="post"
-                    onSubmit={(e) => {
+                    onSubmit={async (e) => {
                       e.preventDefault();
-                      console.log("change name !!");
+                      await updateRoom({
+                        roomId: id.toString(),
+                        // TODO: Fix
+                        // @ts-ignore
+                        name: e.target[0].value,
+                        store1Id,
+                        store2Id,
+                      });
+                      setEditableRoom(undefined);
                     }}
                   >
                     <TextField

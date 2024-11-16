@@ -118,7 +118,7 @@ export interface paths {
                                 created_at: string;
                                 updated_at: string;
                                 store1_id: number | null;
-                                store2_id: string | null;
+                                store2_id: number | null;
                             }[];
                         };
                     };

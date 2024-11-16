@@ -23,7 +23,15 @@ export const ReportContext = createContext<ReportContextType>(
   {} as ReportContextType
 );
 
-const useReport = ({ store1, store2 }: { store1?: Store; store2?: Store }) => {
+const useReport = ({
+  store1,
+  store2,
+  roomName,
+}: {
+  store1?: Store;
+  store2?: Store;
+  roomName: string | null;
+}) => {
   const params = useParams();
   const roomId = params.id as string;
 
@@ -74,12 +82,13 @@ const useReport = ({ store1, store2 }: { store1?: Store; store2?: Store }) => {
   }, []);
 
   const updateRoom = useCallback(async () => {
-    await innerUpdateRoom(
+    await innerUpdateRoom({
       roomId,
-      selectedStore[0]?.value ?? null,
-      selectedStore[1]?.value ?? null
-    );
-  }, [roomId, selectedStore]);
+      name: roomName,
+      store1Id: selectedStore[0]?.value ?? null,
+      store2Id: selectedStore[1]?.value ?? null,
+    });
+  }, [roomId, roomName, selectedStore]);
 
   return {
     selectedStore,
@@ -102,14 +111,16 @@ type Store = {
 type Props = {
   store1?: Store;
   store2?: Store;
+  roomName: string | null;
 };
 
 export const ReportContextProvider = ({
   children,
+  roomName,
   store1,
   store2,
 }: PropsWithChildren<Props>) => {
-  const value = useReport({ store1, store2 });
+  const value = useReport({ store1, store2, roomName });
   return (
     <ReportContext.Provider value={value}>{children}</ReportContext.Provider>
   );

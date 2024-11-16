@@ -11,7 +11,11 @@ export default async function ReportLayout({
   const id = (await params).id;
   const room = await findRoomById(id);
   return (
-    <ReportContextProvider store1={room.store1} store2={room.store2}>
+    <ReportContextProvider
+      roomName={room.name}
+      store1={room.store1}
+      store2={room.store2}
+    >
       {children}
     </ReportContextProvider>
   );

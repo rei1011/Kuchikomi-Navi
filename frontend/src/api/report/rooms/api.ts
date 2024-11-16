@@ -52,11 +52,17 @@ export async function createRoom(id: number) {
   return res.data;
 }
 
-export async function updateRoom(
-  roomId: string,
-  store1Id: number | null,
-  store2Id: number | null
-) {
+export async function updateRoom({
+  roomId,
+  name,
+  store1Id,
+  store2Id,
+}: {
+  roomId: string;
+  name: string | null;
+  store1Id: number | null;
+  store2Id: number | null;
+}) {
   const path = `/rooms/{room_id}`;
   const apiClient = client<paths>();
   await apiClient.PATCH(path, {
@@ -64,12 +70,14 @@ export async function updateRoom(
       path: { room_id: roomId },
     },
     body: {
+      name,
       store1_id: store1Id,
       store2_id: store2Id,
     },
   });
 
   revalidatePath("/report/rooms/[id]", "layout");
+  revalidatePath("/report/rooms", "layout");
 }
 
 export async function deleteRoom(roomId: string) {

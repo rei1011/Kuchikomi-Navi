@@ -9,7 +9,7 @@ RSpec.describe 'api/rooms', type: :request do # rubocop:disable Metrics/BlockLen
     get 'Get Rooms' do # rubocop:disable Metrics/BlockLength
       before do
         allow(RoomService).to receive(:find).and_return(
-          [create(:room)]
+          [create(:room, :with_store)]
         )
       end
       tags 'Rooms'
@@ -29,7 +29,7 @@ RSpec.describe 'api/rooms', type: :request do # rubocop:disable Metrics/BlockLen
                              created_at: { type: :string },
                              updated_at: { type: :string },
                              store1_id: { type: :number, nullable: true },
-                             store2_id: { type: :string, nullable: true }
+                             store2_id: { type: :number, nullable: true }
                            },
                            required: %i[id user_id name created_at updated_at store1_id store2_id]
                          } }
