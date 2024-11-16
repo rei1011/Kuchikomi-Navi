@@ -119,13 +119,15 @@ RSpec.describe 'api/rooms', type: :request do # rubocop:disable Metrics/BlockLen
         type: :object,
         additionalProperties: false,
         properties: {
+          name: { type: :string, nullable: true },
           store1_id: { type: :number, nullable: true },
           store2_id: { type: :number, nullable: true }
         },
-        required: %w[store1_id store2_id]
+        required: %w[name store1_id store2_id]
       }
       response '200', 'room updated' do
         let(:room_id) { create(:room).id }
+        let(:body) { { name: 'test', store1_id: 1, store2_id: 2 } }
         run_test!
       end
     end

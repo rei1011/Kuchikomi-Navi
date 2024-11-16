@@ -40,12 +40,14 @@ RSpec.describe RoomRepository do # rubocop:disable Metrics/BlockLength
     it 'チャットルームの情報を更新できること' do
       # 店舗IDが保存されていないことを確認
       target_room = RoomRepository.find_by_user_id(user.id).first
+      expect(target_room.name).to eq ''
       expect(target_room.store1_id).to eq nil
       expect(target_room.store2_id).to eq nil
 
       # 店舗IDを更新
       updated_room = Room.new do |r|
         r.id = target_room.id
+        r.name = 'room name'
         r.user_id = target_room.user_id
         r.store1_id = store1.id
         r.store2_id = store2.id
@@ -54,6 +56,7 @@ RSpec.describe RoomRepository do # rubocop:disable Metrics/BlockLength
 
       # 更新されたことを確認
       result = RoomRepository.find_by_user_id(user.id).first
+      expect(result.name).to eq 'room name'
       expect(result.store1_id).to eq store1.id
       expect(result.store2_id).to eq store2.id
     end

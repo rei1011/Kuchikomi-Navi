@@ -240,6 +240,7 @@ export interface paths {
             requestBody: {
                 content: {
                     "application/json": {
+                        name: string | null;
                         store1_id: number | null;
                         store2_id: number | null;
                     };

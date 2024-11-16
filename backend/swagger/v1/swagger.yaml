@@ -212,6 +212,9 @@ paths:
               type: object
               additionalProperties: false
               properties:
+                name:
+                  type: string
+                  nullable: true
                 store1_id:
                   type: number
                   nullable: true
@@ -219,6 +222,7 @@ paths:
                   type: number
                   nullable: true
               required:
+              - name
               - store1_id
               - store2_id
         required: true

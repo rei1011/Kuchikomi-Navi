@@ -19,9 +19,10 @@ class RoomsController < ApplicationController
     render json: { id: room.id }
   end
 
-  def update
+  def update # rubocop:disable Metrics/AbcSize
     RoomService.update(Room.new do |r|
       r.id = params[:id]
+      r.name = params[:name]
       r.user_id = @@current_user_id
       r.store1_id = params[:store1_id]
       r.store2_id = params[:store2_id]
