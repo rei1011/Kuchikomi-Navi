@@ -113,7 +113,12 @@ export interface paths {
                         "application/json": {
                             list: {
                                 id: number;
-                                name: string;
+                                user_id: number;
+                                name: string | null;
+                                created_at: string;
+                                updated_at: string;
+                                store1_id: number | null;
+                                store2_id: string | null;
                             }[];
                         };
                     };

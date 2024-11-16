@@ -9,22 +9,29 @@ RSpec.describe 'api/rooms', type: :request do # rubocop:disable Metrics/BlockLen
     get 'Get Rooms' do
       before do
         allow(RoomService).to receive(:find).and_return(
-          []
+          [create(:room)]
         )
       end
       tags 'Rooms'
       produces 'application/json'
       response '200', 'room list' do
         schema type: :object,
+               additionalProperties: false,
                properties: {
                  list: { type: :array,
                          items: {
                            type: :object,
+                           additionalProperties: false,
                            properties: {
                              id: { type: :number },
-                             name: { type: :string }
+                             user_id: { type: :number },
+                             name: { type: :string, nullable: true },
+                             created_at: { type: :string },
+                             updated_at: { type: :string },
+                             store1_id: { type: :number, nullable: true },
+                             store2_id: { type: :string, nullable: true }
                            },
-                           required: %i[id name]
+                           required: %i[id user_id name created_at updated_at store1_id store2_id]
                          } }
                },
                required: %i[list]
@@ -32,7 +39,7 @@ RSpec.describe 'api/rooms', type: :request do # rubocop:disable Metrics/BlockLen
       end
     end
 
-    post 'Create Room' do
+    post 'Create Room' do # rubocop:disable Metrics/BlockLength
       before do
         allow(RoomService).to receive(:create).and_return(
           create(:room)
@@ -43,6 +50,7 @@ RSpec.describe 'api/rooms', type: :request do # rubocop:disable Metrics/BlockLen
       consumes 'application/json'
       parameter name: :user_id, in: :body, required: true, schema: {
         type: :object,
+        additionalProperties: false,
         properties: {
           user_id: { type: :number }
         },
@@ -51,6 +59,7 @@ RSpec.describe 'api/rooms', type: :request do # rubocop:disable Metrics/BlockLen
       response '200', 'room created' do
         let(:user_id) { { user_id: 1 } }
         schema type: :object,
+               additionalProperties: false,
                properties: {
                  id: { type: :number }
                },
@@ -74,16 +83,19 @@ RSpec.describe 'api/rooms', type: :request do # rubocop:disable Metrics/BlockLen
       response '200', 'room found' do
         let(:room_id) { create(:room).id }
         schema type: :object,
+               additionalProperties: false,
                properties: {
                  id: { type: :number },
                  name: { type: :string, nullable: true },
                  store1: {
                    type: :object,
+                   additionalProperties: false,
                    properties: { id: { type: :number }, name: { type: :string } },
                    required: %w[id name]
                  },
                  store2: {
                    type: :object,
+                   additionalProperties: false,
                    properties: { id: { type: :number }, name: { type: :string } },
                    required: %w[id name]
                  }
@@ -105,6 +117,7 @@ RSpec.describe 'api/rooms', type: :request do # rubocop:disable Metrics/BlockLen
       parameter name: :room_id, in: :path, type: :string
       parameter name: :body, in: :body, required: true, schema: {
         type: :object,
+        additionalProperties: false,
         properties: {
           store1_id: { type: :number, nullable: true },
           store2_id: { type: :number, nullable: true }
@@ -118,6 +131,11 @@ RSpec.describe 'api/rooms', type: :request do # rubocop:disable Metrics/BlockLen
     end
 
     delete 'Delete Room' do
+      before do
+        allow(RoomService).to receive(:delete).and_return(
+          nil
+        )
+      end
       tags 'Rooms'
       produces 'application/json'
       consumes 'application/json'

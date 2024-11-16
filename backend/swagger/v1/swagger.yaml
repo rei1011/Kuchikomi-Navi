@@ -77,19 +77,39 @@ paths:
             application/json:
               schema:
                 type: object
+                additionalProperties: false
                 properties:
                   list:
                     type: array
                     items:
                       type: object
+                      additionalProperties: false
                       properties:
                         id:
                           type: number
+                        user_id:
+                          type: number
                         name:
                           type: string
+                          nullable: true
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                        store1_id:
+                          type: number
+                          nullable: true
+                        store2_id:
+                          type: string
+                          nullable: true
                       required:
                       - id
+                      - user_id
                       - name
+                      - created_at
+                      - updated_at
+                      - store1_id
+                      - store2_id
                 required:
                 - list
     post:
@@ -104,6 +124,7 @@ paths:
             application/json:
               schema:
                 type: object
+                additionalProperties: false
                 properties:
                   id:
                     type: number
@@ -114,6 +135,7 @@ paths:
           application/json:
             schema:
               type: object
+              additionalProperties: false
               properties:
                 user_id:
                   type: number
@@ -138,6 +160,7 @@ paths:
             application/json:
               schema:
                 type: object
+                additionalProperties: false
                 properties:
                   id:
                     type: number
@@ -146,6 +169,7 @@ paths:
                     nullable: true
                   store1:
                     type: object
+                    additionalProperties: false
                     properties:
                       id:
                         type: number
@@ -156,6 +180,7 @@ paths:
                     - name
                   store2:
                     type: object
+                    additionalProperties: false
                     properties:
                       id:
                         type: number
@@ -185,6 +210,7 @@ paths:
           application/json:
             schema:
               type: object
+              additionalProperties: false
               properties:
                 store1_id:
                   type: number
