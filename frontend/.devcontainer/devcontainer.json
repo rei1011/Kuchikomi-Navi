@@ -23,5 +23,5 @@
     }
   },
   // server compoentでhttp://localhost:3000でサーバーへ通信するためにポートフォワーディングを設定
-  "postCreateCommand": "npm ci && socat TCP-LISTEN:3000,fork TCP:web:3000"
+  "postCreateCommand": "pnpm config set store-dir /tmp/pnpm/store && pnpm install --frozen-lockfile && socat TCP-LISTEN:3000,fork TCP:web:3000"
 }

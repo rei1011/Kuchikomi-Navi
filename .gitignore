@@ -63,3 +63,6 @@
 
 # coverage files
 /backend/coverage/*
+
+# pnpm
+.pnpm-store
