@@ -1,6 +1,6 @@
 "use client";
 
-import { useReportContext } from "@/app/report-context";
+import { useReportContext } from "@/app/report/rooms/[id]/report-context";
 import { StickyInput } from "@/component/StickyInput";
 
 export const SendMessageSection = () => {

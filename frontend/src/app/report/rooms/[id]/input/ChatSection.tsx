@@ -1,6 +1,6 @@
 "use client";
 
-import { useReportContext } from "@/app/report-context";
+import { useReportContext } from "@/app/report/rooms/[id]/report-context";
 
 export const ChatSection = () => {
   const { report } = useReportContext();

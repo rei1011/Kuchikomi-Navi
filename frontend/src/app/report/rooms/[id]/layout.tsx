@@ -1,5 +1,5 @@
 import { findRoomById } from "@/api/report/rooms/api";
-import { ReportContextProvider } from "@/app/report-context";
+import { ReportContextProvider } from "@/app/report/rooms/[id]/report-context";
 
 export default async function ReportLayout({
   params,
