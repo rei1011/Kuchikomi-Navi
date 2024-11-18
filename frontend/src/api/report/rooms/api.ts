@@ -12,7 +12,7 @@ export async function findAllRooms() {
   if (res.error) {
     throw new Error(
       // @ts-ignore
-      `Failed to fetch data. path = ${path} error = ${res.error.toString()}`
+      `Failed to fetch findAllRooms. path = ${path} error = ${res.error.toString()}`
     );
   }
 
@@ -33,7 +33,7 @@ export async function findRoomById(id: string) {
   if (res.error) {
     throw new Error(
       // @ts-ignore
-      `Failed to fetch data. path = ${path} error = ${res.error.toString()}`
+      `Failed to fetch findRoomById. path = ${path} error = ${res.error.toString()}`
     );
   }
 
