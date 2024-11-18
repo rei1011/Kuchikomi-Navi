@@ -10,7 +10,10 @@ export async function findAllRooms() {
   const res = await apiClient.GET(path);
 
   if (res.error) {
-    throw new Error(`Failed to fetch data. path = ${path}`);
+    throw new Error(
+      // @ts-ignore
+      `Failed to fetch data. path = ${path} error = ${res.error.toString()}`
+    );
   }
 
   return res.data;
@@ -28,7 +31,10 @@ export async function findRoomById(id: string) {
   });
 
   if (res.error) {
-    throw new Error(`Failed to fetch data. path = ${path}`);
+    throw new Error(
+      // @ts-ignore
+      `Failed to fetch data. path = ${path} error = ${res.error.toString()}`
+    );
   }
 
   return res.data;
@@ -44,7 +50,10 @@ export async function createRoom(id: number) {
   });
 
   if (res.error) {
-    throw new Error(`Failed create room. path = ${path}`);
+    throw new Error(
+      // @ts-ignore
+      `Failed create room. path = ${path} error=${res.error.toString()}`
+    );
   }
 
   revalidatePath("/report/rooms");
