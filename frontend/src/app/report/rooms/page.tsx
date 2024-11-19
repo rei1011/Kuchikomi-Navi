@@ -3,6 +3,8 @@ import { Main } from "@/component/Main";
 import { RoomListWrapper } from "./RoomListWrapper";
 import { StartChatButton } from "./StartChatButton";
 
+export const dynamic = "force-dynamic";
+
 export default function ReportRoom() {
   return (
     <Main>
