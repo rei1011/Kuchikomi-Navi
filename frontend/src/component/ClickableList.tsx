@@ -18,7 +18,7 @@ type Props = {
 export const ClickableList = (props: Props) => {
   const { items } = props;
   const router = useRouter();
-  const [editableRoom, setEditableRoom] = useState<number | undefined>(
+  const [isEditableRoom, setIsEditableRoom] = useState<number | undefined>(
     undefined
   );
 
@@ -31,7 +31,7 @@ export const ClickableList = (props: Props) => {
             key={id}
             className="bg-secondary rounded-lg py-5 justify-between"
             onClick={() => {
-              if (editableRoom === id) {
+              if (isEditableRoom === id) {
                 return;
               }
               router.push(`/report/rooms/${id}/input`);
@@ -40,7 +40,7 @@ export const ClickableList = (props: Props) => {
             <div className="flex items-center w-full">
               <ChatIcon />
               <div className="px-4 w-full">
-                {editableRoom === id ? (
+                {isEditableRoom === id ? (
                   <form
                     method="post"
                     onSubmit={async (e) => {
@@ -53,7 +53,7 @@ export const ClickableList = (props: Props) => {
                         store1Id,
                         store2Id,
                       });
-                      setEditableRoom(undefined);
+                      setIsEditableRoom(undefined);
                     }}
                   >
                     <TextField
@@ -75,7 +75,7 @@ export const ClickableList = (props: Props) => {
                   title: "名前を変更する",
                   icon: <ModeEditIcon />,
                   callback: () => {
-                    setEditableRoom(id);
+                    setIsEditableRoom(id);
                   },
                 },
                 {
