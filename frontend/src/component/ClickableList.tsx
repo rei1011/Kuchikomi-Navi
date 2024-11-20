@@ -27,68 +27,74 @@ export const ClickableList = (props: Props) => {
       {items.map((item) => {
         const { name, id, store1_id: store1Id, store2_id: store2Id } = item;
         return (
-          <ListItemButton
+          <div
             key={id}
-            className="bg-secondary rounded-lg py-5 justify-between"
-            onClick={() => {
-              if (isEditableRoom === id) {
-                return;
-              }
-              router.push(`/report/rooms/${id}/input`);
-            }}
+            className="flex justify-between bg-secondary rounded-lg items-center py-2 px-4"
           >
-            <div className="flex items-center w-full">
-              <ChatIcon />
-              <div className="px-4 w-full">
-                {isEditableRoom === id ? (
-                  <form
-                    method="post"
-                    onSubmit={async (e) => {
-                      e.preventDefault();
-                      await updateRoom({
-                        roomId: id.toString(),
-                        // TODO: Fix
-                        // @ts-ignore
-                        name: e.target[0].value,
-                        store1Id,
-                        store2Id,
-                      });
-                      setIsEditableRoom(undefined);
-                    }}
-                  >
-                    <TextField
-                      hiddenLabel
-                      defaultValue={name}
-                      className="h-full w-full"
-                      variant="standard"
-                      size="small"
-                    />
-                  </form>
-                ) : (
-                  <ListItemText primary={name} />
-                )}
+            <ListItemButton
+              disableGutters={true}
+              onClick={() => {
+                if (isEditableRoom === id) {
+                  return;
+                }
+                router.push(`/report/rooms/${id}/input`);
+              }}
+            >
+              <div className="flex items-center">
+                <ChatIcon />
+                <div className="px-4">
+                  {isEditableRoom === id ? (
+                    <form
+                      method="post"
+                      onSubmit={async (e) => {
+                        e.preventDefault();
+                        await updateRoom({
+                          roomId: id.toString(),
+                          // TODO: Fix
+                          // @ts-ignore
+                          name: e.target[0].value,
+                          store1Id,
+                          store2Id,
+                        });
+                        setIsEditableRoom(undefined);
+                      }}
+                    >
+                      <TextField
+                        hiddenLabel
+                        defaultValue={name}
+                        className="h-full w-full"
+                        variant="standard"
+                        size="small"
+                      />
+                    </form>
+                  ) : (
+                    <ListItemText primary={name} />
+                  )}
+                </div>
               </div>
+            </ListItemButton>
+            <div className="justify-between">
+              <EditChatRoomButton
+                options={[
+                  {
+                    title: "名前を変更する",
+                    icon: <ModeEditIcon />,
+                    callback: () => {
+                      setIsEditableRoom(id);
+                    },
+                  },
+                  {
+                    title: "削除する",
+                    icon: <DeleteIcon />,
+                    callback: async () => {
+                      await deleteRoom(id.toString());
+                    },
+                    isDanger: true,
+                  },
+                ]}
+              />
             </div>
-            <EditChatRoomButton
-              options={[
-                {
-                  title: "名前を変更する",
-                  icon: <ModeEditIcon />,
-                  callback: () => {
-                    setIsEditableRoom(id);
-                  },
-                },
-                {
-                  title: "削除する",
-                  icon: <DeleteIcon />,
-                  callback: async () => {
-                    await deleteRoom(id.toString());
-                  },
-                  isDanger: true,
-                },
-              ]}
-            />
-          </ListItemButton>
+          </div>
         );
       })}
     </List>
