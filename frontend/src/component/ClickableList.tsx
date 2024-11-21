@@ -18,7 +18,7 @@ type Props = {
 export const ClickableList = (props: Props) => {
   const { items } = props;
   const router = useRouter();
-  const [isEditableRoom, setIsEditableRoom] = useState<number | undefined>(
+  const [isEditableRoomId, setIsEditableRoomId] = useState<number | undefined>(
     undefined
   );
   const formInputRef = useRef<HTMLDivElement>(null);
@@ -28,15 +28,15 @@ export const ClickableList = (props: Props) => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       const target = event.target as Node | null;
       if (
-        isEditableRoom &&
+        isEditableRoomId &&
         formInputRef.current &&
         !formInputRef.current.contains(target)
       ) {
-        setIsEditableRoom(undefined);
+        setIsEditableRoomId(undefined);
       }
     };
 
-    if (isEditableRoom) {
+    if (isEditableRoomId) {
       document.addEventListener("mousedown", handleClickOutside);
       document.addEventListener("touchstart", handleClickOutside);
     }
@@ -45,7 +45,7 @@ export const ClickableList = (props: Props) => {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("touchstart", handleClickOutside);
     };
-  }, [isEditableRoom]);
+  }, [isEditableRoomId]);
 
   return (
     <List className="flex flex-col gap-4">
@@ -60,7 +60,7 @@ export const ClickableList = (props: Props) => {
               disableRipple
               disableGutters={true}
               onClick={() => {
-                if (isEditableRoom === id) {
+                if (isEditableRoomId === id) {
                   return;
                 }
                 router.push(`/report/rooms/${id}/input`);
@@ -69,12 +69,12 @@ export const ClickableList = (props: Props) => {
               <div className="flex items-center">
                 <ChatIcon />
                 <div className="px-4" ref={formInputRef}>
-                  {isEditableRoom === id ? (
+                  {isEditableRoomId === id ? (
                     <ListItemFormInput
                       id={id}
                       store1Id={store1Id}
                       store2Id={store2Id}
-                      setIsEditableRoom={setIsEditableRoom}
+                      setIsEditableRoom={setIsEditableRoomId}
                       name={name}
                     />
                   ) : (
@@ -90,7 +90,7 @@ export const ClickableList = (props: Props) => {
                     title: "名前を変更する",
                     icon: <ModeEditIcon />,
                     callback: () => {
-                      setIsEditableRoom(id);
+                      setIsEditableRoomId(id);
                     },
                   },
                   {
