@@ -30,21 +30,27 @@ export const StoreListForm = (props: Props) => {
   return (
     <div className="p-4 w-full">
       <form onSubmit={onSubmit}>
-        <RadioButtonGroup
-          label="店舗を選択"
-          options={options}
-          onChange={(event) => {
-            setStore(event.target.value, options);
-          }}
-        />
-        <Button
-          className="w-full"
-          type="submit"
-          variant="outlined"
-          disableRipple
-        >
-          選択
-        </Button>
+        <div className="pb-16">
+          <RadioButtonGroup
+            label="店舗を選択"
+            options={options}
+            onChange={(event) => {
+              setStore(event.target.value, options);
+            }}
+          />
+        </div>
+        <div className="fixed bottom-0 left-0 w-full p-4 bg-primary">
+          <Button
+            className="w-full bg-secondary border-secondary text-black"
+            type="submit"
+            variant="outlined"
+            disableRipple
+            disableTouchRipple
+            focusRipple={false}
+          >
+            選択
+          </Button>
+        </div>
       </form>
     </div>
   );
