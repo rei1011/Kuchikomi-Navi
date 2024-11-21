@@ -9,6 +9,7 @@ export const StartChatButton = () => {
   const router = useRouter();
   return (
     <Button
+      disableRipple
       size="small"
       color="inherit"
       className="w-full"

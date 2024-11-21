@@ -32,6 +32,7 @@ export const ClickableList = (props: Props) => {
             className="flex justify-between bg-secondary rounded-lg items-center py-2 px-4"
           >
             <ListItemButton
+              disableRipple
               disableGutters={true}
               onClick={() => {
                 if (isEditableRoom === id) {

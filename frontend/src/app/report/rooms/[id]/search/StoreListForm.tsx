@@ -37,7 +37,12 @@ export const StoreListForm = (props: Props) => {
             setStore(event.target.value, options);
           }}
         />
-        <Button className="w-full" type="submit" variant="outlined">
+        <Button
+          className="w-full"
+          type="submit"
+          variant="outlined"
+          disableRipple
+        >
           選択
         </Button>
       </form>
