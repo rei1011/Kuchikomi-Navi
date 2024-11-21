@@ -8,7 +8,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import TextField from "@mui/material/TextField";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { EditChatRoomButton } from "./EditChatRoomButton";
 
 type Props = {
@@ -45,29 +45,13 @@ export const ClickableList = (props: Props) => {
                 <ChatIcon />
                 <div className="px-4">
                   {isEditableRoom === id ? (
-                    <form
-                      method="post"
-                      onSubmit={async (e) => {
-                        e.preventDefault();
-                        await updateRoom({
-                          roomId: id.toString(),
-                          // TODO: Fix
-                          // @ts-ignore
-                          name: e.target[0].value,
-                          store1Id,
-                          store2Id,
-                        });
-                        setIsEditableRoom(undefined);
-                      }}
-                    >
-                      <TextField
-                        hiddenLabel
-                        defaultValue={name}
-                        className="h-full w-full"
-                        variant="standard"
-                        size="small"
-                      />
-                    </form>
+                    <ListItemFormInput
+                      id={id}
+                      store1Id={store1Id}
+                      store2Id={store2Id}
+                      setIsEditableRoom={setIsEditableRoom}
+                      name={name}
+                    />
                   ) : (
                     <ListItemText primary={name} />
                   )}
@@ -101,3 +85,40 @@ export const ClickableList = (props: Props) => {
     </List>
   );
 };
+
+type ListItemFormInputProps = {
+  id: number;
+  store1Id: number | null;
+  store2Id: number | null;
+  setIsEditableRoom: Dispatch<SetStateAction<number | undefined>>;
+  name: string | null;
+};
+
+function ListItemFormInput(props: ListItemFormInputProps) {
+  const { id, store1Id, store2Id, setIsEditableRoom, name } = props;
+  return (
+    <form
+      method="post"
+      onSubmit={async (e) => {
+        e.preventDefault();
+        await updateRoom({
+          roomId: id.toString(),
+          // TODO: Fix
+          // @ts-ignore
+          name: e.target[0].value,
+          store1Id,
+          store2Id,
+        });
+        setIsEditableRoom(undefined);
+      }}
+    >
+      <TextField
+        hiddenLabel
+        defaultValue={name}
+        className="h-full w-full"
+        variant="standard"
+        size="small"
+      />
+    </form>
+  );
+}
