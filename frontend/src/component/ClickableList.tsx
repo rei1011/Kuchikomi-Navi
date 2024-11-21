@@ -8,7 +8,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import TextField from "@mui/material/TextField";
 import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { EditChatRoomButton } from "./EditChatRoomButton";
 
 type Props = {
@@ -21,6 +21,31 @@ export const ClickableList = (props: Props) => {
   const [isEditableRoom, setIsEditableRoom] = useState<number | undefined>(
     undefined
   );
+  const formInputRef = useRef<HTMLDivElement>(null);
+
+  // 範囲外をタップした時に編集モードを終了させるための処理
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as Node | null;
+      if (
+        isEditableRoom &&
+        formInputRef.current &&
+        !formInputRef.current.contains(target)
+      ) {
+        setIsEditableRoom(undefined);
+      }
+    };
+
+    if (isEditableRoom) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isEditableRoom]);
 
   return (
     <List className="flex flex-col gap-4">
@@ -43,7 +68,7 @@ export const ClickableList = (props: Props) => {
             >
               <div className="flex items-center">
                 <ChatIcon />
-                <div className="px-4">
+                <div className="px-4" ref={formInputRef}>
                   {isEditableRoom === id ? (
                     <ListItemFormInput
                       id={id}
