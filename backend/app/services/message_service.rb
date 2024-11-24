@@ -8,8 +8,8 @@ class MessageService
     MessageRepository.find_by_room_id(room_id)
   end
 
-  def self.create(store_ids, new_message, room_id)
-    stores = StoreRepository.find_by_ids(store_ids)
+  def self.create(room_id, new_message)
+    stores = StoreRepository.find_by_room_id(room_id)
     messages = MessageRepository.find_by_room_id(room_id)
     MessageRepository.create(stores, room_id, new_message, messages)
     MessageRepository.find_by_room_id(room_id)

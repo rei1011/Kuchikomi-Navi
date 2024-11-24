@@ -90,14 +90,9 @@ paths:
               type: object
               additionalProperties: false
               properties:
-                stores:
-                  type: array
-                  items:
-                    type: integer
                 message:
                   type: string
               required:
-              - stores
               - message
         required: true
   "/rooms":

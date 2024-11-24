@@ -35,4 +35,9 @@ class StoreRepository
       Store.find(id).to_domain
     end
   end
+
+  def self.find_by_room_id(room_id)
+    room = Room.find(room_id)
+    [room.store1, room.store2].compact
+  end
 end

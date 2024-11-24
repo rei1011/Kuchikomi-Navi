@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe StoreRepository do
+RSpec.describe StoreRepository do # rubocop:disable Metrics/BlockLength
   def create_store_by_address(prefecture, municipality)
     Store.create(store_name: 'sample',
                  prefecture:,
@@ -81,6 +81,22 @@ RSpec.describe StoreRepository do
       expect(stores.size).to eq 2
       expect(stores[0].address.municipality).to eq '池袋'
       expect(stores[1].address.municipality).to eq '五反田'
+    end
+  end
+
+  context 'find_by_room_id' do
+    context 'チャットルームに紐づく店舗情報が存在する場合' do
+      let(:room) { create(:room, :with_store) }
+      it '店舗情報が取得できる' do
+        stores = StoreRepository.find_by_room_id(room.id)
+        expect(stores.size).to eq 2
+      end
+    end
+
+    context 'チャットルームに紐づく店舗情報が存在しない場合' do
+      it 'ActiveRecord::RecordNotFoundのエラーが発生する' do
+        expect { StoreRepository.find_by_room_id(1) }.to raise_error(ActiveRecord::RecordNotFound)
+      end
     end
   end
 end

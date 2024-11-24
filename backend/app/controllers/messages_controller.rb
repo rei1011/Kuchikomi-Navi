@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
   end
 
   def create
-    MessageService.create(params['stores'], params['message'], params['room_id'])
+    MessageService.create(params['room_id'], params['message'])
     render json: {}
   end
 end

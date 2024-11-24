@@ -95,7 +95,6 @@ export interface paths {
             requestBody: {
                 content: {
                     "application/json": {
-                        stores: number[];
                         message: string;
                     };
                 };

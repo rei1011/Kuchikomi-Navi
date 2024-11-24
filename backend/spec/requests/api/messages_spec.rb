@@ -42,16 +42,14 @@ RSpec.describe 'messages', type: :request do # rubocop:disable Metrics/BlockLeng
         type: :object,
         additionalProperties: false,
         properties: {
-          stores: { type: :array, items: { type: :integer } },
           message: { type: :string }
         },
-        required: %w[stores message]
+        required: %w[message]
       }
       parameter name: :room_id, in: :path, type: :string
       produces 'application/json'
       response '200', 'get messages' do
         let(:room_id) { create(:room).id }
-        let(:body) { { stores: [create(:store).id, create(:store).id], message: 'おすすめのお店を教えて' } }
 
         run_test!
       end

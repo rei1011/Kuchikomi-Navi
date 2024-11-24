@@ -55,7 +55,6 @@ const useReport = ({
     setNewMessage("");
 
     await createMessage({
-      stores: [selectedStore[0].value, selectedStore[1].value],
       message: newMessage,
       roomId,
     });

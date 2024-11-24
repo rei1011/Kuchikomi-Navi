@@ -5,11 +5,9 @@ import { paths } from "../../../openapi/schema";
 import { client } from "../client";
 
 export async function createMessage({
-  stores,
   message,
   roomId,
 }: {
-  stores: number[];
   message: string;
   roomId: string;
 }) {
@@ -22,8 +20,7 @@ export async function createMessage({
       },
     },
     body: {
-      stores,
-      message,
+      message: message,
     },
   });
 
