@@ -4,9 +4,9 @@ require 'swagger_helper'
 require 'rails_helper'
 require 'base64'
 
-RSpec.describe 'api/comparison_report', type: :request do
+RSpec.describe 'api/comparison_report', type: :request do # rubocop:disable Metrics/BlockLength
   before do
-    allow(ReportService).to receive(:find).and_return('report')
+    allow(MessageService).to receive(:find).and_return([{ id: 1, value: 'おすすめのお店を教えて', role: 'assistant' }])
   end
 
   path '/comparison_report' do
@@ -14,16 +14,24 @@ RSpec.describe 'api/comparison_report', type: :request do
       tags 'Comparison Report'
       consumes 'application/json'
       parameter name: :stores, in: :query, type: :array, items: { type: :string }, required: true
-      parameter name: :compare_method, in: :query, type: :string, required: true
+      parameter name: :message, in: :query, type: :string, required: true
+      parameter name: :room_id, in: :query, type: :string, required: true
       produces 'application/json'
       response '200', 'Comparison Report found' do
-        schema type: :object,
-               properties: {
-                 report: { type: :string }
-               },
-               required: %i[report]
+        schema type: :array,
+               items: {
+                 type: :object,
+                 additionalProperties: false,
+                 properties: {
+                   id: { type: :integer },
+                   value: { type: :string },
+                   role: { type: :string, enum: %w[user assistant] }
+                 },
+                 required: %i[id value role]
+               }
         let(:stores) { [1, 2] }
-        let(:compare_method) { 'おすすめのお店を教えて' }
+        let(:room_id) { 1 }
+        let(:message) { 'おすすめのお店を教えて' }
 
         run_test!
       end

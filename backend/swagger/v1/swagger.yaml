@@ -48,7 +48,12 @@ paths:
         required: true
         schema:
           type: array
-      - name: compare_method
+      - name: message
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: room_id
         in: query
         required: true
         schema:
@@ -59,12 +64,24 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  report:
-                    type: string
-                required:
-                - report
+                type: array
+                items:
+                  type: object
+                  additionalProperties: false
+                  properties:
+                    id:
+                      type: integer
+                    value:
+                      type: string
+                    role:
+                      type: string
+                      enum:
+                      - user
+                      - assistant
+                  required:
+                  - id
+                  - value
+                  - role
   "/rooms":
     get:
       summary: Get Rooms

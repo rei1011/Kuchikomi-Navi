@@ -13,6 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    role: "user",
+    $role: "user",
+    message: "おすすめのお店を教えて",
   },
 };

@@ -2,6 +2,7 @@
 
 import { getComparisonReport } from "@/api/report/api";
 import { updateRoom as innerUpdateRoom } from "@/api/report/rooms/api";
+import { Messages } from "@/api/report/type";
 import { RadioButtonOptions } from "@/component/RadioButtonGroup";
 import { useParams } from "next/navigation";
 import {
@@ -45,23 +46,24 @@ const useReport = ({
     0: store1 ? { value: store1.id, label: store1.name } : undefined,
     1: store2 ? { value: store2.id, label: store2.name } : undefined,
   });
-  const [compareMethod, setCompareMethod] = useState("");
-  const [report, setReport] = useState("");
+  const [newMessage, setNewMessage] = useState("");
+  const [allMessages, setAllMessages] = useState<Messages>([]);
 
   const getReport = useCallback(async () => {
     if (!selectedStore[0] || !selectedStore[1]) {
       return;
     }
 
-    setCompareMethod("");
+    setNewMessage("");
 
     const res = await getComparisonReport({
       stores: [selectedStore[0].value, selectedStore[1].value],
-      compareMethod,
+      message: newMessage,
+      roomId,
     });
 
-    setReport(res.report);
-  }, [compareMethod, selectedStore]);
+    setAllMessages(res);
+  }, [newMessage, roomId, selectedStore]);
 
   const setStore = useCallback(
     (value: string, options: RadioButtonOptions) => {
@@ -78,7 +80,7 @@ const useReport = ({
   );
 
   const setMethod = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCompareMethod(e.target.value);
+    setNewMessage(e.target.value);
   }, []);
 
   const updateRoom = useCallback(async () => {
@@ -95,10 +97,10 @@ const useReport = ({
     selectedIndex,
     setSelectedIndex,
     setStore,
-    compareMethod,
+    newMessage,
     setMethod,
     getReport,
-    report,
+    allMessages,
     updateRoom,
   };
 };

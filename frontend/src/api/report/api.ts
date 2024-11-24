@@ -5,16 +5,18 @@ import { client } from "../client";
 
 export async function getComparisonReport({
   stores,
-  compareMethod,
+  message,
+  roomId,
 }: {
   stores: number[];
-  compareMethod: string;
+  message: string;
+  roomId: string;
 }) {
   const path = "/comparison_report";
   const apiClient = client<paths>();
   const res = await apiClient.GET(path, {
     params: {
-      query: { stores, compare_method: compareMethod },
+      query: { stores, message, room_id: roomId },
     },
   });
 

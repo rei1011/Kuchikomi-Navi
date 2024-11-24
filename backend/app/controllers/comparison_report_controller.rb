@@ -6,7 +6,7 @@ require 'json'
 class ComparisonReportController < ApplicationController
   def show
     query_params = Rack::Utils.parse_query(request.query_string)
-    report = ReportService.find(query_params['stores'], query_params['compare_method'])
-    render(json: { report: })
+    message = MessageService.find(query_params['stores'], query_params['message'], query_params['room_id'])
+    render json: ReportSerializer.render(message)
   end
 end

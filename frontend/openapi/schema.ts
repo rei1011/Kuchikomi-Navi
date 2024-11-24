@@ -58,7 +58,8 @@ export interface paths {
             parameters: {
                 query: {
                     stores: unknown[];
-                    compare_method: string;
+                    message: string;
+                    room_id: string;
                 };
                 header?: never;
                 path?: never;
@@ -73,8 +74,11 @@ export interface paths {
                     };
                     content: {
                         "application/json": {
-                            report: string;
-                        };
+                            id: number;
+                            value: string;
+                            /** @enum {string} */
+                            role: "user" | "assistant";
+                        }[];
                     };
                 };
             };

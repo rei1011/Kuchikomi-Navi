@@ -75,6 +75,9 @@ group :development, :test do
 
   # http request mock
   gem 'webmock'
+
+  gem 'annotate'
+  gem 'pry-rails'
 end
 
 gem 'blueprinter'
@@ -86,8 +89,4 @@ group :test do
   gem 'rspec_junit_formatter'
   gem 'simplecov', require: false
   gem 'simplecov-cobertura', require: false
-end
-
-group :development do
-  gem 'annotate'
 end

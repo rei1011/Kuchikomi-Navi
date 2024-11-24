@@ -80,4 +80,7 @@ RSpec.configure do |config|
   config.after(:all) do
     DatabaseCleaner.clean
   end
+
+  # travel_to settings
+  config.include ActiveSupport::Testing::TimeHelpers
 end
