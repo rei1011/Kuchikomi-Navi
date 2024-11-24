@@ -12,9 +12,9 @@ export default async function ReportInput({
   const id = (await params).id;
   return (
     <Main paddingBottom={false}>
-      <div className="flex flex-col gap-4 w-full h-full">
+      <div className="flex flex-col gap-4 w-full h-full overflow-scroll">
         <AppBarWithMenu />
-        <div className="flex flex-col gap-8 px-4 w-full justify-between overscroll-y-auto">
+        <div className="flex flex-col gap-8 px-4 pb-8 w-full justify-between overscroll-y-auto">
           <AddStoreSection id={id} />
           <ChatSection roomId={id} />
         </div>
