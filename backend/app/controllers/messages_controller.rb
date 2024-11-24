@@ -6,7 +6,7 @@ require 'json'
 class MessagesController < ApplicationController
   def index
     messages = MessageService.find(params['room_id'])
-    render json: ReportSerializer.render(messages)
+    render json: MessageSerializer.render(messages)
   end
 
   def create
