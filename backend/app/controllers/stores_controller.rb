@@ -6,12 +6,4 @@ class StoresController < ApplicationController
     stores = StoreService.find(SearchWord.new(params[:keyword]))
     render(json: StoresRes.new(stores))
   end
-
-  def error_test
-    stores = StoreService.find(SearchWord.new(params[:keyword]))
-    TestService.test
-    render(json: StoresRes.new(stores))
-  rescue StandardError => e
-    KuchikomiLogger.error e
-  end
 end
