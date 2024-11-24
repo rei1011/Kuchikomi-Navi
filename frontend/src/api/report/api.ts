@@ -12,11 +12,14 @@ export async function getComparisonReport({
   message: string;
   roomId: string;
 }) {
-  const path = "/comparison_report";
+  const path = "/rooms/{room_id}/messages";
   const apiClient = client<paths>();
   const res = await apiClient.GET(path, {
     params: {
-      query: { stores, message, room_id: roomId },
+      query: { stores, message },
+      path: {
+        room_id: roomId,
+      },
     },
   });
 

@@ -35,11 +35,11 @@ paths:
                   - prostutite_name
                   - comment
                   - publication_date
-  "/comparison_report":
+  "/rooms/{room_id}/messages":
     get:
-      summary: Get Comparison Report
+      summary: Get Messages
       tags:
-      - Comparison Report
+      - Messages
       parameters:
       - name: stores
         in: query
@@ -54,13 +54,13 @@ paths:
         schema:
           type: string
       - name: room_id
-        in: query
+        in: path
         required: true
         schema:
           type: string
       responses:
         '200':
-          description: Comparison Report found
+          description: get messages
           content:
             application/json:
               schema:

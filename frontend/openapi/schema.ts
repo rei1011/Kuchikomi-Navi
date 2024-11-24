@@ -46,28 +46,29 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/comparison_report": {
+    "/rooms/{room_id}/messages": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Get Comparison Report */
+        /** Get Messages */
         get: {
             parameters: {
                 query: {
                     stores: unknown[];
                     message: string;
-                    room_id: string;
                 };
                 header?: never;
-                path?: never;
+                path: {
+                    room_id: string;
+                };
                 cookie?: never;
             };
             requestBody?: never;
             responses: {
-                /** @description Comparison Report found */
+                /** @description get messages */
                 200: {
                     headers: {
                         [name: string]: unknown;

@@ -1,3 +1,3 @@
 import { ExtractGet, ExtractResponse } from "@/utils/type-utils";
 
-export type Messages = ExtractResponse<ExtractGet<"/comparison_report">>;
+export type Messages = ExtractResponse<ExtractGet<"/rooms/{room_id}/messages">>;
