@@ -56,7 +56,7 @@ export async function createRoom(id: number) {
     );
   }
 
-  revalidatePath("/report/rooms");
+  revalidatePath("/rooms");
 
   return res.data;
 }
@@ -85,8 +85,8 @@ export async function updateRoom({
     },
   });
 
-  revalidatePath("/report/rooms/[id]", "layout");
-  revalidatePath("/report/rooms", "layout");
+  revalidatePath("/rooms/[id]", "layout");
+  revalidatePath("/rooms", "layout");
 }
 
 export async function deleteRoom(roomId: string) {
@@ -100,5 +100,5 @@ export async function deleteRoom(roomId: string) {
     },
   });
 
-  revalidatePath("/report/rooms");
+  revalidatePath("/rooms");
 }

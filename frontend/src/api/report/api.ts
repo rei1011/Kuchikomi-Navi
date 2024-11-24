@@ -28,7 +28,7 @@ export async function createMessage({
     throw new Error(`Failed to createMessage. path = ${path}`);
   }
 
-  revalidatePath("/report/rooms/[id]", "layout");
+  revalidatePath("/rooms/[id]", "layout");
 }
 
 export async function findMessages(roomId: string) {

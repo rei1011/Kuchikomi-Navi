@@ -1,6 +1,5 @@
 "use client";
 
-import { useReportContext } from "@/app/report/rooms/[id]/report-context";
 import {
   RadioButtonGroup,
   RadioButtonOptions,
@@ -8,6 +7,7 @@ import {
 import Button from "@mui/material/Button";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
+import { useReportContext } from "../report-context";
 
 type Props = {
   options: RadioButtonOptions;
@@ -22,7 +22,7 @@ export const StoreListForm = (props: Props) => {
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       await updateRoom();
-      router.push(`/report/rooms/${roomId}/input`);
+      router.push(`/rooms/${roomId}/input`);
     },
     [roomId, router, updateRoom]
   );

@@ -23,7 +23,7 @@ export const Menu = () => {
         open={open}
         onClose={handleClose}
       >
-        <Link href="/report/rooms">
+        <Link href="/rooms">
           <Box
             sx={{
               display: "flex",

@@ -63,7 +63,7 @@ export const ClickableList = (props: Props) => {
                 if (isEditableRoomId === id) {
                   return;
                 }
-                router.push(`/report/rooms/${id}/input`);
+                router.push(`/rooms/${id}/input`);
               }}
             >
               <div className="flex items-center">
