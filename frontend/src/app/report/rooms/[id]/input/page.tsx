@@ -16,7 +16,7 @@ export default async function ReportInput({
         <AppBarWithMenu />
         <div className="flex flex-col gap-8 px-4 w-full justify-between overscroll-y-auto">
           <AddStoreSection id={id} />
-          <ChatSection />
+          <ChatSection roomId={id} />
         </div>
       </div>
       <SendMessageSection />

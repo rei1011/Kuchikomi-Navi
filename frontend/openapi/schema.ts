@@ -56,10 +56,7 @@ export interface paths {
         /** Get Messages */
         get: {
             parameters: {
-                query: {
-                    stores: unknown[];
-                    message: string;
-                };
+                query?: never;
                 header?: never;
                 path: {
                     room_id: string;
@@ -85,7 +82,34 @@ export interface paths {
             };
         };
         put?: never;
-        post?: never;
+        /** Create a message */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    room_id: string;
+                };
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        stores: number[];
+                        message: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description get messages */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         delete?: never;
         options?: never;
         head?: never;

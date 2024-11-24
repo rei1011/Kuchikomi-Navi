@@ -1,9 +1,10 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { paths } from "../../../openapi/schema";
 import { client } from "../client";
 
-export async function getComparisonReport({
+export async function createMessage({
   stores,
   message,
   roomId,
@@ -14,9 +15,30 @@ export async function getComparisonReport({
 }) {
   const path = "/rooms/{room_id}/messages";
   const apiClient = client<paths>();
+  const res = await apiClient.POST(path, {
+    params: {
+      path: {
+        room_id: roomId,
+      },
+    },
+    body: {
+      stores,
+      message,
+    },
+  });
+
+  if (res.error) {
+    throw new Error(`Failed to createMessage. path = ${path}`);
+  }
+
+  revalidatePath("/report/rooms/[id]", "layout");
+}
+
+export async function findMessages(roomId: string) {
+  const path = "/rooms/{room_id}/messages";
+  const apiClient = client<paths>();
   const res = await apiClient.GET(path, {
     params: {
-      query: { stores, message },
       path: {
         room_id: roomId,
       },
@@ -24,7 +46,7 @@ export async function getComparisonReport({
   });
 
   if (res.error) {
-    throw new Error(`Failed to fetch data. path = ${path}`);
+    throw new Error(`Failed to findMessages. path = ${path}`);
   }
 
   return res.data;

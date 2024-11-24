@@ -1,8 +1,7 @@
 "use client";
 
-import { getComparisonReport } from "@/api/report/api";
+import { createMessage } from "@/api/report/api";
 import { updateRoom as innerUpdateRoom } from "@/api/report/rooms/api";
-import { Messages } from "@/api/report/type";
 import { RadioButtonOptions } from "@/component/RadioButtonGroup";
 import { useParams } from "next/navigation";
 import {
@@ -47,7 +46,6 @@ const useReport = ({
     1: store2 ? { value: store2.id, label: store2.name } : undefined,
   });
   const [newMessage, setNewMessage] = useState("");
-  const [allMessages, setAllMessages] = useState<Messages>([]);
 
   const getReport = useCallback(async () => {
     if (!selectedStore[0] || !selectedStore[1]) {
@@ -56,13 +54,11 @@ const useReport = ({
 
     setNewMessage("");
 
-    const res = await getComparisonReport({
+    await createMessage({
       stores: [selectedStore[0].value, selectedStore[1].value],
       message: newMessage,
       roomId,
     });
-
-    setAllMessages(res);
   }, [newMessage, roomId, selectedStore]);
 
   const setStore = useCallback(
@@ -100,7 +96,6 @@ const useReport = ({
     newMessage,
     setMethod,
     getReport,
-    allMessages,
     updateRoom,
   };
 };

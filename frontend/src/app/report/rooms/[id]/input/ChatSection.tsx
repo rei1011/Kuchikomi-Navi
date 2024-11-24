@@ -1,10 +1,13 @@
-"use client";
-
-import { useReportContext } from "@/app/report/rooms/[id]/report-context";
+import { findMessages } from "@/api/report/api";
 import { ChatMessage } from "@/component/ChatMessage";
 
-export const ChatSection = () => {
-  const { allMessages } = useReportContext();
+type Props = {
+  roomId: string;
+};
+
+export const ChatSection = async (props: Props) => {
+  const { roomId } = props;
+  const allMessages = await findMessages(roomId);
   return (
     <div className="w-full">
       <div className="flex flex-col gap-4">

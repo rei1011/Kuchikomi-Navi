@@ -5,16 +5,13 @@ require 'rails_helper'
 require 'base64'
 
 RSpec.describe 'messages', type: :request do # rubocop:disable Metrics/BlockLength
-  before do
-    allow(MessageService).to receive(:find).and_return([{ id: 1, value: 'おすすめのお店を教えて', role: 'assistant' }])
-  end
-
   path '/rooms/{room_id}/messages' do # rubocop:disable Metrics/BlockLength
     get 'Get Messages' do
+      before do
+        allow(MessageService).to receive(:find).and_return([{ id: 1, value: 'おすすめのお店を教えて', role: 'assistant' }])
+      end
       tags 'Messages'
       consumes 'application/json'
-      parameter name: :stores, in: :query, type: :array, items: { type: :string }, required: true
-      parameter name: :message, in: :query, type: :string, required: true
       parameter name: :room_id, in: :path, type: :string
       produces 'application/json'
       response '200', 'get messages' do
@@ -30,9 +27,31 @@ RSpec.describe 'messages', type: :request do # rubocop:disable Metrics/BlockLeng
                  required: %i[id value role]
                }
         let(:room_id) { create(:room).id }
-        let(:stores) { [1, 2] }
-        let(:room_id) { 1 }
-        let(:message) { 'おすすめのお店を教えて' }
+
+        run_test!
+      end
+    end
+
+    post 'Create a message' do
+      before do
+        allow(MessageService).to receive(:create).and_return(nil)
+      end
+      tags 'Messages'
+      consumes 'application/json'
+      parameter name: :body, in: :body, required: true, schema: {
+        type: :object,
+        additionalProperties: false,
+        properties: {
+          stores: { type: :array, items: { type: :integer } },
+          message: { type: :string }
+        },
+        required: %w[stores message]
+      }
+      parameter name: :room_id, in: :path, type: :string
+      produces 'application/json'
+      response '200', 'get messages' do
+        let(:room_id) { create(:room).id }
+        let(:body) { { stores: [create(:store).id, create(:store).id], message: 'おすすめのお店を教えて' } }
 
         run_test!
       end
