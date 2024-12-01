@@ -36,6 +36,15 @@ steps:
       ]
     secretEnv: ["RAILS_MASTER_KEY"]
     dir: "backend"
+  - name: "gcr.io/google-appengine/exec-wrapper"
+    entrypoint: "bash"
+    args:
+      [
+        "-c",
+        "/buildstep/execute.sh -i ${_ARTIFACT_REPOSITORY_IMAGE_NAME}:${SHORT_SHA} -s ${PROJECT_ID}:${_REGION}:${_INSTANCE_NAME} -e RAILS_MASTER_KEY=$$RAILS_MASTER_KEY -- bundle exec rails db:seed"
+      ]
+    secretEnv: ["RAILS_MASTER_KEY"]
+    dir: "backend"
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args: 
