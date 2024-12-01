@@ -4,6 +4,20 @@ resource "google_artifact_registry_repository" "backend_app" {
   repository_id = var.backend_app_name
   description   = "backend app"
   format        = "DOCKER"
+  cleanup_policies {
+    id     = "delete"
+    action = "DELETE"
+    condition {
+      tag_state = "ANY"
+    }
+  }
+  cleanup_policies {
+    id     = "keep"
+    action = "KEEP"
+    most_recent_versions {
+      keep_count = 2
+    }
+  }
 }
 
 # railsのmaster keyを保存するためのSecret Managerを作成

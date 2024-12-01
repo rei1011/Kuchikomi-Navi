@@ -1,22 +1,22 @@
 # jobのimageを保存するためのregistryを作成
 resource "google_artifact_registry_repository" "job_app" {
-  location      = var.region
-  repository_id = var.job_app_name
-  description   = "job app"
-  format        = "DOCKER"
+  location               = var.region
+  repository_id          = var.job_app_name
+  description            = "job app"
+  format                 = "DOCKER"
   cleanup_policy_dry_run = false
   cleanup_policies {
     id     = "delete"
     action = "DELETE"
     condition {
-      tag_state    = "ANY"
+      tag_state = "ANY"
     }
   }
   cleanup_policies {
     id     = "keep"
     action = "KEEP"
     most_recent_versions {
-      keep_count            = 2
+      keep_count = 2
     }
   }
 }

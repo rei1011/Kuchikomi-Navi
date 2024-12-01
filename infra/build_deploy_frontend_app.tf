@@ -7,6 +7,20 @@ resource "google_artifact_registry_repository" "frontend-app" {
   repository_id = var.frontend_app_name
   description   = "frontend app"
   format        = "DOCKER"
+  cleanup_policies {
+    id     = "delete"
+    action = "DELETE"
+    condition {
+      tag_state = "ANY"
+    }
+  }
+  cleanup_policies {
+    id     = "keep"
+    action = "KEEP"
+    most_recent_versions {
+      keep_count = 2
+    }
+  }
 }
 
 # Basic認証のユーザー名を保存するためのSecret Managerを作成
