@@ -16,7 +16,6 @@ resource "google_artifact_registry_repository" "job_app" {
     id     = "keep"
     action = "KEEP"
     most_recent_versions {
-      package_name_prefixes = ["webapp", "mobile", "sandbox"]
       keep_count            = 2
     }
   }
