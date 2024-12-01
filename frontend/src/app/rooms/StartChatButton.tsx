@@ -15,7 +15,7 @@ export const StartChatButton = () => {
       className="w-full"
       onClick={async () => {
         const res = await createRoom(2);
-        router.push(`/report/rooms/${res.id}/input`);
+        router.push(`/rooms/${res.id}/input`);
       }}
     >
       <div className="border-2 border-gray flex justify-center p-6 border-dashed rounded-xl w-full">
