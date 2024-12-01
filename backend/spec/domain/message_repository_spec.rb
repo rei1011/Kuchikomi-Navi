@@ -44,6 +44,18 @@ RSpec.describe MessageRepository do # rubocop:disable Metrics/BlockLength
           is_expected.to eq([message1, message2, message3, message4])
         end
       end
+
+      context 'メッセージが非表示の場合' do
+        let!(:message4) do
+          travel_to Time.zone.local(2024, 11, 24, 11, 23, 0) do
+            create(:message, room_id:, is_show: false)
+          end
+        end
+
+        it '非表示のメッセージは取得できない' do
+          is_expected.to eq([message1, message2, message3])
+        end
+      end
     end
 
     context 'ルームIDに紐づくメッセージが存在しない場合' do
@@ -56,7 +68,6 @@ RSpec.describe MessageRepository do # rubocop:disable Metrics/BlockLength
   end
 
   describe 'メッセージを作成する' do # rubocop:disable Metrics/BlockLength
-    let(:stores) { [create(:store)] }
     let(:room) { create(:room, :with_store) }
     let(:room_id) { room.id }
     let(:new_message) { 'おすすめのお店を教えて' }
@@ -86,19 +97,10 @@ RSpec.describe MessageRepository do # rubocop:disable Metrics/BlockLength
         allow(described_class).to receive(:connection).and_return(stub_connection)
       end
 
-      context 'ルームIDに紐づく既存のメッセージが存在しない場合' do
-        let(:old_message) { [] }
-        it '店舗情報が付与されたユーザーのメッセージとclaudeからのレスポンスが保存されること' do
-          described_class.create(stores, room_id, new_message, old_message)
-          expect(Message.first.value).to eq("#{new_message}#{stores}")
-          expect(Message.last.value).to eq('CCCATS')
-        end
-      end
-
-      context 'ルームIDに紐づく既存のメッセージが存在する場合' do
+      context 'claudeのAPIが正常に利用できる場合' do
         let(:old_message) { [create(:message)] }
-        it '店舗情報が付与されていないユーザーのメッセージとclaudeからのレスポンスが保存されること' do
-          described_class.create(stores, room_id, new_message, old_message)
+        it 'ユーザーのメッセージとclaudeからのレスポンスが保存されること' do
+          described_class.create(room_id, new_message, old_message, true)
           expect(Message.second.value).to eq(new_message)
           expect(Message.last.value).to eq('CCCATS')
         end
@@ -120,7 +122,7 @@ RSpec.describe MessageRepository do # rubocop:disable Metrics/BlockLength
       end
 
       it 'ユーザーのメッセージのみ保存されること' do
-        described_class.create(stores, room_id, new_message, old_message)
+        described_class.create(room_id, new_message, old_message, true)
         expect(Message.second.value).to eq(new_message)
       end
     end

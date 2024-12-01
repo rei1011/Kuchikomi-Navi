@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_24_053129) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_01_063113) do
   create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "store_name", null: false
     t.string "prostitute_name", null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_24_053129) do
     t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_show", default: true, null: false
     t.index ["room_id"], name: "index_messages_on_room_id"
   end
 

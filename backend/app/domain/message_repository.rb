@@ -4,16 +4,19 @@ require 'faraday'
 
 class MessageRepository # rubocop:disable Style/Documentation
   def self.find_by_room_id(room_id)
+    Message.where(room_id:).and(Message.where(is_show: true)).order(created_at: :asc, id: :asc)
+  end
+
+  def self.find_all_by_room_id(room_id)
     Message.where(room_id:).order(created_at: :asc, id: :asc)
   end
 
-  def self.create(stores, room_id, new_message, old_messages) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+  def self.create(room_id, new_message, old_messages, is_show) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
     conn = connection
 
-    message = old_messages.empty? ? new_message + stores.to_s : new_message
     all_messages = old_messages.map do |m|
       { "role": m.role, "content": m.value }
-    end.push({ "role": 'user', "content": message })
+    end.push({ "role": 'user', "content": new_message })
 
     begin
       response = conn.post('/v1/messages') do |req|
@@ -27,11 +30,11 @@ class MessageRepository # rubocop:disable Style/Documentation
 
         }.to_json
       end
-      Message.create!(room_id:, role: 'user', value: message)
-      Message.create!(room_id:, role: 'assistant', value: JSON.parse(response.body)['content'][0]['text'])
+      Message.create!(room_id:, role: 'user', value: new_message, is_show:)
+      Message.create!(room_id:, role: 'assistant', value: JSON.parse(response.body)['content'][0]['text'], is_show:)
     rescue StandardError => e
       KuchikomiLogger.error e
-      Message.create!(room_id:, role: 'user', value: message)
+      Message.create!(room_id:, role: 'user', value: new_message, is_show:)
     end
   end
 
