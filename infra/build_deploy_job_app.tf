@@ -4,6 +4,22 @@ resource "google_artifact_registry_repository" "job_app" {
   repository_id = var.job_app_name
   description   = "job app"
   format        = "DOCKER"
+  cleanup_policy_dry_run = false
+  cleanup_policies {
+    id     = "delete"
+    action = "DELETE"
+    condition {
+      tag_state    = "ANY"
+    }
+  }
+  cleanup_policies {
+    id     = "keep"
+    action = "KEEP"
+    most_recent_versions {
+      package_name_prefixes = ["webapp", "mobile", "sandbox"]
+      keep_count            = 2
+    }
+  }
 }
 
 # mainブランチのコミットを検知してimageのビルド & registryへimageのpush & Cloud Runへのデプロイを実行
