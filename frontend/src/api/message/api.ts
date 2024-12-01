@@ -2,7 +2,7 @@
 
 import { client } from "@/api/client";
 import { revalidatePath } from "next/cache";
-import { paths } from "../../../../openapi/schema";
+import { paths } from "../../../openapi/schema";
 
 export async function findAllRooms() {
   const path = "/rooms";

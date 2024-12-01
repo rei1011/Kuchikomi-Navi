@@ -1,5 +1,5 @@
-import { deleteRoom, updateRoom } from "@/api/report/rooms/api";
-import { Rooms } from "@/api/report/rooms/type";
+import { deleteRoom, updateRoom } from "@/api/message/api";
+import { Rooms } from "@/api/message/type";
 import ChatIcon from "@mui/icons-material/Chat";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";

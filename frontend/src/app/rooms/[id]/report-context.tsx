@@ -1,7 +1,7 @@
 "use client";
 
+import { updateRoom as innerUpdateRoom } from "@/api/message/api";
 import { createMessage } from "@/api/report/api";
-import { updateRoom as innerUpdateRoom } from "@/api/report/rooms/api";
 import { RadioButtonOptions } from "@/component/RadioButtonGroup";
 import { useParams } from "next/navigation";
 import {
