@@ -18,20 +18,36 @@ class MessageRepository # rubocop:disable Style/Documentation
       { "role": m.role, "content": m.value }
     end.push({ "role": 'user', "content": new_message })
 
+    streamd = ''
+
     begin
-      response = conn.post('/v1/messages') do |req|
+      conn.post('/v1/messages') do |req|
         req.headers['x-api-key'] = Rails.application.credentials.claude[:api_key]
         req.headers['anthropic-version'] = '2023-06-01'
         req.headers['Content-Type'] = 'application/json'
         req.body = {
           model: 'claude-3-haiku-20240307',
           max_tokens: 1024,
-          messages: all_messages
-
+          messages: all_messages,
+          stream: true
         }.to_json
+
+        req.options.on_data = proc do |chunk|
+          json_match = chunk.match(/data: (\{.*\})/)
+          next unless json_match
+
+          begin
+            parsed_data = JSON.parse(json_match[1])
+            m = parsed_data.dig('delta', 'text')
+            streamd += m if m
+          rescue JSON::ParserError
+            nil
+          end
+        end
       end
+
       Message.create!(room_id:, role: 'user', value: new_message, is_show:)
-      Message.create!(room_id:, role: 'assistant', value: JSON.parse(response.body)['content'][0]['text'], is_show:)
+      Message.create!(room_id:, role: 'assistant', value: streamd, is_show:)
     rescue StandardError => e
       KuchikomiLogger.error e
       Message.create!(room_id:, role: 'user', value: new_message, is_show:)
