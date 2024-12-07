@@ -11,7 +11,11 @@ class MessageRepository # rubocop:disable Style/Documentation
     Message.where(room_id:).order(created_at: :asc, id: :asc)
   end
 
-  def self.create(room_id, new_message, old_messages, is_show) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+  def self.create(room_id, message, is_show)
+    Message.create!(room_id:, role: 'user', value: message, is_show:)
+  end
+
+  def self.test(room_id, new_message, old_messages, is_show) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
     conn = connection
 
     all_messages = old_messages.map do |m|

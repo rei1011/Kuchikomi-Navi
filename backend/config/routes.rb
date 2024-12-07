@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :rooms, only: %i[index create update show destroy] do
     resources :messages, only: %i[index create]
   end
+  get 'rooms/:room_id/messages/sse', to: 'messages#sse'
   get 'up' => 'rails/health#show', :as => :rails_health_check
 end

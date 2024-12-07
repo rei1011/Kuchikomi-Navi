@@ -9,7 +9,6 @@ class MessageService
   end
 
   def self.create(room_id, new_message)
-    messages = MessageRepository.find_all_by_room_id(room_id)
-    MessageRepository.create(room_id, new_message, messages, true)
+    MessageRepository.create(room_id, new_message, true)
   end
 end

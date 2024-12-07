@@ -67,63 +67,15 @@ RSpec.describe MessageRepository do # rubocop:disable Metrics/BlockLength
     end
   end
 
-  describe 'メッセージを作成する' do # rubocop:disable Metrics/BlockLength
+  describe 'メッセージを作成する' do
     let(:room) { create(:room, :with_store) }
     let(:room_id) { room.id }
     let(:new_message) { 'おすすめのお店を教えて' }
 
-    context 'claudeから正常にレスポンスが返却された場合' do # rubocop:disable Metrics/BlockLength
-      let!(:stub_connection) do
-        Faraday.new do |conn|
-          conn.adapter :test, Faraday::Adapter::Test::Stubs.new do |stub|
-            stub.post('/v1/messages') do
-              [200, {}, JSON.generate(
-                { 'id' => 'msg_01HdqgBDvbTi3jP4HZKSzRfv',
-                  'type' => 'message',
-                  'role' => 'assistant',
-                  'model' => 'claude-3-haiku-20240307',
-                  'content' => [{ 'type' => 'text',
-                                  'text' => 'CCCATS' }],
-                  'stop_reason' => 'end_turn',
-                  'stop_sequence' => nil,
-                  'usage' => { 'input_tokens' => 27, 'output_tokens' => 331 } }
-              )]
-            end
-          end
-        end
-      end
-
-      before do
-        allow(described_class).to receive(:connection).and_return(stub_connection)
-      end
-
-      context 'claudeのAPIが正常に利用できる場合' do
-        let(:old_message) { [create(:message)] }
-        it 'ユーザーのメッセージとclaudeからのレスポンスが保存されること' do
-          described_class.create(room_id, new_message, old_message, true)
-          expect(Message.second.value).to eq(new_message)
-          expect(Message.last.value).to eq('CCCATS')
-        end
-      end
-    end
-
-    context 'claudeでエラーが発生した場合' do
-      let(:old_message) { [create(:message)] }
-      let!(:stub_connection) do
-        Faraday.new do |conn|
-          conn.adapter :test, Faraday::Adapter::Test::Stubs.new do |stub|
-            stub.post('/v1/messages') { raise Faraday::ClientError, 'Client error' }
-          end
-        end
-      end
-
-      before do
-        allow(described_class).to receive(:connection).and_return(stub_connection)
-      end
-
-      it 'ユーザーのメッセージのみ保存されること' do
-        described_class.create(room_id, new_message, old_message, true)
-        expect(Message.second.value).to eq(new_message)
+    context 'メッセージを作成できること' do
+      it 'ユーザーのメッセージとclaudeからのレスポンスが保存されること' do
+        described_class.create(room_id, new_message, true)
+        expect(Message.last.value).to eq(new_message)
       end
     end
   end

@@ -35,6 +35,7 @@ const useReport = ({
   const params = useParams();
   const roomId = params.id as string;
 
+  const [sseMessage, setSseMessage] = useState<string | undefined>(undefined);
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
     undefined
   );
@@ -47,7 +48,43 @@ const useReport = ({
   });
   const [newMessage, setNewMessage] = useState("");
 
-  const getReport = useCallback(async () => {
+  const getSseMessage = useCallback(async () => {
+    setSseMessage(undefined);
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_HOST}/rooms/${roomId}/messages/sse`
+    );
+    const reader = res.body?.getReader()!;
+    const decoder = new TextDecoder();
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      if (!value) continue;
+
+      const lines = decoder.decode(value);
+      const messages = lines
+        .split("\n\n") // イベントごとに分割
+        .map((block) => {
+          const dataLine = block
+            .split("\n")
+            .find((line) => line.startsWith("data:"));
+          if (!dataLine) return null; // data がない場合はスキップ
+          try {
+            const json = JSON.parse(dataLine.replace("data: ", ""));
+            return json.message; // message を取得
+          } catch {
+            return null; // JSON パースエラー時はスキップ
+          }
+        })
+        .filter((message): message is string => message !== null)
+        .join("");
+
+      setSseMessage((prevText) => (prevText ? prevText + messages : messages));
+    }
+  }, [roomId]);
+
+  const sendMessage = useCallback(async () => {
     if (!selectedStore[0] || !selectedStore[1]) {
       return;
     }
@@ -58,7 +95,9 @@ const useReport = ({
       message: newMessage,
       roomId,
     });
-  }, [newMessage, roomId, selectedStore]);
+
+    await getSseMessage();
+  }, [getSseMessage, newMessage, roomId, selectedStore]);
 
   const setStore = useCallback(
     (value: string, options: RadioButtonOptions) => {
@@ -74,9 +113,12 @@ const useReport = ({
     [selectedIndex]
   );
 
-  const setMethod = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setNewMessage(e.target.value);
-  }, []);
+  const setMessage = useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setNewMessage(e.target.value);
+    },
+    []
+  );
 
   const updateRoom = useCallback(async () => {
     await innerUpdateRoom({
@@ -93,9 +135,10 @@ const useReport = ({
     setSelectedIndex,
     setStore,
     newMessage,
-    setMethod,
-    getReport,
+    setMessage,
+    sendMessage,
     updateRoom,
+    sseMessage,
   };
 };
 

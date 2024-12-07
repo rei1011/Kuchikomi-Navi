@@ -19,9 +19,8 @@ class RoomService
     stores = StoreRepository.find_by_room_id(room.id)
     return unless stores.length == 2
 
-    old_messages = MessageRepository.find_by_room_id(room.id)
-    new_messages = "これ以降は以下2店舗の情報を利用し回答するようにして欲しいです。\n#{stores}\n理解できましたか？"
-    MessageRepository.create(room.id, new_messages, old_messages, false)
+    new_message = "これ以降は以下2店舗の情報を利用し回答するようにして欲しいです。\n#{stores}\n理解できましたか？"
+    MessageRepository.create(room.id, new_message, false)
   end
 
   def self.delete(room_id)
