@@ -52,7 +52,16 @@ const useReport = ({
     setSseMessage(undefined);
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_HOST}/rooms/${roomId}/messages/sse`
+      `${process.env.NEXT_PUBLIC_SERVER_HOST}/rooms/${roomId}/messages/sse`,
+      {
+        headers: {
+          Authorization:
+            "Basic " +
+            btoa(
+              `${process.env.BASIC_AUTH_USER}:${process.env.BASIC_AUTH_PASSWORD}`
+            ),
+        },
+      }
     );
     const reader = res.body?.getReader()!;
     const decoder = new TextDecoder();
