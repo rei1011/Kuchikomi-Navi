@@ -1,5 +1,6 @@
 "use client";
 
+import { authorization } from "@/api/authorization";
 import { updateRoom as innerUpdateRoom } from "@/api/message/api";
 import { createMessage } from "@/api/report/api";
 import { RadioButtonOptions } from "@/component/RadioButtonGroup";
@@ -51,15 +52,14 @@ const useReport = ({
   const getSseMessage = useCallback(async () => {
     setSseMessage(undefined);
 
+    const authInfo = await authorization();
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_HOST}/rooms/${roomId}/messages/sse`,
       {
         headers: {
           Authorization:
             "Basic " +
-            btoa(
-              `${process.env.BASIC_AUTH_USER}:${process.env.BASIC_AUTH_PASSWORD}`
-            ),
+            btoa(`${authInfo.basicAuthUser}:${authInfo.basicAuthPassword}`),
         },
       }
     );
