@@ -1,8 +1,8 @@
 "use client";
 
 import { authorization } from "@/api/authorization";
-import { updateRoom as innerUpdateRoom } from "@/api/message/api";
-import { createMessage } from "@/api/report/api";
+import { createMessage } from "@/api/messages/api";
+import { updateRoom as innerUpdateRoom } from "@/api/rooms/api";
 import { RadioButtonOptions } from "@/component/RadioButtonGroup";
 import { useParams } from "next/navigation";
 import {
@@ -36,7 +36,10 @@ const useReport = ({
   const params = useParams();
   const roomId = params.id as string;
 
-  const [sseMessage, setSseMessage] = useState<string | undefined>(undefined);
+  const [clientMessages, setClientMessages] = useState<string | undefined>(
+    undefined
+  );
+  const [newMessage, setNewMessage] = useState<string | undefined>(undefined);
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
     undefined
   );
@@ -47,10 +50,9 @@ const useReport = ({
     0: store1 ? { value: store1.id, label: store1.name } : undefined,
     1: store2 ? { value: store2.id, label: store2.name } : undefined,
   });
-  const [newMessage, setNewMessage] = useState("");
 
   const getSseMessage = useCallback(async () => {
-    setSseMessage(undefined);
+    setClientMessages(undefined);
 
     const authInfo = await authorization();
     const res = await fetch(
@@ -72,7 +74,7 @@ const useReport = ({
       if (!value) continue;
 
       const lines = decoder.decode(value);
-      const messages = lines
+      const message = lines
         .split("\n\n") // イベントごとに分割
         .map((block) => {
           const dataLine = block
@@ -89,21 +91,23 @@ const useReport = ({
         .filter((message): message is string => message !== null)
         .join("");
 
-      setSseMessage((prevText) => (prevText ? prevText + messages : messages));
+      setClientMessages((prevText) =>
+        prevText ? prevText + message : message
+      );
     }
   }, [roomId]);
 
   const sendMessage = useCallback(async () => {
-    if (!selectedStore[0] || !selectedStore[1]) {
+    if (!selectedStore[0] || !selectedStore[1] || !newMessage) {
       return;
     }
-
-    setNewMessage("");
 
     await createMessage({
       message: newMessage,
       roomId,
     });
+
+    setNewMessage("");
 
     await getSseMessage();
   }, [getSseMessage, newMessage, roomId, selectedStore]);
@@ -147,7 +151,7 @@ const useReport = ({
     setMessage,
     sendMessage,
     updateRoom,
-    sseMessage,
+    clientMessages,
   };
 };
 

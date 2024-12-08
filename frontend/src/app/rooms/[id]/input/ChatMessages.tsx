@@ -1,6 +1,6 @@
 "use client";
 
-import { Messages } from "@/api/report/type";
+import { Messages } from "@/api/messages/type";
 import { ChatMessage } from "@/component/ChatMessage";
 import { useEffect, useRef } from "react";
 import { useReportContext } from "../report-context";
@@ -11,7 +11,7 @@ type Props = {
 
 export const ChatMessages = (props: Props) => {
   const { messages } = props;
-  const { sseMessage } = useReportContext();
+  const { clientMessages } = useReportContext();
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export const ChatMessages = (props: Props) => {
       behavior: "smooth",
       block: "end",
     });
-  }, [sseMessage]);
+  }, [clientMessages]);
 
   return (
     <div className="w-full">
@@ -31,7 +31,9 @@ export const ChatMessages = (props: Props) => {
             message={message.value}
           />
         ))}
-        {sseMessage && <ChatMessage $role="assistant" message={sseMessage} />}
+        {clientMessages && (
+          <ChatMessage $role="assistant" message={clientMessages} />
+        )}
         <div ref={messagesEndRef} />
       </div>
     </div>

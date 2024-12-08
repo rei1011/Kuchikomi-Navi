@@ -1,4 +1,4 @@
-import { findAllRooms } from "@/api/message/api";
+import { findAllRooms } from "@/api/rooms/api";
 import { RoomList } from "./RoomList";
 
 export const RoomListWrapper = async () => {

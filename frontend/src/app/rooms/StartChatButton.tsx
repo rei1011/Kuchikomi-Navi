@@ -1,6 +1,6 @@
 "use client";
 
-import { createRoom } from "@/api/message/api";
+import { createRoom } from "@/api/rooms/api";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import Button from "@mui/material/Button";
 import { useRouter } from "next/navigation";

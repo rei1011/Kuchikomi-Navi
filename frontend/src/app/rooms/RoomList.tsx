@@ -1,6 +1,6 @@
 "use client";
 
-import { Rooms } from "@/api/message/type";
+import { Rooms } from "@/api/rooms/type";
 import { ClickableList } from "@/component/ClickableList";
 
 type Props = {

@@ -1,4 +1,4 @@
-import { findMessages } from "@/api/report/api";
+import { findMessages } from "@/api/messages/api";
 import { ChatMessages } from "./ChatMessages";
 
 type Props = {
