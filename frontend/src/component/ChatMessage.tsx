@@ -10,7 +10,7 @@ export const ChatMessage = (props: Props) => {
       className={`flex w-full break-words ${$role === "user" ? "justify-end" : ""}`}
     >
       <div className="bg-secondary p-4 rounded-xl w-4/5">
-        <div>{message}</div>
+        <div className="whitespace-pre-wrap">{`${message}`}</div>
       </div>
     </div>
   );
