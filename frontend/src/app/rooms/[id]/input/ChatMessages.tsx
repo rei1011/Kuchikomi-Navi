@@ -31,9 +31,13 @@ export const ChatMessages = (props: Props) => {
             message={message.value}
           />
         ))}
-        {clientMessages && (
-          <ChatMessage $role="assistant" message={clientMessages} />
-        )}
+        {clientMessages.map((message, index) => (
+          <ChatMessage
+            key={`client_message_${index}`}
+            $role={message.role}
+            message={message.value}
+          />
+        ))}
         <div ref={messagesEndRef} />
       </div>
     </div>

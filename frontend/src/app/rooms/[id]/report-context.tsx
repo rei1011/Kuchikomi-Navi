@@ -2,6 +2,7 @@
 
 import { authorization } from "@/api/authorization";
 import { createMessage } from "@/api/messages/api";
+import { Role } from "@/api/messages/type";
 import { updateRoom as innerUpdateRoom } from "@/api/rooms/api";
 import { RadioButtonOptions } from "@/component/RadioButtonGroup";
 import { useParams } from "next/navigation";
@@ -36,9 +37,9 @@ const useReport = ({
   const params = useParams();
   const roomId = params.id as string;
 
-  const [clientMessages, setClientMessages] = useState<string | undefined>(
-    undefined
-  );
+  const [clientMessages, setClientMessages] = useState<
+    { role: Role; value: string }[]
+  >([]);
   const [newMessage, setNewMessage] = useState<string | undefined>(undefined);
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
     undefined
@@ -52,8 +53,6 @@ const useReport = ({
   });
 
   const getSseMessage = useCallback(async () => {
-    setClientMessages(undefined);
-
     const authInfo = await authorization();
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_HOST}/rooms/${roomId}/messages/sse`,
@@ -67,6 +66,7 @@ const useReport = ({
     );
     const reader = res.body?.getReader()!;
     const decoder = new TextDecoder();
+    let sseMessage: string | undefined = undefined;
 
     while (true) {
       const { done, value } = await reader.read();
@@ -91,9 +91,18 @@ const useReport = ({
         .filter((message): message is string => message !== null)
         .join("");
 
-      setClientMessages((prevText) =>
-        prevText ? prevText + message : message
-      );
+      if (sseMessage == undefined) {
+        setClientMessages((prevMessages) => {
+          return [...prevMessages, { role: "assistant", value: message }];
+        });
+        sseMessage = message;
+      } else {
+        setClientMessages((prevMessages) => {
+          prevMessages[prevMessages.length - 1].value = sseMessage + message;
+          return [...prevMessages];
+        });
+        sseMessage += message;
+      }
     }
   }, [roomId]);
 
@@ -107,6 +116,7 @@ const useReport = ({
       roomId,
     });
 
+    setClientMessages((prev) => [...prev, { role: "user", value: newMessage }]);
     setNewMessage("");
 
     await getSseMessage();

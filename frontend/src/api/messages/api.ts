@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { paths } from "../../../openapi/schema";
 import { client } from "../client";
 
@@ -27,8 +26,6 @@ export async function createMessage({
   if (res.error) {
     throw new Error(`Failed to createMessage. path = ${path}`);
   }
-
-  revalidatePath("/rooms/[id]", "layout");
 }
 
 export async function findMessages(roomId: string) {
