@@ -4,7 +4,7 @@ import { AddStoreSection } from "./AddStoreSection";
 import { ChatSection } from "./ChatSection";
 import { SendMessageSection } from "./SendMessageSection";
 
-export default async function ReportInput({
+export default async function MessageInput({
   params,
 }: {
   params: Promise<{ id: string }>;

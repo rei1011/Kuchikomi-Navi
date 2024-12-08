@@ -3,7 +3,7 @@
 import { Messages } from "@/api/messages/type";
 import { ChatMessage } from "@/component/ChatMessage";
 import { useEffect, useRef } from "react";
-import { useReportContext } from "../report-context";
+import { useMessageContext } from "../message-context";
 
 type Props = {
   messages: Messages;
@@ -11,7 +11,7 @@ type Props = {
 
 export const ChatMessages = (props: Props) => {
   const { messages } = props;
-  const { clientMessages } = useReportContext();
+  const { clientMessages } = useMessageContext();
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

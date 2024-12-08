@@ -4,7 +4,7 @@ import { StoreListWrapper } from "./StoreListWrapper";
 
 type SearchParamsType = { [key: string]: string | undefined };
 
-export default async function ReportSearch({
+export default async function MessageSearch({
   searchParams,
   params,
 }: {

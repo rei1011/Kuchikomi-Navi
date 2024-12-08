@@ -1,7 +1,7 @@
 import { findRoomById } from "@/api/rooms/api";
-import { ReportContextProvider } from "./report-context";
+import { MessageContextProvider } from "./message-context";
 
-export default async function ReportLayout({
+export default async function MessageLayout({
   params,
   children,
 }: {
@@ -11,12 +11,12 @@ export default async function ReportLayout({
   const id = (await params).id;
   const room = await findRoomById(id);
   return (
-    <ReportContextProvider
+    <MessageContextProvider
       roomName={room.name}
       store1={room.store1}
       store2={room.store2}
     >
       {children}
-    </ReportContextProvider>
+    </MessageContextProvider>
   );
 }

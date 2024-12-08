@@ -32,7 +32,7 @@ export const Menu = () => {
             }}
           >
             <SummarizeIcon />
-            <MenuItem>AI Report</MenuItem>
+            <MenuItem>AI Chat</MenuItem>
           </Box>
         </Link>
       </MuiMenu>

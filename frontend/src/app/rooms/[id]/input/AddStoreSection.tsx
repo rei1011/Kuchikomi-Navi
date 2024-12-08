@@ -2,7 +2,7 @@
 import { AddStore } from "@/component/AddStore";
 import Link from "next/link";
 import { useMemo } from "react";
-import { useReportContext } from "../report-context";
+import { useMessageContext } from "../message-context";
 
 type Props = {
   id: string;
@@ -10,7 +10,7 @@ type Props = {
 
 export const AddStoreSection = (props: Props) => {
   const { id } = props;
-  const { setSelectedIndex, selectedStore } = useReportContext();
+  const { setSelectedIndex, selectedStore } = useMessageContext();
   return useMemo(
     () => (
       <section className="flex flex-col gap-4">

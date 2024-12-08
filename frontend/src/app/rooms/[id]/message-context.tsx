@@ -19,13 +19,13 @@ type SelectedStore = {
   label: string;
 };
 
-type ReportContextType = ReturnType<typeof useReport>;
+type MessageContextType = ReturnType<typeof useMessage>;
 
-export const ReportContext = createContext<ReportContextType>(
-  {} as ReportContextType
+export const MessageContext = createContext<MessageContextType>(
+  {} as MessageContextType
 );
 
-const useReport = ({
+const useMessage = ({
   store1,
   store2,
   roomName,
@@ -176,16 +176,16 @@ type Props = {
   roomName: string | null;
 };
 
-export const ReportContextProvider = ({
+export const MessageContextProvider = ({
   children,
   roomName,
   store1,
   store2,
 }: PropsWithChildren<Props>) => {
-  const value = useReport({ store1, store2, roomName });
+  const value = useMessage({ store1, store2, roomName });
   return (
-    <ReportContext.Provider value={value}>{children}</ReportContext.Provider>
+    <MessageContext.Provider value={value}>{children}</MessageContext.Provider>
   );
 };
 
-export const useReportContext = () => useContext(ReportContext);
+export const useMessageContext = () => useContext(MessageContext);

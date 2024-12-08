@@ -5,7 +5,7 @@ import { StartChatButton } from "./StartChatButton";
 
 export const dynamic = "force-dynamic";
 
-export default function ReportRoom() {
+export default function MessageRoom() {
   return (
     <Main>
       <AppBarWithMenu />

@@ -1,11 +1,11 @@
 "use client";
 
 import { StickyInput } from "@/component/StickyInput";
-import { useReportContext } from "../report-context";
+import { useMessageContext } from "../message-context";
 
 export const SendMessageSection = () => {
   const { sendMessage, setMessage, newMessage, selectedStore } =
-    useReportContext();
+    useMessageContext();
   return (
     <div className="w-full">
       <StickyInput

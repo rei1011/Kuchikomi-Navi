@@ -7,7 +7,7 @@ import {
 import Button from "@mui/material/Button";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
-import { useReportContext } from "../report-context";
+import { useMessageContext } from "../message-context";
 
 type Props = {
   options: RadioButtonOptions;
@@ -16,7 +16,7 @@ type Props = {
 
 export const StoreListForm = (props: Props) => {
   const { options, roomId } = props;
-  const { setStore, updateRoom } = useReportContext();
+  const { setStore, updateRoom } = useMessageContext();
   const router = useRouter();
   const onSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
