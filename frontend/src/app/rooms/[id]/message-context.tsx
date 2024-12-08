@@ -104,6 +104,16 @@ const useMessage = ({
         sseMessage += message;
       }
     }
+
+    if (sseMessage == undefined) {
+      return;
+    }
+
+    // 状態更新が追いつかなかった場合も考慮して、念のため最後に更新
+    setClientMessages((prevMessages) => {
+      prevMessages[prevMessages.length - 1].value = sseMessage;
+      return [...prevMessages];
+    });
   }, [roomId]);
 
   const sendMessage = useCallback(async () => {
