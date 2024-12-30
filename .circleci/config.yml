@@ -31,12 +31,14 @@ jobs:
   run-lighthouse:
     docker:
       - image: cimg/node:16.13-browsers
-    working_directory: frontend
     steps:
       - checkout
       - browser-tools/install-chrome
       - run: sudo npm install -g @lhci/cli@0.14.x
-      - run: lhci autorun
+      - run: 
+        working_directory: frontend
+        command: |
+          lhci autorun
 
 workflows:
   test-and-deploy:
