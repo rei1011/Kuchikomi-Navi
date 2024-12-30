@@ -30,7 +30,7 @@ jobs:
       - codecov/upload
   run-lighthouse:
     docker:
-      - image: cimg/node:16.13-browsers
+      - image: cimg/node:23.5-browsers
     steps:
       - checkout
       - browser-tools/install-chrome
