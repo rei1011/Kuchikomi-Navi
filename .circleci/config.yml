@@ -35,8 +35,6 @@ jobs:
     steps:
       - checkout
       - browser-tools/install-chrome
-      - run: npm install
-      - run: npm run build
       - run: sudo npm install -g @lhci/cli@0.14.x
       - run: lhci autorun
 
