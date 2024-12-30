@@ -1,7 +1,7 @@
 module.exports = {
   ci: {
     collect: {
-      url: ["https://frontend-app-uuwuit3kva-de.a.run.app/"],
+      url: ["https://www.google.com/"],
     },
     upload: {
       target: "temporary-public-storage",
