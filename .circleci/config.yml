@@ -36,9 +36,9 @@ jobs:
       - browser-tools/install-chrome
       - run: sudo npm install -g @lhci/cli@0.14.x
       - run: 
-        working_directory: frontend
-        command: |
-          lhci autorun
+          working_directory: frontend
+          command: |
+            lhci autorun
 
 workflows:
   test-and-deploy:
