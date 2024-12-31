@@ -39,6 +39,8 @@ jobs:
           working_directory: frontend
           command: |
             lhci autorun
+            cd .lighthouseci
+            ls -la
 
 workflows:
   test-and-deploy:
