@@ -41,8 +41,6 @@ jobs:
             lhci autorun
             cd .lighthouseci
             ls -la
-            echo "========= html ========="
-            cat *.html
             echo "========= json ========="
             cat *.json
 
