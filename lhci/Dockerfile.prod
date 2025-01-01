@@ -28,7 +28,7 @@ COPY run.sh ./
 
 # Set up lhci server
 COPY package.json pnpm-lock* ./
-COPY lighthouserc.js .
+COPY lighthouserc.json .
 RUN pnpm install --frozen-lockfile
 
 EXPOSE 9001
