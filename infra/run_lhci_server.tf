@@ -9,13 +9,16 @@ resource "google_cloud_run_v2_service" "lhci_server" {
     }
     containers {
       image = "${var.region}-docker.pkg.dev/${var.project}/${var.lhci_server_name}/${var.lhci_image_name}:latest"
+      ports {
+        container_port = 9001
+      }
     }
   }
 }
 
 resource "google_cloud_run_v2_service_iam_member" "lhci_server" {
-  location = google_cloud_run_v2_service.default.location
-  name     = google_cloud_run_v2_service.default.name
+  location = google_cloud_run_v2_service.lhci_server.location
+  name     = google_cloud_run_v2_service.lhci_server.name
   role     = "roles/run.invoker"
   member   = "allUsers"
 

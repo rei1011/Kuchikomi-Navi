@@ -24,8 +24,6 @@ steps:
         "${_SERVICE_NAME}",
         "--image",
         "$_ARTIFACT_REPOSITORY_IMAGE_NAME:$SHORT_SHA",
-        "--port",
-        "9001",
         "--region" ,
         "$_REGION"
       ]
