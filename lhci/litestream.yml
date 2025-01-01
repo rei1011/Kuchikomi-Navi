@@ -1,0 +1,6 @@
+dbs:
+  - path: /data/lhci.db
+    replicas:
+      - type: gcs
+        bucket: lhci-db
+        path: lhci.db

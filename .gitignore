@@ -22,6 +22,7 @@
 /backend/node_modules/*
 /frontend/node_modules/*
 /infra/node_modules/*
+/lhci/node_modules/*
 
 # dependencies
 /frontend/.pnp

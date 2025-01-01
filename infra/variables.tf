@@ -34,6 +34,10 @@ variable "job_app_name" {
   default = "job-app"
 }
 
+variable "lhci_server_name" {
+  default = "lhci-server"
+}
+
 variable "frontend_image_name" {
   default = "frontend-app"
 }
@@ -44,6 +48,10 @@ variable "backend_image_name" {
 
 variable "job_image_name" {
   default = "job-app"
+}
+
+variable "lhci_image_name" {
+  default = "lhci-server"
 }
 
 variable "gcp-creds" {
