@@ -1,9 +1,6 @@
 FROM node:22-bullseye-slim AS builder
 
-# Specify the version of Litestream CLI
 ENV LITESTREAM_VERSION=v0.3.13
-
-# Install Litestream CLI
 ADD https://github.com/benbjohnson/litestream/releases/download/$LITESTREAM_VERSION/litestream-$LITESTREAM_VERSION-linux-amd64.tar.gz /tmp/litestream.tar.gz
 RUN tar -C /usr/local/bin -xzf /tmp/litestream.tar.gz
 
@@ -13,17 +10,13 @@ ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 WORKDIR /usr/src/lhci
 
-# # Install certificates
+# Cloud Storageへの接続に必要
 RUN apt-get update && apt-get install -y ca-certificates
 
-# Copy Litestream CLI
 COPY --from=builder /usr/local/bin/litestream /usr/local/bin/litestream
-
-# Copy litestream configuration file and execution script
 COPY litestream.yml /etc/litestream.yml
 COPY run.sh ./
 
-# Set up lhci server
 COPY package.json pnpm-lock* ./
 COPY lighthouserc.json .
 RUN pnpm install --frozen-lockfile
