@@ -22,6 +22,5 @@
       ]
     }
   },
-  // server compoentでhttp://localhost:3000でサーバーへ通信するためにポートフォワーディングを設定
   "postCreateCommand": "pnpm config set store-dir /tmp/pnpm/store"
 }
