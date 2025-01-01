@@ -8,7 +8,9 @@ if (!BASIC_AUTH_USER || !BASIC_AUTH_PASSWORD) {
   );
 }
 
-const basicAuthHeader = `Basic ${Buffer.from(`${BASIC_AUTH_USER}:${BASIC_AUTH_PASSWORD}`).toString("base64")}`;
+const basicAuthHeader = `Basic ${Buffer.from(
+  `${BASIC_AUTH_USER}:${BASIC_AUTH_PASSWORD}`
+).toString("base64")}`;
 
 module.exports = {
   ci: {

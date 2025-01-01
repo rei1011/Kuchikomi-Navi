@@ -36,7 +36,7 @@ jobs:
       - browser-tools/install-chrome
       - run: sudo npm install -g @lhci/cli@0.14.x
       - run: 
-          working_directory: frontend
+          working_directory: lhci
           command: |
             lhci autorun
             cd .lighthouseci
