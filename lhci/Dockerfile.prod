@@ -17,7 +17,7 @@ RUN corepack enable
 WORKDIR /usr/src/lhci
 
 # # Install certificates
-# RUN apt-get update && apt-get install -y ca-certificates
+RUN apt-get update && apt-get install -y ca-certificates
 
 # Copy Litestream CLI
 COPY --from=builder /usr/local/bin/litestream /usr/local/bin/litestream
