@@ -26,7 +26,7 @@ resource "google_cloudbuild_trigger" "lhci_server_trigger" {
   repository_event_config {
     repository = google_cloudbuildv2_repository.github_repository.id
     push {
-      branch = "^main$"
+      branch = "^(main|lighthouse-ci)$"
     }
   }
   filename = "infra/lhci_cloudbuild.yaml"
