@@ -14,9 +14,11 @@ module.exports = {
         username: BASIC_AUTH_USER,
         password: BASIC_AUTH_PASSWORD,
       },
-      deleteOldBuildsCron: {
-        maxAgeInDays: 365,
-      },
+      deleteOldBuildsCron: [
+        {
+          maxAgeInDays: 365,
+        },
+      ],
     },
   },
 };
