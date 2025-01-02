@@ -16,8 +16,9 @@ module.exports = {
       },
       deleteOldBuildsCron: [
         {
-          maxAgeInDays: 365,
-          schedule: "0 3 * * *",
+          // Cloud Runに対して常にCPUを割り当てて、適当な時間で削除してもよさそう
+          maxAgeInDays: 1,
+          schedule: "* * * * *",
         },
       ],
     },
