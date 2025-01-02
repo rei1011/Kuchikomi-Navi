@@ -18,7 +18,7 @@ COPY litestream.yml /etc/litestream.yml
 COPY run.sh ./
 
 COPY package.json pnpm-lock* ./
-COPY lighthouserc.json .
+COPY lighthouserc_server.js .
 RUN pnpm install --frozen-lockfile
 
 ARG BASIC_AUTH_USER
