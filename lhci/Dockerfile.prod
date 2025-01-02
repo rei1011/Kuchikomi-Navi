@@ -21,5 +21,10 @@ COPY package.json pnpm-lock* ./
 COPY lighthouserc.json .
 RUN pnpm install --frozen-lockfile
 
+ARG BASIC_AUTH_USER
+ARG BASIC_AUTH_PASSWORD
+ENV BASIC_AUTH_USER=${BASIC_AUTH_USER}
+ENV BASIC_AUTH_PASSWORD=${BASIC_AUTH_PASSWORD}
+
 EXPOSE 9001
 CMD ["/bin/sh", "run.sh"]

@@ -35,10 +35,9 @@ jobs:
       - checkout
       - browser-tools/install-chrome
       - run: sudo npm install -g @lhci/cli@0.14.x
-      - run: 
+      - run:
           working_directory: lhci
-          command: |
-            lhci autorun
+          command: lhci autorun --config=./lighthouserc_ci.js
 
 workflows:
   test-and-deploy:

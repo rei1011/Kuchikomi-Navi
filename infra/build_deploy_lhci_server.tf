@@ -35,5 +35,7 @@ resource "google_cloudbuild_trigger" "lhci_server_trigger" {
     _REGION                         = var.region
     _ARTIFACT_REPOSITORY_IMAGE_NAME = "${var.region}-docker.pkg.dev/${var.project}/${var.lhci_server_name}/${var.lhci_image_name}"
     _SERVICE_NAME                   = var.lhci_server_name
+    _BASIC_AUTH_USER_ID             = var.basic_auth_user_id
+    _BASIC_AUTH_PASSWORD_ID         = var.basic_auth_password_id
   }
 }

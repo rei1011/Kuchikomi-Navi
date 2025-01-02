@@ -21,6 +21,10 @@ module.exports = {
     upload: {
       target: "lhci",
       serverBaseUrl: "https://lhci-server-uuwuit3kva-de.a.run.app",
+      basicAuth: {
+        username: BASIC_AUTH_USER,
+        password: BASIC_AUTH_PASSWORD,
+      },
     },
   },
 };
