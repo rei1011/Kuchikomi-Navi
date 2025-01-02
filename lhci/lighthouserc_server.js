@@ -18,7 +18,7 @@ module.exports = {
         {
           // Cloud Runに対して常にCPUを割り当てて、適当な時間で削除してもよさそう
           maxAgeInDays: 1,
-          schedule: "* * * * *",
+          schedule: "0 3 * * *",
         },
       ],
     },
