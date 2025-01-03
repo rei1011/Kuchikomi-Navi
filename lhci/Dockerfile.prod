@@ -2,16 +2,15 @@ FROM node:23.5-bullseye-slim
 
 WORKDIR /usr/src/lhci
 
-# pnpmを利用できる状態にする
+# setup pnpm
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 
-# Cloud Storageへの接続にca-certificatesが必要
-# RUN apt-get update && apt-get install -y ca-certificates wget sudo
+# install packages
 RUN apt-get update && apt-get install -y wget sudo
 
-# litestreamのインストール
+# install litestream
 ENV LITESTREAM_VERSION=v0.3.13
 RUN wget https://github.com/benbjohnson/litestream/releases/download/$LITESTREAM_VERSION/litestream-$LITESTREAM_VERSION-linux-amd64.deb
 RUN sudo dpkg -i litestream-$LITESTREAM_VERSION-linux-amd64.deb
