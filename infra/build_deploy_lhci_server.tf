@@ -1,4 +1,5 @@
 # lhci serverのimageを保存するためのArtifact Registry
+# 最新の2versionを保持し、それ以外は削除する
 resource "google_artifact_registry_repository" "lhci_server" {
   location      = var.region
   repository_id = var.lhci_server_name
@@ -20,6 +21,7 @@ resource "google_artifact_registry_repository" "lhci_server" {
   }
 }
 
+# mainブランチのコミットを検知してimageのビルド & registryへimageのpush & Cloud Runへのデプロイを実行
 resource "google_cloudbuild_trigger" "lhci_server_trigger" {
   name     = "${var.lhci_server_name}-trigger"
   location = var.region
