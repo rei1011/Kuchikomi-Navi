@@ -8,4 +8,4 @@ rm -f /data/lhci.db
 litestream restore -if-replica-exists -config /etc/litestream.yml /data/lhci.db
 
 # Replicate the database file and start the LHCI server
-litestream replicate -exec "npm start" -config /etc/litestream.yml
+litestream replicate -exec "pnpm start" -config /etc/litestream.yml
