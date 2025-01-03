@@ -7,13 +7,13 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 
+# Cloud Storageへの接続にca-certificatesが必要
+RUN apt-get update && apt-get install -y ca-certificates wget
+
 # litestreamのインストール
 ENV LITESTREAM_VERSION=v0.3.13
 RUN wget https://github.com/benbjohnson/litestream/releases/download/$LITESTREAM_VERSION/litestream-$LITESTREAM_VERSION-linux-amd64.deb
 RUN sudo dpkg -i litestream-LITESTREAM_VERSION-linux-amd64.deb
-
-# Cloud Storageへの接続に必要
-RUN apt-get update && apt-get install -y ca-certificates
 
 COPY litestream.yml /etc/litestream.yml
 COPY run.sh ./
