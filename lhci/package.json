@@ -2,7 +2,7 @@
   "name": "lhci",
   "version": "0.0.0",
   "scripts": {
-    "start": "lhci server --config=./lighthouserc_server.js"
+    "start": "lhci server --config=./lighthouserc.js"
   },
   "dependencies": {
     "@lhci/cli": "0.14.0",
