@@ -39,8 +39,8 @@ module.exports = {
       },
       deleteOldBuildsCron: [
         {
-          maxAgeInDays: 1,
-          schedule: "0 */1 * * *",
+          maxAgeInDays: 180,
+          schedule: "0 0 * * *",
         },
       ],
     },
