@@ -1,11 +1,9 @@
-# 以下を参考にCloud BuildとGitHubのrepositoryを接続
-# https://cloud.google.com/build/docs/automating-builds/github/connect-repo-github?hl=ja&generation=2nd-gen#terraform_1
-
-# frontend appのimageを保存するためのregistryを作成
-resource "google_artifact_registry_repository" "frontend-app" {
+# lhci serverのimageを保存するためのArtifact Registry
+# 最新の2versionを保持し、それ以外は削除する
+resource "google_artifact_registry_repository" "lhci_server" {
   location      = var.region
-  repository_id = var.frontend_app_name
-  description   = "frontend app"
+  repository_id = var.lhci_server_name
+  description   = "lhci server"
   format        = "DOCKER"
   cleanup_policies {
     id     = "delete"
@@ -24,21 +22,21 @@ resource "google_artifact_registry_repository" "frontend-app" {
 }
 
 # mainブランチのコミットを検知してimageのビルド & registryへimageのpush & Cloud Runへのデプロイを実行
-resource "google_cloudbuild_trigger" "frontend_app_trigger" {
-  name     = "${var.frontend_app_name}-trigger"
+resource "google_cloudbuild_trigger" "lhci_server_trigger" {
+  name     = "${var.lhci_server_name}-trigger"
   location = var.region
   repository_event_config {
     repository = google_cloudbuildv2_repository.github_repository.id
     push {
-      branch = "^main$"
+      branch = "^(main|lighthouse-ci)$"
     }
   }
-  filename = "infra/frontend_cloudbuild.yaml"
+  filename = "infra/lhci_cloudbuild.yaml"
 
   substitutions = {
     _REGION                         = var.region
-    _ARTIFACT_REPOSITORY_IMAGE_NAME = "${var.region}-docker.pkg.dev/${var.project}/${var.frontend_app_name}/${var.frontend_image_name}"
-    _SERVICE_NAME                   = var.frontend_app_name
+    _ARTIFACT_REPOSITORY_IMAGE_NAME = "${var.region}-docker.pkg.dev/${var.project}/${var.lhci_server_name}/${var.lhci_image_name}"
+    _SERVICE_NAME                   = var.lhci_server_name
     _BASIC_AUTH_USER_ID             = var.basic_auth_user_id
     _BASIC_AUTH_PASSWORD_ID         = var.basic_auth_password_id
   }

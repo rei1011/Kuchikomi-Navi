@@ -1,0 +1,6 @@
+FROM node:23.5
+
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+RUN echo "source /usr/share/bash-completion/completions/git" >> ~/.bashrc

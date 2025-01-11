@@ -1,0 +1,9 @@
+services:
+  lhci-server:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    volumes:
+      - ../:/usr/src/app:cached
+    stdin_open: true
+    tty: true

@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   codecov: codecov/codecov@4.1.0
+  browser-tools: circleci/browser-tools@1.5.0
 
 jobs:
   test:
@@ -27,8 +28,19 @@ jobs:
             docker-compose exec web bundle exec rails db:migrate
             docker-compose exec web bundle exec rspec
       - codecov/upload
+  run-lighthouse:
+    docker:
+      - image: cimg/node:23.5-browsers
+    steps:
+      - checkout
+      - browser-tools/install-chrome
+      - run: sudo npm install -g @lhci/cli@0.14.x
+      - run:
+          working_directory: lhci
+          command: lhci autorun
 
 workflows:
   test-and-deploy:
     jobs:
       - test
+      - run-lighthouse

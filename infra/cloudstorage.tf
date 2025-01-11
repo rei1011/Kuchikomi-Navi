@@ -10,3 +10,10 @@ resource "google_storage_bucket_iam_member" "example_bucket_public_access" {
   role   = "roles/storage.objectViewer"
   member = "allUsers"
 }
+
+# LHCIの履歴データを保存するためのCloud Storage
+resource "google_storage_bucket" "lhci_db" {
+  name          = "lhci-db"
+  location      = var.region
+  force_destroy = true
+}

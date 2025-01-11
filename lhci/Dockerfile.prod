@@ -1,0 +1,30 @@
+FROM node:23.5-bullseye-slim
+
+WORKDIR /usr/src/lhci
+
+# setup pnpm
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+
+# install packages
+RUN apt-get update && apt-get install -y wget sudo
+
+# install litestream
+ENV LITESTREAM_VERSION=v0.3.13
+RUN wget https://github.com/benbjohnson/litestream/releases/download/$LITESTREAM_VERSION/litestream-$LITESTREAM_VERSION-linux-amd64.deb
+RUN sudo dpkg -i litestream-$LITESTREAM_VERSION-linux-amd64.deb
+
+COPY litestream.yml /etc/litestream.yml
+COPY run.sh ./
+COPY package.json pnpm-lock* ./
+COPY lighthouserc.js .
+ARG BASIC_AUTH_USER
+ARG BASIC_AUTH_PASSWORD
+ENV BASIC_AUTH_USER=${BASIC_AUTH_USER}
+ENV BASIC_AUTH_PASSWORD=${BASIC_AUTH_PASSWORD}
+
+RUN pnpm install --frozen-lockfile
+
+EXPOSE 9001
+CMD ["/bin/sh", "run.sh"]
