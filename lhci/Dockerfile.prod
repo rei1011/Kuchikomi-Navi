@@ -16,9 +16,7 @@ RUN wget https://github.com/benbjohnson/litestream/releases/download/$LITESTREAM
 RUN sudo dpkg -i litestream-$LITESTREAM_VERSION-linux-amd64.deb
 
 COPY litestream.yml /etc/litestream.yml
-COPY run.sh ./
-COPY package.json pnpm-lock* ./
-COPY lighthouserc.js .
+COPY lighthouserc.js run.sh package.json pnpm-lock* ./
 ARG BASIC_AUTH_USER
 ARG BASIC_AUTH_PASSWORD
 ENV BASIC_AUTH_USER=${BASIC_AUTH_USER}
