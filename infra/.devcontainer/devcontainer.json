@@ -17,7 +17,8 @@
           "rvest.vs-code-prettier-eslint",
           "dbaeumer.vscode-eslint",
           "ritwickdey.liveserver",
-          "hashicorp.terraform"
+          "hashicorp.terraform",
+          "github.copilot"
         ]
       }
     },
