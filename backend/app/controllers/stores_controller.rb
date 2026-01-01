@@ -14,4 +14,9 @@ class StoresController < ApplicationController
   rescue StandardError => e
     KuchikomiLogger.error e
   end
+
+  def create
+    store = StoreService.create(Store.new(params[:store]))
+    render(json: StoreRes.new(store))
+  end
 end
