@@ -34,4 +34,8 @@ class RoomsController < ApplicationController
     RoomService.delete(params[:id])
     render json: {}
   end
+
+  def hoge
+    render json: { message: 'hoge' }
+  end
 end
